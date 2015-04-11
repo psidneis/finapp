@@ -1,28 +1,46 @@
-== README
+README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Primeiro é necesário instalar banco de dados postgres e pgadmin (Interface do postgres).
 
-Things you may want to cover:
+sudo apt-get install postgresql-9.1 (Versão do Postgres)
 
-* Ruby version
+sudo apt-get install pgadmin3
 
-* System dependencies
+sudo apt-get install libpq-dev - para conseguir instalar gem do pg
 
-* Configuration
+Depois configurar o usuário.
 
-* Database creation
+sudo -u postgres psql # entra como usuário root no postgres
 
-* Database initialization
+psql # Conecta ao shell do postgres
 
-* How to run the test suite
+CREATE USER nomedousuario SUPERUSER INHERIT CREATEDB CREATEROLE; # Criar o usuário de acordo com o definido no seu Database.yml
 
-* Services (job queues, cache servers, search engines, etc.)
+ALTER USER nomedousuario PASSWORD 'senha'; # E fazer o mesmo com a senha.
 
-* Deployment instructions
+\q # Para sair do psql.
 
-* ...
+ALTER ROLE finapp CREATEDB - alterar role para poder criar base
 
+Feito isso vai estar criado o usuário do postgres
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Caso o Database esteja diferente ou não tenha ido, ele tem que ficar parecido com esse: development:
+
+adapter: postgresql
+encoding: unicode
+host: localhost
+database: nomedabase
+pool: 5
+timeout: 5000
+username: usuario
+password: senha
+
+== IMPORTANTE
+Translate Routes usa o repositório do francesc e não mais o raul
+
+Para criar os dados básicos da aplicação, basta gerar os seeds
+rake db:seed
+
+dados do usuário admin criado
+user: finapp@gmail.com
+password: 123456
