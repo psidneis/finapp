@@ -25,11 +25,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-gem "less-rails"
-gem "therubyracer"
+gem 'less-rails'
+gem 'therubyracer'
 
-gem "pundit"
-gem "devise"
+gem 'cancancan', '~> 1.10'
+gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -37,10 +37,10 @@ gem 'omniauth-google-oauth2'
 
 gem 'simple_form'
 gem 'carrierwave'
-gem "prawn"
+gem 'prawn'
 
-gem "cucumber"
-gem "rspec"
+gem 'cucumber'
+gem 'rspec'
 
 # Use debugger
 gem 'byebug', group: [:development, :test]
