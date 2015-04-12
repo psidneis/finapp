@@ -35,12 +35,10 @@ timeout: 5000
 username: usuario
 password: senha
 
-== IMPORTANTE
-Translate Routes usa o repositório do francesc e não mais o raul
+Criar arquivo config/secrets.yml
 
 Para criar os dados básicos da aplicação, basta gerar os seeds
 rake db:seed
 
-dados do usuário admin criado
-user: finapp@gmail.com
-password: 123456
+== IMPORTANTE
+Translate Routes usa o repositório do francesc e não mais o raul
