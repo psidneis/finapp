@@ -259,5 +259,5 @@ Devise.setup do |config|
 
   #Add your ID and secret here
   #ID first, secret second
-  config.omniauth :google_oauth2, "82747453486-asagma8ahf30vpc8p8kh5lrbbip38t00.apps.googleusercontent.com", "g678wsjEk6W81laIS1Hndlsg"
+  config.omniauth :google_oauth2, Rails.application.secrets.google_client_id, Rails.application.secrets.google_client_secret
 end
