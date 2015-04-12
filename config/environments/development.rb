@@ -39,8 +39,8 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
-    :user_name => "p.sidneis",
-    :password => "Believe0102**",
+    :user_name => Rails.application.secrets.email_username,
+    :password => Rails.application.secrets.messages_email_password,
     :domain => "gmail.com",
     :address => "smtp.gmail.com",
     :port => 587,
