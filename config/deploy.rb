@@ -3,7 +3,7 @@ server '198.199.110.146', port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:psidneis/finapp.git'
 set :application,     'finapp'
-set :user,            'finapp'
+set :user,            'deploy'
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
 
