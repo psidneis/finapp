@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150411171320) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  # enable_extension "plpgsql"
 
   create_table "roles", force: true do |t|
     t.string   "title"

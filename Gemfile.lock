@@ -173,7 +173,6 @@ GEM
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
     pdf-core (0.6.0)
-    pg (0.18.3)
     prawn (2.0.2)
       pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
@@ -290,7 +289,6 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2
   omniauth-twitter
-  pg
   prawn
   puma
   rails (~> 4.2.2)
