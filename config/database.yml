@@ -27,7 +27,7 @@ development:
   <<: *default
   host: localhost
   database: finapp_development
-  username: finapp
+  username: <%= Rails.application.secrets.db_username %>
   password: <%= Rails.application.secrets.db_password %>
 
   # The specified database role being used to connect to postgres.

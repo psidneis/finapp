@@ -42,6 +42,8 @@ gem 'prawn'
 gem 'cucumber'
 gem 'rspec'
 
+gem 'awesome_print', :require => 'ap'
+
 # Use debugger
 gem 'byebug', group: [:development, :test]
 # gem 'awesome_print', :require => 'ap', group: [:development, :test]
