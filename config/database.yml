@@ -34,8 +34,8 @@ production:
   <<: *default
   host: localhost
   database: finapp_production
-  username: <%= Rails.application.secrets.db_username %>
-  password: <%= Rails.application.secrets.db_password %>
+  username: finapp
+  password: abc123
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
