@@ -1,5 +1,5 @@
 # Change these
-server '198.199.110.146', port: 8001, roles: [:web, :app, :db], primary: true
+server '198.199.110.146', port: 80, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:psidneis/finapp.git'
 set :application,     'finapp'
