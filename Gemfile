@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.2.2'
+gem 'puma'
 # Use postgresql as the database for Active Record
 # gem 'pg'
 gem 'mysql2', '~> 0.3.20'
@@ -20,10 +21,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0',          group: :doc
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'less-rails'
@@ -40,22 +37,27 @@ gem 'simple_form'
 gem 'carrierwave'
 gem 'prawn'
 
-gem 'cucumber'
-gem 'rspec'
-
-gem 'awesome_print', :require => 'ap'
-
-# Use debugger
-gem 'byebug', group: [:development, :test]
-# gem 'awesome_print', :require => 'ap', group: [:development, :test]
-
-group :development do
-    gem 'capistrano',         require: false
-    gem 'capistrano-rvm',     require: false
-    gem 'capistrano-rails',   require: false
-    gem 'capistrano-bundler', require: false
-    gem 'capistrano3-puma',   require: false
+group	:doc do
+	# bundle exec rake doc:rails generates the API under doc/api.
+	gem 'sdoc', '~> 0.4.0'
 end
 
-gem 'puma'
+group	:test do
+	gem 'cucumber'
+	gem 'rspec'
+end
 
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+	gem 'spring'
+end
+
+group :development, :test do
+	gem 'awesome_print', :require => 'ap'
+	gem 'byebug', group: [:development, :test]
+end
