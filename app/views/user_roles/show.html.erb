@@ -1,17 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>User:</strong>
+  <strong><%= UserRole.human_attribute_name("user") %>:</strong>
   <%= @user_role.user %>
 </p>
 
 <p>
-  <strong>Role:</strong>
+  <strong><%= UserRole.human_attribute_name("role") %>:</strong>
   <%= @user_role.role %>
 </p>
 
 <p>
-  <strong>Enabled:</strong>
+  <strong><%= UserRole.human_attribute_name("enabled") %>:</strong>
   <%= @user_role.enabled %>
 </p>
 

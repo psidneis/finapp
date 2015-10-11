@@ -205,3 +205,21 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+
+  activerecord:
+    models:
+      user: Usuário
+      role: Papel
+      user_role: Papel do usuário
+
+    attributes:
+      user:
+        email: email
+        name: Nome
+      role:
+        title: Título
+        description: Descrição
+      user_role:
+        user: :activerecord.models.user
+        role: :activerecord.models.role
+        enabled: Habilitado

@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%= User.human_attribute_name("name") %>:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong><%= User.human_attribute_name("email") %>:</strong>
   <%= @user.email %>
 </p>
 
