@@ -1,0 +1,82 @@
+/* Navbar
+-------------------------------------------------- */
+header#header {
+    
+  .navbar.navbar-static-top {
+      margin-bottom: 35px;
+  }
+  .navbar.transparent.navbar-inverse .navbar-inner {
+      /*background: rgba(0,0,0,0.4);*/
+      background: rgba(0,0,0,0.8);
+      border-bottom: 1px solid rgb(88, 88, 88);
+  }
+  .navbar.transparent.navbar-inverse .navbar-inner .container {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      -webkit-transition: margin .2s ease-in-out;
+      -moz-transition: margin .2s ease-in-out;
+      transition: margin .2s ease-in-out;
+  }
+  .navbar.navbar-inverse .navbar-inner {  
+      padding: 10px 0px 10px 0px;
+      /*background: #252528;    */
+  }
+  .navbar.navbar-inverse .navbar-inner.sticky {
+      background: rgba(0,0,0,0.8);
+      border-bottom: 1px solid #252525;
+  }
+  .navbar-inverse .navbar-inner.sticky .container {
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+  }
+  .navbar-inverse .brand {
+      color: #fff;
+  }
+  .navbar-inverse .nav > li > a {
+      /*color: rgb(177, 177, 177);*/
+      font-size: 13px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0,0,0,.5);
+      opacity: .6;
+      filter: alpha(opacity=60);
+      -webkit-transition: all .2s linear;
+      -moz-transition: all .2s linear;
+      transition: all .2s linear;
+  }
+  .navbar-inverse .nav > li > a:hover,
+  .navbar-inverse .nav > li > a.active {
+      color: #fff;
+      opacity: 1;
+      filter: alpha(opacity=100);
+  }
+  .navbar-inverse .dropdown-menu {
+  	background: #252528;
+  }
+  .navbar-inverse .nav > li > .dropdown-menu::after {
+  	border-bottom: 6px solid #252528;
+  }
+  .navbar-inverse .dropdown-menu li > a {
+  	color: #fff;
+  }
+  .dropdown-menu li > a:hover,
+  .dropdown-menu li > a:focus,
+  .dropdown-submenu:hover > a {
+    text-decoration: none;
+  }
+
+  .section_header {
+  	width: 100%;
+  	margin-bottom: 60px;
+  }
+  .section_header h3 {
+  	color: rgb(100, 100, 100);
+  	font-weight: 300;
+  	font-style: italic;
+  	font-size: 27px;
+  	border-bottom: 1px solid #b3b3b3;
+  	padding-bottom: 0px;
+  	display: inline-block;
+  	margin:0;
+  }
+}

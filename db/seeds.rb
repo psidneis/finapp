@@ -11,3 +11,4 @@
 	user_role = UserRole.create(user: user, role: role, enabled: true)
 
 	User.create(name: 'Sidnei Pereira', email: 'p.sidneis@gmail.com', password: '123456', password_confirmation: '123456')
+	User.create(name: 'Éverton Braz', email: 'evertonb_rocha@hotmail.com', password: '123456', password_confirmation: '123456')
