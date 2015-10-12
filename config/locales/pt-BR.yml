@@ -214,7 +214,7 @@ pt-BR:
 
     attributes:
       user:
-        email: email
+        email: Email
         name: Nome
       role:
         title: Título

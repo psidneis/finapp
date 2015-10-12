@@ -1,11 +1,11 @@
 <h1>Listing roles</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th><%= Role.human_attribute_name("title") %></th>
       <th><%= Role.human_attribute_name("description") %></th>
-      <th colspan="3"></th>
+      <th><%= t('helpers.actions') %></th>
     </tr>
   </thead>
 
@@ -14,9 +14,11 @@
       <tr>
         <td><%= role.title %></td>
         <td><%= role.description %></td>
-        <td><%= link_to 'Show', role %></td>
-        <td><%= link_to 'Edit', edit_role_path(role) %></td>
-        <td><%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to t('helpers.links.show'), role, class: "btn btn-success" %>
+          <%= link_to t('helpers.links.edit'), edit_role_path(role), class: "btn btn-primary" %>
+          <%= link_to t('helpers.links.destroy'), role, method: :delete, data: {confirm: t('helpers.links.confirm')}, class: "btn btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -2,17 +2,17 @@
 
 <p>
   <strong><%= UserRole.human_attribute_name("user") %>:</strong>
-  <%= @user_role.user %>
+  <%= @user_role.user.try(:name) %>
 </p>
 
 <p>
   <strong><%= UserRole.human_attribute_name("role") %>:</strong>
-  <%= @user_role.role %>
+  <%= @user_role.role.try(:title) %>
 </p>
 
 <p>
   <strong><%= UserRole.human_attribute_name("enabled") %>:</strong>
-  <%= @user_role.enabled %>
+  <%= human_boolean(@user_role.enabled) %>
 </p>
 
 <%= link_to 'Edit', edit_user_role_path(@user_role) %> |
