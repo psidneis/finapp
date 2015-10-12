@@ -36,7 +36,7 @@ class Ability
       send(role.parameterize.underscore, user) if respond_to?(role.parameterize.underscore)
     end
 
-    can [:index], [Home]
+    can [:index, :show], [Home, User, Role, UserRole]
 
     def admin(user)
       can :manage, :all
