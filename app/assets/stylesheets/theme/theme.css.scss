@@ -25,7 +25,13 @@ textarea {
 /* Navbar
 -------------------------------------------------- */
 body.pull_top {
-    padding-top: 0px !important;
+  padding-top: 0px !important;
+	background-image: image-url("theme/backgrounds/aqua.jpg");
+	background-repeat: no-repeat;
+}
+
+.main {
+	min-height: 350px;
 }
 /*header {
     background: rgba(0,0,0,.6) !important;

@@ -1,11 +1,13 @@
-#theme{
 /* Sign In Option 1 */
 #sign_in1{
-    background: url("../img/backgrounds/aqua.jpg")  no-repeat;
-    display: block;
-    height: 540px;
-    margin-bottom: 90px;
-    margin-top: -35px;
+    /*background-image: image-url("theme/backgrounds/aqua.jpg")  no-repeat;*/
+/*    background-image: image-url("theme/backgrounds/aqua.jpg");
+*/    display: block;
+    /*height: 540px;*/
+    /*padding-bottom: 30px;*/
+    height: 480px;
+    margin-top: 0px;
+    /*padding-top: 10px;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -98,15 +100,17 @@
     margin: 0 auto;
     width: 78%;
     float: none;
+    color: #FFF;
 }
 #sign_in1 .footer{
     text-align: center;
     margin-left: 0;
 }
 #sign_in1 .footer form{
-    margin: 0 0 46px 0;
+    margin: 0 0 16px 0;
 }
 #sign_in1 .footer input[type="text"],
+#sign_in1 .footer input[type="email"],
 #sign_in1 .footer input[type="password"] {
     border-radius: 3px;
     font-size: 16px;
@@ -175,211 +179,11 @@
     border-color: #252528;
 }
 
-/* Sign In Option 2 */
-#sign_in2 .section_header{
-    margin-bottom: 50px;
-}
-#sign_in2 .section_header h3{
-    margin: 0;
-}
-#sign_in2 .section_header h3 span{
-    font-size: 18px;
-    line-height: 20px;
-}
-#sign_in2 .left_box{
-    color: #252527;
-}
-#sign_in2 .left_box h4{
-    margin: 20px 0 40px 0;
-    line-height: 43px;
-    font-size: 40px;
-    font-weight: 300;
-}
-#sign_in2 .left_box .perk_box{
-    float: left;
-    width: 100%;
-}
-#sign_in2 .left_box .perk_box .perk{
-    width: 100%;
-    color: #727276;
-    margin-bottom: 31px;
-}
-#sign_in2 .left_box .perk_box .perk .icos{
-    float: left;
-    margin-right: 16px;
-    width: 28px;
-    height: 46px;
-}
-#sign_in2 .left_box .perk_box .perk .ico1{
-    background-position: 4px 6px;
-}
-#sign_in2 .left_box .perk_box .perk .ico2{
-    background-position: -35px 14px;
-}
-#sign_in2 .left_box .perk_box .perk .ico3{
-    background-position: -69px 7px;
-}
-#sign_in2 .left_box .perk_box .perk p{
-    font-size: 15px;
-}
-#sign_in2 .left_box .perk_box .perk p strong{
-    color: #333;
-}
-#sign_in2 a.btn_sign{
-    text-transform: uppercase;
-    color: #FDFDFD;
-    font-size: 15px;
-    border-radius: 4px;
-    background: #333333;
-    font-weight: bold;
+#sign_in1 .devise_links {
     text-align: center;
-    margin: 0 auto;
-    width: 25%;
-    display: block;
-    padding: 6px 0 6px;
-    -webkit-transition: background linear .2s, box-shadow linear .2s;
-    -moz-transition: background linear .2s, box-shadow linear .2s;
-    -o-transition: background linear .2s, box-shadow linear .2s;
-    transition: background linear .2s, box-shadow linear .2s;
-}
-#sign_in2 a.btn_sign:hover{
-    background: #252528;
-}
-#sign_in2 .icos{
-    background: url('../img/signin_icos.png') no-repeat;
-    width: 96px;
-    height: 30px;
-}
-#sign_in2 .signin_box{
-    float: right;
-}
-#sign_in2 .signin_box .box{
-    float: right;
-    box-shadow: 0 0 5px 0 rgb(238, 238, 238);
-    background: white;
-    border:1px solid #DFDFDF;
-    border-radius: 5px;
-    width: 90%;
-    padding: 35px 0 30px;
-}
-#sign_in2 .signin_box .box .box_cont{
-    margin: 0 auto;
-    width: 77%;
-}
-#sign_in2 .signin_box .box .social{
-    margin: 0 auto 20px;
-    float: none;
-    text-align: center;
-}
-#sign_in2 .signin_box .box .social a.circle{
-    text-align: center;
-    width: 56px;
-    height: 56px;
-    border-radius: 100%;
-    margin-right:34px;
-    display: inline-block;
-    -webkit-transition: border-color ease-in .1s;
-    -moz-transition: border-color ease-in .1s;
-    -o-transition: border-color ease-in .1s;
-    transition: border-color ease-in .1s;
-}
-#sign_in2 .signin_box .box .social a.circle img{
-    display: inline-block;
-    margin-top: 15px;
-}
-#sign_in2 .signin_box .box .social a.facebook{
-    background: #233678;
-    border:2px solid #233678;
-}
-#sign_in2 .signin_box .box .social a.twitter{
-    background: #54AEE1;
-    border:2px solid #54AEE1;
-}
-#sign_in2 .signin_box .box .social a.gplus{
-    background: #292929;
-    border:2px solid #292929;
-    margin: 0;
-}
-#sign_in2 .signin_box .box .social a.circle:hover{
-    border-color: rgba(0,0,0,0.7);
-}
-#sign_in2 .signin_box .box .division{
-    margin: 0 auto 18px;
-    float: none;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    text-align: center;
-}
-#sign_in2 .signin_box .box .division .line{
-    border-top: 1px solid #DFDFDF;
-    width: 34%;
-    top: 10px;
-    position: absolute;
-}
-#sign_in2 .signin_box .box .division .l{
-    left: 0;
-}
-#sign_in2 .signin_box .box .division .r{
-    right: 0;
-}
-#sign_in2 .signin_box .box .division span{
-    color: rgb(66, 66, 66);
-    font-size: 17px;
-}
-#sign_in2 .signin_box .box .form form{
-    margin: 0;
-}
-#sign_in2 .signin_box .box .form input[type="text"]{
-    border-radius: 3px;
-    font-size: 16px;
-    width: 96%;
-    margin-bottom: 16px;
-    height: 27px;
-    color: black;
-}
-#sign_in2 .signin_box .box .form .forgot{
-    margin-left: 0;
-    margin-bottom: 20px;
-    width: 100%;
-    color: #797979;
-    text-align: center;
-    overflow: hidden;
-}
-#sign_in2 .signin_box .box .form .forgot span{
-    margin-right: 5px;
-}
-#sign_in2 .signin_box .box .form .forgot a{
-    color: #797979;
-    font-size: 13px;
-    border-bottom: 1px solid #797979;
-    font-weight: bold;
-    -webkit-transition: color .2s;
-    -moz-transition: color .2s;
-    -ms-transition: color .2s;
-    transition: color .2s;
-}
-#sign_in2 .signin_box .box .form .forgot a:hover{
-    color: #187CCC;
-    border-color: #187CCC;
-}
-#sign_in2 .signin_box .box .form input[type="submit"]{
-    text-transform: uppercase;
-    color: #fff;
-    background: #187CCC;
-    font-size: 15px;
-    margin: 0 auto;
-    display: block;
-    padding: 6px 19px;
-    border: 0 none;
-    border-radius: 3px;
-    -webkit-transition: background linear .2s, box-shadow linear .2s;
-    -moz-transition: background linear .2s, box-shadow linear .2s;
-    -o-transition: background linear .2s, box-shadow linear .2s;
-    transition: background linear .2s, box-shadow linear .2s;
-}
-#sign_in2 .signin_box .box .form input[type="submit"]:hover{
-    background: #252528;
+    a {
+        color: #FFF;
+    }
 }
 
 /* Responsive
@@ -510,5 +314,4 @@
     #sign_in1 .remember{
         width: 100%;
     }
-}
 }

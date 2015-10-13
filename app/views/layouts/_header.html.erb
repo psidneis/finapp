@@ -26,9 +26,9 @@
                 </ul>
               </li>
             <% else %>
-              <li><%= link_to "Sign up", new_user_registration_path %></li>
-              <li><%= link_to "Login", new_user_session_path %></li>
-              <li><%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2) %></li>
+              <li><%= link_to "Sign up", new_user_registration_path, class: "btn-header" %></li>
+              <li><%= link_to "Login", new_user_session_path, class: "btn-header active" %></li>
+              <li><%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-header" %></li>
             <% end %>
           </ul>
         </div>

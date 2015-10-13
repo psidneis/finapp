@@ -1,18 +1,40 @@
-<h2>Sign up</h2>
+<div id="sign_in1">
+    <div class="container">
+        <div class="row">
+            <div class="span12 header">
+                <h4>Sign up</h4>
+                <div class="span4 social">
+                  <%= link_to image_tag("theme/face.png", :border => 0), "#", :class => 'circle facebook' %>
+                  <%= link_to image_tag("theme/twt.png", :border => 0), "#", :class => 'circle twitter' %>
+                  <%= link_to image_tag("theme/gplus.png", :border => 0), "#", :class => 'circle gplus ' %>
+                </div>
+            </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+            <div class="span3 division">
+                <div class="line l"></div>
+                <span>or</span>
+                <div class="line r"></div>
+            </div>
 
-  <div class="form-inputs">
-	<%= f.input :name, required: true %>
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable) %>
-    <%= f.input :password_confirmation, required: true %>
-  </div>
+            <div class="span12 footer">
+                <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <%= f.input_field :name, required: true, label: false, placeholder: 'name' %>
+                    <%= f.input_field :email, required: true, autofocus: true, label: false, placeholder: 'email' %>
+                    <%= f.input_field :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), label: false, placeholder: 'password' %>
+                    <%= f.input_field :password_confirmation, required: true, label: false, placeholder: 'password confirmation' %>
+                    <%= f.button :submit, "Sign up" %>
+            </div>
+            <div class="span12 proof">
+              <div class="span5 remember">
+                    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+              </div>
+                <% end %>
+            </div>
+            <div class="devise_links">
+                <%= render "devise/shared/links" %>
+            </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+        </div>
+    </div>
+</div>
 
-<%= render "devise/shared/links" %>

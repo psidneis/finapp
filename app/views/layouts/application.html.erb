@@ -7,9 +7,9 @@
 	  <%= csrf_meta_tags %>
 	</head>
 	
-	<body>
+	<body class="<%= 'pull_top' unless user_signed_in? %>">
 		<%= render partial: "layouts/header" %>
-		<div class="container">
+		<div class="<%= 'container main' if user_signed_in? %>">
 			<%= yield %>
 		</div>
 		<%= render partial: "layouts/footer" %>
