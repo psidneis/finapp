@@ -1,10 +1,10 @@
 class RolesController < ApplicationController
 
-#  load_and_authorize_resource
+  load_and_authorize_resource
 
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @roles = Role.all

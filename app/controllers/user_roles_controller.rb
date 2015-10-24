@@ -1,6 +1,6 @@
 class UserRolesController < ApplicationController
 
-#  load_and_authorize_resource
+  load_and_authorize_resource
   
   before_action :set_user_role, only: [:show, :edit, :update, :destroy]
 

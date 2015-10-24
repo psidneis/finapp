@@ -29,6 +29,7 @@ gem 'therubyracer'
 
 gem 'cancancan', '~> 1.10'
 gem 'devise'
+gem 'devise_token_auth'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -37,6 +38,7 @@ gem 'omniauth-google-oauth2'
 gem 'simple_form'
 gem 'carrierwave'
 gem 'prawn'
+gem 'responders', '~> 2.0'
 
 group	:doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
