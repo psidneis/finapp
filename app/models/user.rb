@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # include DeviseTokenAuth::Concerns::User
+  include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
