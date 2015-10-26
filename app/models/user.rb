@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable
+  # :lockable, :timeoutable, :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   has_many :user_roles
   has_many :roles, through: :user_roles
