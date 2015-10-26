@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @card.brand %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @card.title %>
+</p>
+
+<p>
+  <strong>Credit limit:</strong>
+  <%= @card.credit_limit %>
+</p>
+
+<p>
+  <strong>Billing day:</strong>
+  <%= @card.billing_day %>
+</p>
+
+<p>
+  <strong>Payment day:</strong>
+  <%= @card.payment_day %>
+</p>
+
+<p>
+  <strong>Account:</strong>
+  <%= @card.account %>
+</p>
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

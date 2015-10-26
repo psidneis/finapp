@@ -5,8 +5,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :user_roles
-  has_many :roles, through: :user_roles
+  has_many :user_groups
+  has_many :groups, through: :user_groups
+  has_many :accounts
+  has_many :cards
+  has_many :lauches
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -15,15 +18,6 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end
-  end
-
-  def current_user_roles
-    self.user_roles.where(enabled: true).map{|r| r.role.title.parameterize.underscore}
-  end
-
-  def is?(role)
-    role = [role].flatten.map{|r| r.to_s.parameterize.underscore}
-    (self.current_user_roles & role).any?
   end
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
