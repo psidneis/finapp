@@ -1,0 +1,1 @@
+json.extract! @launch, :id, :title, :description, :value, :date, :paid, :launchable_id, :launchable_type, :recurrence_type, :amount_installment, :recurrence, :type, :category_id, :user_id, :created_at, :updated_at

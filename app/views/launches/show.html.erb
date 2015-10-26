@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @launch.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @launch.description %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @launch.value %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @launch.date %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @launch.paid %>
+</p>
+
+<p>
+  <strong>Launchable:</strong>
+  <%= @launch.launchable %>
+</p>
+
+<p>
+  <strong>Recurrence type:</strong>
+  <%= @launch.recurrence_type %>
+</p>
+
+<p>
+  <strong>Amount installment:</strong>
+  <%= @launch.amount_installment %>
+</p>
+
+<p>
+  <strong>Recurrence:</strong>
+  <%= @launch.recurrence %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @launch.type %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @launch.category %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @launch.user %>
+</p>
+
+<%= link_to 'Edit', edit_launch_path(@launch) %> |
+<%= link_to 'Back', launches_path %>

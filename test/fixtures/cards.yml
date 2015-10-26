@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand: 
+  title: MyString
+  credit_limit: 9.99
+  billing_day: 
+  payment_day: 
+  account_id: 
+
+two:
+  brand: 
+  title: MyString
+  credit_limit: 9.99
+  billing_day: 
+  payment_day: 
+  account_id: 

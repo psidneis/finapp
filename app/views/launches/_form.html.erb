@@ -1,0 +1,22 @@
+<%= simple_form_for(@launch) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :value %>
+    <%= f.input :date %>
+    <%= f.input :paid %>
+    <%= f.association :launchable %>
+    <%= f.input :recurrence_type %>
+    <%= f.input :amount_installment %>
+    <%= f.input :recurrence %>
+    <%= f.input :type %>
+    <%= f.association :category %>
+    <%= f.association :user %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

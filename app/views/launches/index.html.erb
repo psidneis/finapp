@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Launches</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Date</th>
+      <th>Paid</th>
+      <th>Launchable</th>
+      <th>Recurrence type</th>
+      <th>Amount installment</th>
+      <th>Recurrence</th>
+      <th>Type</th>
+      <th>Category</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @launches.each do |launch| %>
+      <tr>
+        <td><%= launch.title %></td>
+        <td><%= launch.description %></td>
+        <td><%= launch.value %></td>
+        <td><%= launch.date %></td>
+        <td><%= launch.paid %></td>
+        <td><%= launch.launchable %></td>
+        <td><%= launch.recurrence_type %></td>
+        <td><%= launch.amount_installment %></td>
+        <td><%= launch.recurrence %></td>
+        <td><%= launch.type %></td>
+        <td><%= launch.category %></td>
+        <td><%= launch.user %></td>
+        <td><%= link_to 'Show', launch %></td>
+        <td><%= link_to 'Edit', edit_launch_path(launch) %></td>
+        <td><%= link_to 'Destroy', launch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Launch', new_launch_path %>

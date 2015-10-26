@@ -21,7 +21,7 @@ development:
   database: finapp_development
   pool: 5
   username: root
-  password: abc123
+  password:
   host: localhost
   port: 3306
 
@@ -35,7 +35,7 @@ test:
   database: finapp_test
   pool: 5
   username: root
-  password: abc123
+  password:
   host: localhost
 
 production:
@@ -45,7 +45,7 @@ production:
   database: finapp_production
   pool: 5
   username: root
-  password: abc123
+  password:
   host: localhost
 
   # The specified database role being used to connect to postgres.

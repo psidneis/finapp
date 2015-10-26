@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :user_groups
+  resources :launches
+  resources :categories
+  resources :cards
+  resources :accounts
+  resources :groups
   namespace :api do
     scope :v1 do
       mount_devise_token_auth_for 'User', at: 'auth'
@@ -16,8 +22,6 @@ Rails.application.routes.draw do
   get 'home/index'
 
   resources :users
-  resources :user_roles
-  resources :roles
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
