@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026221803) do
+ActiveRecord::Schema.define(version: 20151026222858) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "type",        limit: 4
@@ -76,24 +76,16 @@ ActiveRecord::Schema.define(version: 20151026221803) do
   add_index "launches", ["launchable_type", "launchable_id"], name: "index_launches_on_launchable_type_and_launchable_id", using: :btree
   add_index "launches", ["user_id"], name: "index_launches_on_user_id", using: :btree
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "user_groups", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "group_id",   limit: 4
-    t.integer  "role_id",    limit: 4
     t.boolean  "enabled"
+    t.integer  "role",       limit: 4
+    t.integer  "group_id",   limit: 4
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
 
   add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
-  add_index "user_groups", ["role_id"], name: "index_user_groups_on_role_id", using: :btree
   add_index "user_groups", ["user_id"], name: "index_user_groups_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -129,6 +121,5 @@ ActiveRecord::Schema.define(version: 20151026221803) do
   add_foreign_key "launches", "categories"
   add_foreign_key "launches", "users"
   add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "roles"
   add_foreign_key "user_groups", "users"
 end
