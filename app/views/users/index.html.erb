@@ -1,29 +1,36 @@
 <h1>Listing users</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= User.human_attribute_name("name") %></th>
-      <th><%= User.human_attribute_name("email") %></th>
-      <th><%= t('helpers.actions') %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <td><%= user.email %></td>
-        <td>
-          <%= link_to t('helpers.links.show'), user, class: "btn btn-success" %>
-          <%= link_to t('helpers.links.edit'), edit_user_path(user), class: "btn btn-primary" %>
-          <%= link_to t('helpers.links.destroy'), user, method: :delete, data: {confirm: t('helpers.links.confirm')}, class: "btn btn-danger" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="responsive-table">
+  <div class="scrollable-area">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= User.human_attribute_name("name") %></th>
+          <th><%= User.human_attribute_name("email") %></th>
+          <th><%= t('helpers.actions') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <%= link_to(user, class: "btn btn-success btn-xs") do %>
+                <i class='icon-ok-sign'></i>
+              <% end %>
+              <%= link_to(edit_user_path(user), class: "btn btn-primary btn-xs") do %>
+                <i class='icon-edit'></i>
+                <% end %>
+              <%= link_to(user, method: :delete, data: {confirm: t('helpers.links.confirm')}, class: "btn btn-danger btn-xs") do %>
+                <i class='icon-remove'></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <%= link_to 'New User', new_user_path %>

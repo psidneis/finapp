@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
-	<head>
+  <head>
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	  <title>Finapp</title>
-	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+	  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 	  <%= csrf_meta_tags %>
 	</head>
-	
-	<body class="<%= 'pull_top' unless user_signed_in? %>">
+
+	<body class="fixed-header fixed-navigation contrast-grass-green">
 		<%= render partial: "layouts/header" %>
-		<div class="<%= 'container main' if user_signed_in? %>">
-			<%= yield %>
-		</div>
-		<%= render partial: "layouts/footer" %>
+		<%= render partial: "layouts/navigator" if user_signed_in? %>
+
+		<section id='content'>
+      <div class='container'>
+        <div class='row' id='content-wrapper'>
+          <div class='col-xs-12'>
+          	<div id="flash" class="flash"><%= render :partial => "layouts/flash_header" %></div>
+						<%= yield %>
+					</div>
+				</div>
+			</div>
+		</section>
+		<%#= render partial: "layouts/footer" %>
 	</body>
 </html>

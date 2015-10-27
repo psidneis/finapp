@@ -1,38 +1,54 @@
-<header id="header">
-  <div class="navbar transparent navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <%= link_to "<strong>FinApp</strong>".html_safe, root_path, class: "brand" %>
-        <!-- <a class="brand" href="index.html">
-          <strong>FinApp</strong>
-        </a> -->
-        <div class="nav-collapse collapse">
-          <ul class="nav pull-right">
-            <% if user_signed_in? %>
-              <li><%= link_to "Home", root_path, class: "active" %></li>
-              <li  class="dropdown">
-                <%= link_to("#") do %>
-                    <%= current_user.name %>
-                    <b class="caret"></b>
-                <% end %>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
-                  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-                </ul>
-              </li>
-            <% else %>
-              <li><%= link_to "Sign up", new_user_registration_path, class: "btn-header" %></li>
-              <li><%= link_to "Login", new_user_session_path, class: "btn-header active" %></li>
-              <li><%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-header" %></li>
-            <% end %>
+<header>
+  <nav class='navbar navbar-default'>
+    <%= link_to(root_path, class: 'navbar-brand') do %>
+      <%= image_tag "logo.png", class: 'logo', size: "91x31", alt: "FinApp" %>
+      <%= image_tag "logo_xs.png", class: 'logo-xs', size: "21x21", alt: "FinApp" %>
+    <% end %>
+    <%= link_to("#", class: 'toggle-nav btn pull-left') do %>
+      <i class='icon-reorder'></i>
+    <% end %>
+    <ul class='nav'>
+      <% if user_signed_in? %>
+        <li class='dropdown dark user-menu'>
+          <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+          <%= image_tag "avatar.png", size: "23x23", alt: current_user.name %>
+            <span class='user-name'><%= current_user.name %></span>
+            <b class='caret'></b>
+          </a>
+          <ul class='dropdown-menu'>
+            <li>
+              <%= link_to(edit_user_registration_path) do %>
+                <i class='icon-user'></i>
+                Edit profile
+              <% end %>
+            </li>
+            <li>
+              <a href='user_profile.html'>
+                <i class='icon-cog'></i>
+                Settings
+              </a>
+            </li>
+            <li class='divider'></li>
+            <li>
+              <%= link_to(destroy_user_session_path, method: :delete) do %>
+                <i class='icon-signout'></i>
+                Logout
+              <% end %>
+            </li>
           </ul>
-        </div>
+        </li>
+      <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path, class: "btn-header" %></li>
+        <li><%= link_to "Login", new_user_session_path, class: "btn-header active" %></li>
+        <li><%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-header" %></li>
+      <% end %>
+
+    </ul>
+    <form action='#' class='navbar-form navbar-right hidden-xs' method='get'>
+      <button class='btn btn-link icon-search' name='button' type='submit'></button>
+      <div class='form-group'>
+        <input value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" name="q" type="text" />
       </div>
-    </div>
-  </div>
+    </form>
+  </nav>
 </header>

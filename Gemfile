@@ -40,6 +40,8 @@ gem 'carrierwave'
 gem 'prawn'
 gem 'responders', '~> 2.0'
 
+gem "compass-rails", "~> 2.0.alpha.0"
+
 group	:doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', '~> 0.4.0'
