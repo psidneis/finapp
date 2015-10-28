@@ -32,19 +32,24 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.integer  "billing_day",  limit: 4
     t.integer  "payment_day",  limit: 4
     t.integer  "account_id",   limit: 4
+    t.integer  "user_id",      limit: 4
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
   end
 
   add_index "cards", ["account_id"], name: "index_cards_on_account_id", using: :btree
+  add_index "cards", ["user_id"], name: "index_cards_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
     t.string   "color",       limit: 255
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -118,6 +123,8 @@ ActiveRecord::Schema.define(version: 20151026222858) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "cards", "accounts"
+  add_foreign_key "cards", "users"
+  add_foreign_key "categories", "users"
   add_foreign_key "launches", "categories"
   add_foreign_key "launches", "users"
   add_foreign_key "user_groups", "groups"

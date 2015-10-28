@@ -19,12 +19,6 @@
               <%= link_to(user, class: "btn btn-success btn-xs") do %>
                 <i class='icon-ok-sign'></i>
               <% end %>
-              <%= link_to(edit_user_path(user), class: "btn btn-primary btn-xs") do %>
-                <i class='icon-edit'></i>
-                <% end %>
-              <%= link_to(user, method: :delete, data: {confirm: t('helpers.links.confirm')}, class: "btn btn-danger btn-xs") do %>
-                <i class='icon-remove'></i>
-              <% end %>
             </td>
           </tr>
         <% end %>
@@ -32,5 +26,3 @@
     </table>
   </div>
 </div>
-
-<%= link_to 'New User', new_user_path %>

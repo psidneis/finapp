@@ -10,7 +10,7 @@ class CreateLaunches < ActiveRecord::Migration
       t.integer :recurrence_type
       t.integer :amount_installment
       t.integer :recurrence
-      t.integer :type
+      t.integer :launch_type
       t.references :category, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
 

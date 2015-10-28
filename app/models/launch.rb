@@ -5,7 +5,7 @@ class Launch < ActiveRecord::Base
   belongs_to :user
 
   # enum recurrence_type: {:installments, :recurrence, :not_recurrence}
-  # enum recurrence: {0: 'Anual', 1: 'Semestral', 2: 'Trimestral', 3: 'Bimestral', 4: 'Mensal', 5: 'Quinzenal', 6: 'Semanal', 7: 'Diária'}
+  enum recurrence: %w(yearly biannual quarterly bimonthly monthly fortnightly weekly daily)
   # enum type: {0: 'Receita', 1: 'Despesa'}
 
 end

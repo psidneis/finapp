@@ -206,20 +206,68 @@ pt-BR:
       short: "%d de %B, %H:%M"
     pm: ''
 
+
   activerecord:
     models:
+      account: Conta
+      card: Cartão
+      category: Categoria
+      group: Grupo
+      launch: Lançamento
       user: Usuário
-      role: Papel
-      user_role: Papel do usuário
+      user_group: Grupo do usuário
 
     attributes:
+      account:
+        account_type: Tipo de Conta
+        title: Título
+        description: Descrição
+        value: Valor inicial
+        user: Usuário
+      card:
+        brancd: Bandeira
+        title: Título
+        credit_limit: Limite
+        billing_day: Fecha dia
+        payment_day: Vence dia
+        account: Conta
+        user: Usuário
+      category:
+        title: Título
+        description: Descrição
+        color: Cor
+      group:
+        title: Título
+        description: Descrição
+        user: Usuário
+      launch:
+        title: Título
+        description: Descrição
+        value: Valor
+        date: Data
+        paid: Pago
+        launchable: Conta/Cartão
+        recurrence_type: Tipo de recorrência
+        amount_installment: Quantidade de parcelas
+        launch_type: Receita/Despesa
+        category: Categoria
+        user: Usuário
+        recurrence: Recorrência
+        recurrences:
+          yearly: Anual
+          biannual: Semestral
+          quarterly: Trimestral
+          bimonthly: Bimestral
+          monthly: Mensal
+          fortnightly: Quinzenal
+          weekly: Semanal
+          daily: Diária
       user:
         email: Email
         name: Nome
-      role:
-        title: Título
-        description: Descrição
-      user_role:
-        user: :activerecord.models.user
-        role: :activerecord.models.role
+      user_group:
         enabled: Habilitado
+        manager: Gerenciador
+        role: Papel
+        group: Grupo
+        user: Usuário

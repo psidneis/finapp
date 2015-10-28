@@ -22,3 +22,5 @@
 //= require flatty/bootstrap/bootstrap.min
 //= require flatty/plugins/plugins
 //= require flatty/theme
+//= require moment
+//= require bootstrap-datetimepicker

@@ -26,8 +26,10 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'bootstrap-sass', '~> 3.2.0.0'
 gem 'less-rails'
 gem 'therubyracer'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
-gem 'cancancan', '~> 1.10'
+# gem "pundit"
 gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'

@@ -7,6 +7,7 @@ class CreateCards < ActiveRecord::Migration
       t.integer :billing_day
       t.integer :payment_day
       t.references :account, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
     end

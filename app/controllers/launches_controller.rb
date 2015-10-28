@@ -42,6 +42,6 @@ class LaunchesController < ApplicationController
     end
 
     def launch_params
-      params.require(:launch).permit(:title, :description, :value, :date, :paid, :launchable_id, :launchable_type, :recurrence_type, :amount_installment, :recurrence, :type, :category_id, :user_id)
+      params.require(:launch).permit(:title, :description, :value, :date, :paid, :launchable_id, :launchable_type, :recurrence_type, :amount_installment, :recurrence, :launch_type, :category_id, :user_id)
     end
 end

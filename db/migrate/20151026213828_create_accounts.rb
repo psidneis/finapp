@@ -1,7 +1,7 @@
 class CreateAccounts < ActiveRecord::Migration
   def change
     create_table :accounts do |t|
-      t.integer :type
+      t.integer :account_type
       t.string :title
       t.text :description
       t.decimal :value
