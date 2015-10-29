@@ -219,19 +219,31 @@ pt-BR:
 
     attributes:
       account:
-        account_type: Tipo de Conta
         title: Título
         description: Descrição
         value: Valor inicial
         user: Usuário
+        account_type: Tipo de Conta
+        account_types:
+          wallet: Carteira
+          checking_account: Conta Corrente
+          savings_account: Conta Poupança
       card:
-        brancd: Bandeira
         title: Título
         credit_limit: Limite
         billing_day: Fecha dia
         payment_day: Vence dia
         account: Conta
         user: Usuário
+        brand: Bandeira
+        brands:
+          mastercard: MasterCard
+          visa: Visa
+          america_express: America Express
+          diners: Diners
+          aura: Aura
+          elo: Elo
+          hipercard: HiperCard
       category:
         title: Título
         description: Descrição
@@ -247,11 +259,14 @@ pt-BR:
         date: Data
         paid: Pago
         launchable: Conta/Cartão
-        recurrence_type: Tipo de recorrência
         amount_installment: Quantidade de parcelas
-        launch_type: Receita/Despesa
         category: Categoria
         user: Usuário
+        recurrence_type: Tipo de recorrência
+        recurrence_types:
+          not_recurrence: Sem recorrência
+          installments: Parcelado
+          recurrence: Recorrente
         recurrence: Recorrência
         recurrences:
           yearly: Anual
@@ -262,12 +277,20 @@ pt-BR:
           fortnightly: Quinzenal
           weekly: Semanal
           daily: Diária
+        launch_type: Receita/Despesa
+        launch_types:
+          expense: Despesa
+          income: Receita
       user:
         email: Email
         name: Nome
       user_group:
         enabled: Habilitado
         manager: Gerenciador
-        role: Papel
         group: Grupo
         user: Usuário
+        role: Papel
+        roles:
+          admin: Administrador
+          launcher: Lançador
+          viewer: Visualizador

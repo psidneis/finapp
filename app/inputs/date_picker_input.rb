@@ -53,8 +53,8 @@ class DatePickerInput < SimpleForm::Inputs::StringInput
 
   def date_options_base
     {
-        locale: ((I18n.locale == :pt) ? 'pt_BR' : I18n.locale.to_s),
-        format: picker_pattern
+      locale: ((I18n.locale == :pt) ? 'pt_BR' : I18n.locale.to_s),
+      format: picker_pattern
     }
   end
 

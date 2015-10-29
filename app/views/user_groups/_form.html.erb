@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :enabled %>
-    <%= f.input :role %>
+    <%= f.input :role, collection: options_for_enum(UserGroup, :role, @user_group) %>
     <%= f.association :group %>
     <%= f.association :user %>
   </div>

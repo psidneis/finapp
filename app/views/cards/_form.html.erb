@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :brand %>
+    <%= f.input :brand, collection: options_for_enum(Card, :brand, @card) %>
     <%= f.input :title %>
     <%= f.input :credit_limit %>
     <%= f.input :billing_day %>

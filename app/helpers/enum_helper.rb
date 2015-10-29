@@ -14,6 +14,7 @@ module EnumHelper
 
   def options_for_enum(klass, enum, object)
     options = enums_to_translated_options_array(klass, enum.to_s.pluralize)
-    options_for_select(options, object.send(enum))
+    # options_for_select(options, object.send(enum))
+    options
   end
 end
