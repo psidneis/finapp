@@ -15,7 +15,9 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    puts "XXXXXXXXXXXXXXXXXXXXXXX"
+    debugger
+    true
   end
 
   def new?

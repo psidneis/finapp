@@ -14,20 +14,8 @@ class CategoryPolicy < ApplicationPolicy
     can_perform_action?
   end
 
-  def create?
-    true
-  end
-
-  def new?
-    create?
-  end
-
   def update?
     can_perform_action?
-  end
-
-  def edit?
-    update?
   end
 
   def destroy?
