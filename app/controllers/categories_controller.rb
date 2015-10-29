@@ -1,11 +1,13 @@
 class CategoriesController < ApplicationController
+
   before_action :authenticate_user!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: [:index, :new, :create]
 
   respond_to :html
 
   def index
-    @categories = Category.all
+    @categories = policy_scope(Category)
     respond_with(@categories)
   end
 
@@ -40,6 +42,7 @@ class CategoriesController < ApplicationController
   private
     def set_category
       @category = Category.find(params[:id])
+      authorize @category
     end
 
     def category_params

@@ -29,7 +29,8 @@ gem 'therubyracer'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
-# gem "pundit"
+gem "pundit"
+# gem "rolify"
 gem 'devise'
 gem 'devise_token_auth'
 gem 'omniauth'

@@ -40,6 +40,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## User Info
       t.string :name
       t.string :nickname
+      t.integer :role
 
       t.timestamps
     end

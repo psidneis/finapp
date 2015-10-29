@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20151026222858) do
 
   create_table "accounts", force: :cascade do |t|
-    t.integer  "type",        limit: 4
-    t.string   "title",       limit: 255
-    t.text     "description", limit: 65535
-    t.decimal  "value",                     precision: 10
-    t.integer  "user_id",     limit: 4
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.integer  "account_type", limit: 4
+    t.string   "title",        limit: 255
+    t.text     "description",  limit: 65535
+    t.decimal  "value",                      precision: 10
+    t.integer  "user_id",      limit: 4
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.integer  "recurrence_type",    limit: 4
     t.integer  "amount_installment", limit: 4
     t.integer  "recurrence",         limit: 4
-    t.integer  "type",               limit: 4
+    t.integer  "launch_type",        limit: 4
     t.integer  "category_id",        limit: 4
     t.integer  "user_id",            limit: 4
     t.datetime "created_at",                                      null: false
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.text     "tokens",                 limit: 65535
     t.string   "name",                   limit: 255
     t.string   "nickname",               limit: 255
+    t.integer  "role",                   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
