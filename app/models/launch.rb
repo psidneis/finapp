@@ -4,8 +4,8 @@ class Launch < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
 
-  # enum recurrence_type: {:installments, :recurrence, :not_recurrence}
+  enum recurrence_type: %w(not_recurrence installments recurrence)
   enum recurrence: %w(yearly biannual quarterly bimonthly monthly fortnightly weekly daily)
-  # enum type: {0: 'Receita', 1: 'Despesa'}
+  enum launch_type: %w(expense income)
 
 end

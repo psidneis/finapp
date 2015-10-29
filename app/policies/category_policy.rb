@@ -40,7 +40,7 @@ class CategoryPolicy < ApplicationPolicy
 
   private
     def can_perform_action?
-      user.admin? or scope.where(id: record.id, user: user).exists?
+      scope.where(id: record.id, user: user).exists?
     end
 
     class Scope
@@ -52,8 +52,7 @@ class CategoryPolicy < ApplicationPolicy
       end
 
       def resolve
-        # scope
-        user.admin? ? scope.all : scope.where(user: user)
+        scope.where(user: user)
       end
     end
 

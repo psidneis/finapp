@@ -14,13 +14,13 @@
 ActiveRecord::Schema.define(version: 20151026222858) do
 
   create_table "accounts", force: :cascade do |t|
-    t.integer  "account_type", limit: 4
+    t.integer  "account_type", limit: 4,                    default: 0
     t.string   "title",        limit: 255
     t.text     "description",  limit: 65535
     t.decimal  "value",                      precision: 10
     t.integer  "user_id",      limit: 4
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                            null: false
+    t.datetime "updated_at",                                            null: false
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
@@ -67,14 +67,14 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.boolean  "paid"
     t.integer  "launchable_id",      limit: 4
     t.string   "launchable_type",    limit: 255
-    t.integer  "recurrence_type",    limit: 4
-    t.integer  "amount_installment", limit: 4
-    t.integer  "recurrence",         limit: 4
+    t.integer  "recurrence_type",    limit: 4,                    default: 0
+    t.integer  "amount_installment", limit: 4,                    default: 1
+    t.integer  "recurrence",         limit: 4,                    default: 4
     t.integer  "launch_type",        limit: 4
     t.integer  "category_id",        limit: 4
     t.integer  "user_id",            limit: 4
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
   end
 
   add_index "launches", ["category_id"], name: "index_launches_on_category_id", using: :btree
@@ -83,11 +83,11 @@ ActiveRecord::Schema.define(version: 20151026222858) do
 
   create_table "user_groups", force: :cascade do |t|
     t.boolean  "enabled"
-    t.integer  "role",       limit: 4
+    t.integer  "role",       limit: 4, default: 1
     t.integer  "group_id",   limit: 4
     t.integer  "user_id",    limit: 4
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "user_groups", ["group_id"], name: "index_user_groups_on_group_id", using: :btree
@@ -113,7 +113,6 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.text     "tokens",                 limit: 65535
     t.string   "name",                   limit: 255
     t.string   "nickname",               limit: 255
-    t.integer  "role",                   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

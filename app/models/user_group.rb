@@ -3,6 +3,6 @@ class UserGroup < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
 
-  # enum role: {0: 'Administrador', 1: 'Lançador', 2: 'Visualizador'}
+  enum role: %w(admin launcher viewer)
 
 end

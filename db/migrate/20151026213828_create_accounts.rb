@@ -1,7 +1,7 @@
 class CreateAccounts < ActiveRecord::Migration
   def change
     create_table :accounts do |t|
-      t.integer :account_type
+      t.integer :account_type, default: 0
       t.string :title
       t.text :description
       t.decimal :value
