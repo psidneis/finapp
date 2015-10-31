@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026222858) do
+ActiveRecord::Schema.define(version: 20151031231612) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "account_type", limit: 4,                    default: 0
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(version: 20151026222858) do
 
   add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
+  create_table "goals", force: :cascade do |t|
+    t.decimal  "value",                 precision: 10
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
+  add_index "goals", ["category_id"], name: "index_goals_on_category_id", using: :btree
+
   create_table "groups", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
@@ -59,12 +68,23 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "installments", force: :cascade do |t|
+    t.decimal  "value",                        precision: 10
+    t.date     "date"
+    t.boolean  "paid"
+    t.integer  "number_installment", limit: 4
+    t.integer  "launch_id",          limit: 4
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "installments", ["launch_id"], name: "index_installments_on_launch_id", using: :btree
+
   create_table "launches", force: :cascade do |t|
     t.string   "title",              limit: 255
     t.text     "description",        limit: 65535
     t.decimal  "value",                            precision: 10
     t.date     "date"
-    t.boolean  "paid"
     t.integer  "launchable_id",      limit: 4
     t.string   "launchable_type",    limit: 255
     t.integer  "recurrence_type",    limit: 4,                    default: 0
@@ -73,11 +93,13 @@ ActiveRecord::Schema.define(version: 20151026222858) do
     t.integer  "launch_type",        limit: 4
     t.integer  "category_id",        limit: 4
     t.integer  "user_id",            limit: 4
+    t.integer  "group_id",           limit: 4
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
   end
 
   add_index "launches", ["category_id"], name: "index_launches_on_category_id", using: :btree
+  add_index "launches", ["group_id"], name: "index_launches_on_group_id", using: :btree
   add_index "launches", ["launchable_type", "launchable_id"], name: "index_launches_on_launchable_type_and_launchable_id", using: :btree
   add_index "launches", ["user_id"], name: "index_launches_on_user_id", using: :btree
 
@@ -125,7 +147,10 @@ ActiveRecord::Schema.define(version: 20151026222858) do
   add_foreign_key "cards", "accounts"
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
+  add_foreign_key "goals", "categories"
+  add_foreign_key "installments", "launches"
   add_foreign_key "launches", "categories"
+  add_foreign_key "launches", "groups"
   add_foreign_key "launches", "users"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"

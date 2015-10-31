@@ -1,0 +1,15 @@
+<%= simple_form_for(@installment) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :value %>
+    <%= f.input :date %>
+    <%= f.input :paid %>
+    <%= f.input :number_installment %>
+    <%= f.association :launch %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

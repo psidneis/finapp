@@ -212,7 +212,9 @@ pt-BR:
       account: Conta
       card: Cartão
       category: Categoria
+      goal: Meta
       group: Grupo
+      Installment: Parcela
       launch: Lançamento
       user: Usuário
       user_group: Grupo do usuário
@@ -248,20 +250,29 @@ pt-BR:
         title: Título
         description: Descrição
         color: Cor
+      goal:
+        value: Valor
+        category: Categoria
       group:
         title: Título
         description: Descrição
         user: Usuário
+      installment:
+        value: Valor
+        date: Data
+        paid: Pago
+        number_installment: Número da parcela
+        launch: Lançamento
       launch:
         title: Título
         description: Descrição
         value: Valor
         date: Data
-        paid: Pago
         launchable: Conta/Cartão
         amount_installment: Quantidade de parcelas
         category: Categoria
         user: Usuário
+        group: grupo
         recurrence_type: Tipo de recorrência
         recurrence_types:
           not_recurrence: Sem recorrência
