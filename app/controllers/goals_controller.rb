@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: :index
+  after_action :verify_authorized, except: [:index, :new, :create]
 
   respond_to :html
 

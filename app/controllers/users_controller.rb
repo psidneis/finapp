@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show]
-  after_action :verify_authorized, only: :show
+  after_action :verify_authorized, except: [:index, :new, :create]
 
   respond_to :html
 
