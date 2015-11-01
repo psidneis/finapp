@@ -3,9 +3,9 @@
 one:
   title: MyString
   description: MyText
-  manager: false
+  manager_id: 
 
 two:
   title: MyString
   description: MyText
-  manager: false
+  manager_id: 

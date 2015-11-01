@@ -1,8 +1,7 @@
 class CategoriesController < ApplicationController
-
   before_action :authenticate_user!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  after_action :verify_authorized, except: [:index, :new, :create]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
@@ -46,6 +45,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:title, :description, :color)
+      params.require(:category).permit(:title, :description, :color, :user_id)
     end
 end

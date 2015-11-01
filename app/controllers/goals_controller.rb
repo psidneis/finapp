@@ -1,10 +1,12 @@
 class GoalsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
   def index
-    @goals = Goal.all
+    @goals = policy_scope(Goal)
     respond_with(@goals)
   end
 
@@ -39,6 +41,7 @@ class GoalsController < ApplicationController
   private
     def set_goal
       @goal = Goal.find(params[:id])
+      authorize @goal
     end
 
     def goal_params

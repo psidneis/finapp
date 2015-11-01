@@ -1,11 +1,12 @@
 class CardsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_card, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
   def index
-    @cards = Card.all
+    @cards = policy_scope(Card)
     respond_with(@cards)
   end
 
@@ -40,9 +41,10 @@ class CardsController < ApplicationController
   private
     def set_card
       @card = Card.find(params[:id])
+      authorize @card
     end
 
     def card_params
-      params.require(:card).permit(:brand, :title, :credit_limit, :billing_day, :payment_day, :account_id)
+      params.require(:card).permit(:brand, :title, :credit_limit, :billing_day, :payment_day, :account_id, :user_id)
     end
 end

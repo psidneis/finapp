@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :cards
   has_many :lauches
   has_many :categories
+  has_many :manager_groups, class_name: "Group", foreign_key: "user_id"
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

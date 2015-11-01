@@ -1,11 +1,12 @@
 class LaunchesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_launch, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
   def index
-    @launches = Launch.all
+    @launches = policy_scope(Launch)
     respond_with(@launches)
   end
 
@@ -40,6 +41,7 @@ class LaunchesController < ApplicationController
   private
     def set_launch
       @launch = Launch.find(params[:id])
+      authorize @launch
     end
 
     def launch_params

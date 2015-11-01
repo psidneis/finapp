@@ -1,4 +1,4 @@
-class CategoryPolicy < ApplicationPolicy
+class UserPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -11,18 +11,6 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def show?
-    can_perform_action?
-  end
-
-  def create?
-    can_perform_action?
-  end
-
-  def update?
-    can_perform_action?
-  end
-
-  def destroy?
     can_perform_action?
   end
 
@@ -44,7 +32,7 @@ class CategoryPolicy < ApplicationPolicy
       end
 
       def resolve
-        scope.where(user: user)
+        scope.where(id: user.id)
       end
     end
 

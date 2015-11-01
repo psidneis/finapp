@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :groups
   resources :installments
   resources :goals
   namespace :api do
@@ -22,7 +23,6 @@ Rails.application.routes.draw do
   resources :launches
   resources :categories
   resources :accounts
-  resources :groups
   resources :user_groups
   resources :cards
 

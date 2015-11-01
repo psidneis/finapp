@@ -1,4 +1,4 @@
-class CategoryPolicy < ApplicationPolicy
+class UserGroupPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)

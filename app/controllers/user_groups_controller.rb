@@ -1,11 +1,12 @@
 class UserGroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user_group, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
   def index
-    @user_groups = UserGroup.all
+    @user_groups = policy_scope(UserGroup)
     respond_with(@user_groups)
   end
 
@@ -40,6 +41,7 @@ class UserGroupsController < ApplicationController
   private
     def set_user_group
       @user_group = UserGroup.find(params[:id])
+      authorize @user_group
     end
 
     def user_group_params

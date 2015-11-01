@@ -63,10 +63,12 @@ ActiveRecord::Schema.define(version: 20151031231612) do
   create_table "groups", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
-    t.boolean  "manager"
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
+
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "installments", force: :cascade do |t|
     t.decimal  "value",                        precision: 10
@@ -148,6 +150,7 @@ ActiveRecord::Schema.define(version: 20151031231612) do
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
   add_foreign_key "goals", "categories"
+  add_foreign_key "groups", "users"
   add_foreign_key "installments", "launches"
   add_foreign_key "launches", "categories"
   add_foreign_key "launches", "groups"

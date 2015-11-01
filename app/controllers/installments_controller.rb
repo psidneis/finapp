@@ -1,10 +1,12 @@
 class InstallmentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_installment, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
   def index
-    @installments = Installment.all
+    @installments = policy_scope(Installment)
     respond_with(@installments)
   end
 
@@ -39,6 +41,7 @@ class InstallmentsController < ApplicationController
   private
     def set_installment
       @installment = Installment.find(params[:id])
+      authorize @installment
     end
 
     def installment_params

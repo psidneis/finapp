@@ -2,6 +2,7 @@ class Card < ActiveRecord::Base
 
   has_many :launches, as: :launchable
   belongs_to :account
+  belongs_to :user
 
   enum brand: %w(mastercard visa america_express diners aura elo hipercard)
 

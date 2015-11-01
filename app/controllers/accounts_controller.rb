@@ -1,11 +1,12 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_account, only: [:show, :edit, :update, :destroy]
+  after_action :verify_authorized, except: :index
 
   respond_to :html
 
   def index
-    @accounts = Account.all
+    @accounts = policy_scope(Account)
     respond_with(@accounts)
   end
 
@@ -40,6 +41,7 @@ class AccountsController < ApplicationController
   private
     def set_account
       @account = Account.find(params[:id])
+      authorize @account
     end
 
     def account_params
