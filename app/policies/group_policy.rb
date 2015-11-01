@@ -44,7 +44,8 @@ class GroupPolicy < ApplicationPolicy
       end
 
       def resolve
-        scope.where(user: user)
+        group_ids = user.user_groups.where(role: 'admin').pluck(:group_id)
+        scope.where("id in (?) or user_id = ?", group_ids, user.id)
       end
     end
 
