@@ -24,6 +24,7 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
+    @card.user = current_user
     @card.save
     respond_with(@card)
   end
@@ -45,6 +46,6 @@ class CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:card).permit(:brand, :title, :credit_limit, :billing_day, :payment_day, :account_id, :user_id)
+      params.require(:card).permit(:brand, :title, :credit_limit, :billing_day, :payment_day, :account_id)
     end
 end

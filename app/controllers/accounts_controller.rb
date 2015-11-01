@@ -24,6 +24,7 @@ class AccountsController < ApplicationController
 
   def create
     @account = Account.new(account_params)
+    @account.user = current_user
     @account.save
     respond_with(@account)
   end
@@ -45,6 +46,6 @@ class AccountsController < ApplicationController
     end
 
     def account_params
-      params.require(:account).permit(:account_type, :title, :description, :value, :user_id)
+      params.require(:account).permit(:account_type, :title, :description, :value)
     end
 end

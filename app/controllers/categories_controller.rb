@@ -24,6 +24,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
+    @category.user = current_user
     @category.save
     respond_with(@category)
   end
@@ -45,6 +46,6 @@ class CategoriesController < ApplicationController
     end
 
     def category_params
-      params.require(:category).permit(:title, :description, :color, :user_id)
+      params.require(:category).permit(:title, :description, :color)
     end
 end

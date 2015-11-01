@@ -7,13 +7,13 @@
       <%= f.input :description %>
       <%= f.input :value %>
       <%= f.input :date, as: :datepicker %>
-      <%= f.association :launchable, collection: [Account, Card], as: :grouped_select, group_method: :all, group_label_method: :human_model_name %>
-      <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch) %>
+      <%= f.association :launchable, as: :grouped_select, collection: [Account, Card], group_method: :all, group_label_method: :human_model_name, include_blank: false %>
+      <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false %>
       <%= f.input :amount_installment %>
-      <%= f.input :recurrence, collection: options_for_enum(Launch, :recurrence, @launch) %>
-      <%= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch) %>
-      <%= f.association :category %>
-      <%= f.association :user %>
+      <%= f.input :recurrence, collection: options_for_enum(Launch, :recurrence, @launch), include_blank: false %>
+      <%= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), include_blank: false %>
+      <%= f.association :category, collection: current_user.available_categories, include_blank: false %>
+      <%= f.association :group, collection: current_user.available_groups %>
     </div>
 
     <div class="form-actions">

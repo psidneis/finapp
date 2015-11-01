@@ -24,6 +24,7 @@ class UserGroupsController < ApplicationController
 
   def create
     @user_group = UserGroup.new(user_group_params)
+    @user_group.search_user
     @user_group.save
     respond_with(@user_group)
   end
@@ -45,6 +46,6 @@ class UserGroupsController < ApplicationController
     end
 
     def user_group_params
-      params.require(:user_group).permit(:enabled, :role, :group_id, :user_id)
+      params.require(:user_group).permit(:enabled, :role, :group_id, :email)
     end
 end

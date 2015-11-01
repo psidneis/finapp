@@ -24,6 +24,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    @group.user = current_user
     @group.save
     respond_with(@group)
   end
@@ -45,6 +46,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:title, :description, :user_id)
+      params.require(:group).permit(:title, :description)
     end
 end
