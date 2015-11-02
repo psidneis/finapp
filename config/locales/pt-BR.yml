@@ -209,13 +209,27 @@ pt-BR:
 
   activerecord:
     models:
-      account: Conta
-      card: Cartão
-      category: Categoria
-      group: Grupo
-      launch: Lançamento
-      user: Usuário
-      user_group: Grupo do usuário
+      account:
+        one: Conta
+        other: Contas
+      card: 
+        one: Cartão
+        other: Cartões
+      category: 
+        one: Categoria
+        other: Categorias
+      group: 
+        one: Grupo
+        other: Grupos
+      launch: 
+        one: Lançamento
+        other: Lançamentos
+      user: 
+        one: Usuário
+        other: Usuários
+      user_group: 
+        one: Grupo do usuário
+        other: Grupos de Usuário
 
     attributes:
       account:

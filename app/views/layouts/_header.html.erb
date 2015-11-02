@@ -1,54 +1,79 @@
 <header>
-  <nav class='navbar navbar-default'>
-    <%= link_to(root_path, class: 'navbar-brand') do %>
-      <%= image_tag "logo.png", class: 'logo', size: "91x31", alt: "FinApp" %>
-      <%= image_tag "logo_xs.png", class: 'logo-xs', size: "21x21", alt: "FinApp" %>
-    <% end %>
-    <%= link_to("#", class: 'toggle-nav btn pull-left') do %>
-      <i class='icon-reorder'></i>
-    <% end %>
-    <ul class='nav'>
-      <% if user_signed_in? %>
-        <li class='dropdown dark user-menu'>
-          <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-          <%= image_tag "avatar.png", size: "23x23", alt: current_user.name %>
-            <span class='user-name'><%= current_user.name %></span>
-            <b class='caret'></b>
-          </a>
-          <ul class='dropdown-menu'>
-            <li>
-              <%= link_to(edit_user_registration_path) do %>
-                <i class='icon-user'></i>
-                Edit profile
-              <% end %>
-            </li>
-            <li>
-              <a href='user_profile.html'>
-                <i class='icon-cog'></i>
-                Settings
-              </a>
-            </li>
-            <li class='divider'></li>
-            <li>
-              <%= link_to(destroy_user_session_path, method: :delete) do %>
-                <i class='icon-signout'></i>
-                Logout
-              <% end %>
-            </li>
-          </ul>
-        </li>
-      <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path, class: "btn-header" %></li>
-        <li><%= link_to "Login", new_user_session_path, class: "btn-header active" %></li>
-        <li><%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-header" %></li>
-      <% end %>
-
-    </ul>
-    <form action='#' class='navbar-form navbar-right hidden-xs' method='get'>
-      <button class='btn btn-link icon-search' name='button' type='submit'></button>
-      <div class='form-group'>
-        <input value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" name="q" type="text" />
+  <% unless user_signed_in? %>
+    <div class="">
+      <div class='middle-container'>
+        <div class='middle-row'>
+          <div class='middle-wrapper'>
+            <div class='login-container-header'>
+              <div class='container'>
+                <div class='row'>
+                  <div class='col-sm-12'>
+                    <div class='text-center'>
+                      <%= image_tag "logo.png", class: 'logo', size: "120x50", alt: "FinApp" %>
+                      <h4><%= t('breadcrumbs.pages.finapp_description') %></h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-  </nav>
+    </div>
+
+  <% else %>
+
+    <nav class='navbar navbar-default navbar-fixed-top'>
+      <%= link_to(root_path, class: 'navbar-brand') do %>
+        <%= image_tag "logo.png", class: 'logo', size: "91x31", alt: "FinApp" %>
+        <%= image_tag "logo_xs.png", class: 'logo-xs', size: "21x21", alt: "FinApp" %>
+      <% end %>
+      <%= link_to("#", class: 'toggle-nav btn pull-left') do %>
+        <i class='icon-reorder'></i>
+      <% end %>
+      <ul class='nav'>
+        <% if user_signed_in? %>
+          <li class='dropdown dark user-menu'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+            <%= image_tag "avatar.png", size: "23x23", alt: current_user.name %>
+              <span class='user-name'><%= current_user.name %></span>
+              <b class='caret'></b>
+            </a>
+            <ul class='dropdown-menu'>
+              <li>
+                <%= link_to(edit_user_registration_path) do %>
+                  <i class='icon-user'></i>
+                  <%= t('breadcrumbs.pages.edit_profile') %>
+                <% end %>
+              </li>
+              <li>
+                <a href='user_profile.html'>
+                  <i class='icon-cog'></i>
+                  <%= t('breadcrumbs.pages.settings') %>
+                </a>
+              </li>
+              <li class='divider'></li>
+              <li>
+                <%= link_to(destroy_user_session_path, method: :delete) do %>
+                  <i class='icon-signout'></i>
+                  <%= t('breadcrumbs.pages.logout') %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path, class: "btn-header" %></li>
+          <li><%= link_to "Login", new_user_session_path, class: "btn-header active" %></li>
+          <li><%= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-header" %></li>
+        <% end %>
+
+      </ul>
+      <form action='#' class='navbar-form navbar-right hidden-xs' method='get'>
+        <button class='btn btn-link icon-search' name='button' type='submit'></button>
+        <div class='form-group'>
+          <input value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" name="q" type="text" />
+        </div>
+      </form>
+    </nav>
+  <% end %>
 </header>

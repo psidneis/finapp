@@ -1,5 +1,6 @@
 # Main navigation handling
-$(document).ready ->
+
+$(document).on 'page:change', ->
   nav_toggler = $("header .toggle-nav")
   nav = $("#main-nav")
   content = $("#content")
