@@ -1,230 +1,47 @@
-<div id="wrapper">
   <nav class="main-nav-fixed" id="main-nav">
     <div class='navigation'>
       <ul class='nav nav-stacked'>
-        <li class='active'>
-          <a href='#'>
+        <li class="<%= 'active' if params[:controller] == "home" %>">
+          <%= link_to root_path do %>
             <i class='icon-dashboard'></i>
-            <span>Dashboard</span>
-          </a>
+            <span><%= t('breadcrumbs.pages.general_view') %></span>
+          <% end %>
         </li>
-        <li class=''>
-          <a class="dropdown-collapse" href="#"><i class='icon-edit'></i>
-          <span>Forms</span>
-          <i class='icon-angle-down angle-down'></i>
-          </a>
-  
-          <ul class='nav nav-stacked'>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-caret-right'></i>
-                <span>Form styles and features</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-caret-right'></i>
-                <span>Form components</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-caret-right'></i>
-                <span>Validations</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-caret-right'></i>
-                <span>Wizard</span>
-              </a>
-            </li>
-          </ul>
+        <li class="<%= 'active' if params[:controller] == "launches" %>">
+          <%= link_to (launches_path) do %>
+            <i class='icon-upload'></i>
+            <span><%= t('activerecord.models.launch.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
         </li>
-        <li>
-          <a class='dropdown-collapse ' href='#'>
-            <i class='icon-tint'></i>
-            <span>UI Elements & Widgets</span>
-            <i class='icon-angle-down angle-down'></i>
-          </a>
-          <ul class='nav nav-stacked'>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-caret-right'></i>
-                <span>UI Elements</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-caret-right'></i>
-                <span>Widgets</span>
-              </a>
-            </li>
-          </ul>
+        <li class="<%= 'active' if params[:controller] == "accounts" %>">
+          <%= link_to (accounts_path) do %>
+            <i class='icon-usd'></i>
+            <span><%= t('activerecord.models.account.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
         </li>
-        <li class=''>
-          <a href='#'>
-            <i class='icon-star'></i>
-            <span>Buttons & Icons</span>
-          </a>
+        <li class="<%= 'active' if params[:controller] == "cards" %>">
+          <%= link_to (cards_path) do %>
+            <i class='icon-credit-card'></i>
+            <span><%= t('activerecord.models.card.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
         </li>
-        <li>
-          <a class='dropdown-collapse ' href='#'>
-            <i class='icon-cogs'></i>
-            <span>Components</span>
-            <i class='icon-angle-down angle-down'></i>
-          </a>
-          <ul class='nav nav-stacked'>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-bar-chart'></i>
-                <span>Charts</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-envelope'></i>
-                <span>Address book</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-comments'></i>
-                <span>Chats</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-list-ul'></i>
-                <span>File trees</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-file'></i>
-                <span>Fileupload</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-list-alt'></i>
-                <span>Todo list</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-paste'></i>
-                <span>WYSIWYG</span>
-              </a>
-            </li>
-          </ul>
+        <li class="<%= 'active' if params[:controller] == "categories" %>">
+          <%= link_to (categories_path) do %>
+            <i class='icon-tag'></i>
+            <span><%= t('activerecord.models.category.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
         </li>
-        <li class=''>
-          <a href='#'>
-            <i class='icon-table'></i>
-            <span>Tables</span>
-          </a>
-        </li>
-        <li class=''>
-          <a href='#'>
-            <i class='icon-th'></i>
-            <span>Grid</span>
-          </a>
-        </li>
-        <li class=''>
-          <a href='#'>
-            <i class='icon-font'></i>
-            <span>Typography</span>
-          </a>
-        </li>
-        <li class=''>
-          <a href='#'>
-            <i class='icon-calendar'></i>
-            <span>Calendar</span>
-          </a>
-        </li>
-        <li>
-          <a class='dropdown-collapse ' href='#'>
-            <i class='icon-book'></i>
-            <span>Example pages</span>
-            <i class='icon-angle-down angle-down'></i>
-          </a>
-          <ul class='nav nav-stacked'>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-money'></i>
-                <span>Invoice</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-picture'></i>
-                <span>Gallery</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-time'></i>
-                <span>Timeline</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-table'></i>
-                <span>Pricing tables</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-user'></i>
-                <span>User profile</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#' target='_blank'>
-                <i class='icon-question-sign'></i>
-                <span>404 Error</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#' target='_blank'>
-                <i class='icon-cogs'></i>
-                <span>500 Error</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#' target='_blank'>
-                <i class='icon-signin'></i>
-                <span>Sign in</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-bullhorn'></i>
-                <span>FAQ</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-inbox'></i>
-                <span>Orders</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-search'></i>
-                <span>Search results</span>
-              </a>
-            </li>
-            <li class=''>
-              <a href='#'>
-                <i class='icon-circle-blank'></i>
-                <span>Blank page</span>
-              </a>
-            </li>
-          </ul>
+        <li class="<%= 'active' if params[:controller] == "groups" %>">
+          <%= link_to (groups_path) do %>
+            <i class='icon-user'></i>
+            <span><%= t('activerecord.models.group.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
         </li>
       </ul>
     </div>
   </nav>
-</div>
