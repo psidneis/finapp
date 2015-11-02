@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.text     "description",        limit: 65535
     t.decimal  "value",                            precision: 10
     t.date     "date"
+    t.boolean  "paid"
     t.integer  "launchable_id",      limit: 4
     t.string   "launchable_type",    limit: 255
     t.integer  "recurrence_type",    limit: 4,                    default: 0

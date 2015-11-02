@@ -7,6 +7,7 @@
       <%= f.input :description %>
       <%= f.input :value %>
       <%= f.input :date, as: :datepicker %>
+      <%= f.input :paid %>
       <%= f.association :launchable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, group_label_method: :human_model_name, include_blank: false %>
       <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false %>
       <%= f.input :amount_installment %>

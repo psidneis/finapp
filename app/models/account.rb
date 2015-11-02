@@ -5,7 +5,7 @@ class Account < ActiveRecord::Base
 
   validates :account_type, :title, :value, presence: true
   validates :title, uniqueness: { scope: :user_id }, length: { in: 2..100 }
-  validates :value, numericality: true
+  validates :value, numericality: { greater_than_or_equal_to: 0 }
 
   enum account_type: %w(wallet checking_account savings_account)
 
