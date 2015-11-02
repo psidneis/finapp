@@ -35,6 +35,7 @@ pt-BR:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %B"
+      date_picker: "%m/%d/%Y %H:%M %p"
     month_names:
     - 
     - Janeiro
@@ -227,11 +228,15 @@ pt-BR:
       category: 
         one: Categoria
         other: Categorias
-      goal: Meta
+      goal:
+        one: Meta
+        other: Metas
       group: 
         one: Grupo
         other: Grupos
-      Installment: Parcela 
+      installment:
+        one: Parcela
+        other: Parcelas
       launch: 
         one: Lançamento
         other: Lançamentos
@@ -292,7 +297,9 @@ pt-BR:
         description: Descrição
         value: Valor
         date: Data
+        paid: Pago
         launchable: Conta/Cartão
+        global_launchable: Conta/Cartão
         amount_installment: Quantidade de parcelas
         category: Categoria
         user: Usuário
