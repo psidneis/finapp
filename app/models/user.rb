@@ -39,16 +39,4 @@ class User < ActiveRecord::Base
     user
   end
 
-  def available_accounts
-    self.accounts
-  end
-
-  def available_groups
-    self.manager_groups
-  end
-
-  def available_categories
-    self.categories
-  end
-
 end

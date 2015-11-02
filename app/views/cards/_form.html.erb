@@ -5,7 +5,7 @@
     <%= f.input :brand, collection: options_for_enum(Card, :brand, @card), include_blank: false %>
     <%= f.input :title %>
     <%= f.input :credit_limit %>
-    <%= f.association :account, collection: current_user.available_accounts %>
+    <%= f.association :account, collection: policy_scope(Account) %>
     <%= f.input :billing_day %>
     <%= f.input :payment_day %>
   </div>
