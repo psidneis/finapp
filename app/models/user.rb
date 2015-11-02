@@ -2,9 +2,9 @@ class User < ActiveRecord::Base
 
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable
+  # :lockable, :timeoutable, :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
   has_many :user_groups
   has_many :groups, through: :user_groups
@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :lauches
   has_many :categories
   has_many :manager_groups, class_name: "Group", foreign_key: "user_id"
+
+  before_save -> { skip_confirmation! }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
