@@ -33,7 +33,11 @@
                 <% end %>
               </div>
               <div class='form-group'>
-                <%= f.association :launchable, as: :grouped_select, collection: [Account, Card], group_method: :all, group_label_method: :human_model_name, include_blank: false %>
+                <%= f.input :paid %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :global_launchable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, value_method: :to_global_id, group_label_method: :human_model_name, include_blank: false %>
+                <%#= f.association :launchable, as: :grouped_select, collection: [Account, Card], group_method: :all, group_label_method: :human_model_name, include_blank: false %>
               </div>
               <div class='form-group'>
                 <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false %>
@@ -48,10 +52,12 @@
                 <%= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), include_blank: false %>
               </div>
               <div class='form-group'>
-                <%= f.association :category, collection: current_user.available_categories, include_blank: false %>
+                <%= f.association :category, collection: policy_scope(Category), include_blank: false %>
+                <%#= f.association :category, collection: current_user.available_categories, include_blank: false %>
               </div>
               <div class='form-group'>
-                <%= f.association :group, collection: current_user.available_groups %>
+                <%= f.association :group, collection: policy_scope(Group) %>
+                <%#= f.association :group, collection: current_user.available_groups %>
               </div>
             </div>
           </fieldset>

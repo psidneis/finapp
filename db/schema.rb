@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.text     "description",        limit: 65535
     t.decimal  "value",                            precision: 10
     t.datetime "date"
+    t.boolean  "paid"
     t.integer  "launchable_id",      limit: 4
     t.string   "launchable_type",    limit: 255
     t.integer  "recurrence_type",    limit: 4,                    default: 0
@@ -134,7 +135,6 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email",      limit: 255
     t.text     "tokens",                 limit: 65535
     t.string   "name",                   limit: 255
     t.string   "nickname",               limit: 255

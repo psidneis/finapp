@@ -28,9 +28,9 @@
         <% end %>
         <div class='text-center'>
           <hr class='hr-normal'>
-          <% if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-            <%= link_to t('devise.confirmations.confirmation_instructions_not_received'), new_confirmation_path(resource_name) %>
-          <% end %>
+          <%# if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+            <%#= link_to t('devise.confirmations.confirmation_instructions_not_received'), new_confirmation_path(resource_name) %>
+          <%# end %>
         </div>
       </div>
     </div>
