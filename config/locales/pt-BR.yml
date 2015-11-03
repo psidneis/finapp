@@ -35,6 +35,8 @@ pt-BR:
       default: "%d/%m/%Y"
       long: "%d de %B de %Y"
       short: "%d de %B"
+      date_picker: "%d/%m/%Y %H:%M %p"
+      long_month_year: "%B de %Y"
     month_names:
     - 
     - Janeiro
@@ -204,6 +206,8 @@ pt-BR:
       default: "%a, %d de %B de %Y, %H:%M:%S %z"
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
+      date_picker: "%d/%m/%Y %H:%M %p"
+      long_month_year: "%B de %Y"
     pm: ''
 
 

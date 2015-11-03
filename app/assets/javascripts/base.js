@@ -1,3 +1,6 @@
-$(document).ready(function() {
-  $('input.datepicker').datetimepicker();
+// $(document).ready(function() {
+// });
+
+$(document).on('page:change', function(event) {
+  $(".datepicker_button").datetimepicker({ format: 'DD/MM/YYYY HH:mm' });
 });

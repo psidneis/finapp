@@ -1,61 +1,66 @@
-<div class='page-header page-header-with-buttons'>
-  <h1 class='pull-left'>
-    <i class='icon-upload'></i>
-    <span><%= t('activerecord.models.launch.other') %></span>
-  </h1>
-  <!-- <div class='pull-right'>
-    <div class='btn-group'>
-      <a class="btn btn-white hidden-xs" href="#">Last month</a>
-      <a class="btn btn-white" href="#">Last week</a>
-      <a class="btn btn-white " href="#">Today</a>
-            <a class="btn btn-white" id="daterange" href="#"><i class='icon-calendar'></i>
-      <span>Custom</span>
-      <b class='caret'></b>
-      </a>
+<%= render 'header' %>
+
+<nav>
+  <ul class="pager">
+    <li class="previous"><%= link_to "<i class='icon-chevron-left'></i>".html_safe, launches_path(search_period: @search_period - 1.month) %></li>
+      <span><%= l(@search_period, format: :long_month_year) %></span>
+    <li class="next"><%= link_to "<i class='icon-chevron-right'></i>".html_safe, launches_path(search_period: @search_period + 1.month) %></li>
+  </ul>
+</nav>
+
+<div class='box bordered-box green-border' style='margin-bottom:0;'>
+  <div class='box-header green-background'>
+    <div class='title'>Responsive table</div>
+  </div>
+  <div class='box-content box-no-padding'>
+    <div class='responsive-table'>
+      <div class='scrollable-area'>
+        <table class='table' style='margin-bottom:0;'>
+          <thead>
+            <tr>
+              <th>
+                <%= t('activerecord.attributes.launch.title') %>
+              </th>
+              <th>
+                <%= t('activerecord.attributes.launch.value') %>
+              </th>
+              <th>
+                <%= t('activerecord.attributes.launch.date') %>
+              </th>
+              <th>
+                <%= t('activerecord.attributes.launch.recurrence') %>
+              </th>
+              <th>
+                <%= t('activerecord.attributes.launch.launch_type') %>
+              </th>
+              <th>
+                <%= t('activerecord.attributes.launch.category') %>
+              </th>
+              <th>
+
+              </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @launches.each do |launch| %>
+              <tr>
+                <td><%= launch.title %></td>
+                <td><%= launch.value %></td>
+                <td><%= launch.date %></td>
+                <td><%= launch.recurrence %></td>
+                <td><%= launch.launch_type %></td>
+                <td><%= launch.category.title %></td>
+                <td><%= link_to '<i class="icon-search"></i>'.html_safe, launch %></td>
+                <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_launch_path(launch) %></td>
+                <td><%= link_to '<i class="icon-trash"></i>'.html_safe, launch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div> -->
+  </div>
 </div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Date</th>
-      <th>Launchable</th>
-      <th>Recurrence type</th>
-      <th>Amount installment</th>
-      <th>Recurrence</th>
-      <th>Type</th>
-      <th>Category</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @launches.each do |launch| %>
-      <tr>
-        <td><%= launch.title %></td>
-        <td><%= launch.description %></td>
-        <td><%= launch.value %></td>
-        <td><%= launch.date %></td>
-        <td><%= launch.launchable %></td>
-        <td><%= launch.recurrence_type %></td>
-        <td><%= launch.amount_installment %></td>
-        <td><%= launch.recurrence %></td>
-        <td><%= launch.launch_type %></td>
-        <td><%= launch.category %></td>
-        <td><%= launch.user %></td>
-        <td><%= link_to 'Show', launch %></td>
-        <td><%= link_to 'Edit', edit_launch_path(launch) %></td>
-        <td><%= link_to 'Destroy', launch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
 <br>
-
 <%= link_to 'New Launch', new_launch_path %>

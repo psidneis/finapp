@@ -4,7 +4,7 @@ class CreateLaunches < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.decimal :value
-      t.date :date
+      t.datetime :date
       t.references :launchable, polymorphic: true, index: true
       t.integer :recurrence_type, default: 0
       t.integer :amount_installment, default: 1

@@ -7,6 +7,8 @@ class LaunchesController < ApplicationController
 
   def index
     @launches = policy_scope(Launch)
+    @search_period = params[:search_period].try(:to_date) || Date.today
+    @launches = Launch.where(date: @search_period.beginning_of_month..@search_period.end_of_month)
     respond_with(@launches)
   end
 

@@ -1,23 +1,69 @@
-<div class='box-content'>
-  <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
-    <%= f.error_notification %>
-
-    <div class="form-inputs">
-      <%= f.input :title %>
-      <%= f.input :description %>
-      <%= f.input :value %>
-      <%= f.input :date, as: :datepicker %>
-      <%= f.association :launchable, as: :grouped_select, collection: [Account, Card], group_method: :all, group_label_method: :human_model_name, include_blank: false %>
-      <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false %>
-      <%= f.input :amount_installment %>
-      <%= f.input :recurrence, collection: options_for_enum(Launch, :recurrence, @launch), include_blank: false %>
-      <%= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), include_blank: false %>
-      <%= f.association :category, collection: current_user.available_categories, include_blank: false %>
-      <%= f.association :group, collection: current_user.available_groups %>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'New' if action_name == 'new' %>
+            <%= 'Edit' if action_name == 'edit' %>
+        </div>
+        
+      </div>
+      <div class='box-content box-double-padding'>
+        <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+          <%= f.error_notification %>
+          <fieldset>
+            <div class='col-sm-8 col-sm-offset-2'>
+              <div class='form-group'>
+                <%= f.input :title %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :description %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :value %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :date do %>
+                  <div class='datepicker_button input-group'>
+                    <%= f.input_field :date, as: :datepicker, class: 'form-control', data: { format: 'dd/mm/yyyy' } %>
+                    <span class='input-group-addon'>
+                      <i class='icon-calendar'></i>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
+              <div class='form-group'>
+                <%= f.association :launchable, as: :grouped_select, collection: [Account, Card], group_method: :all, group_label_method: :human_model_name, include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :amount_installment %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :recurrence, collection: options_for_enum(Launch, :recurrence, @launch), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.association :category, collection: current_user.available_categories, include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.association :group, collection: current_user.available_groups %>
+              </div>
+            </div>
+          </fieldset>
+          <hr class='hr-normal'>
+          
+          <div class='row'>
+            <div class='col-sm-7 col-sm-offset-5'>
+              <%= f.button :submit, class: 'btn-lg btn-success' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
-  <% end %>
+  </div>
 </div>

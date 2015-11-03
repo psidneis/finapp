@@ -1,57 +1,74 @@
-<p>
-  <strong>Title:</strong>
-  <%= @launch.title %>
-</p>
+<%= render 'header' %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @launch.description %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'Show' %>
+        </div>
+        
+      </div>
+      <div class='box-content box-double-padding'>
 
-<p>
-  <strong>Value:</strong>
-  <%= @launch.value %>
-</p>
+        <p>
+          <strong>Title:</strong>
+          <%= @launch.title %>
+        </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @launch.date %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @launch.description %>
+        </p>
 
-<p>
-  <strong>Launchable:</strong>
-  <%= @launch.launchable %>
-</p>
+        <p>
+          <strong>Value:</strong>
+          <%= @launch.value %>
+        </p>
 
-<p>
-  <strong>Recurrence type:</strong>
-  <%= @launch.recurrence_type %>
-</p>
+        <p>
+          <strong>Date:</strong>
+          <%= @launch.date %>
+        </p>
 
-<p>
-  <strong>Amount installment:</strong>
-  <%= @launch.amount_installment %>
-</p>
+        <p>
+          <strong>Launchable:</strong>
+          <%= @launch.launchable %>
+        </p>
 
-<p>
-  <strong>Recurrence:</strong>
-  <%= @launch.recurrence %>
-</p>
+        <p>
+          <strong>Recurrence type:</strong>
+          <%= @launch.recurrence_type %>
+        </p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @launch.launch_type %>
-</p>
+        <p>
+          <strong>Amount installment:</strong>
+          <%= @launch.amount_installment %>
+        </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @launch.category %>
-</p>
+        <p>
+          <strong>Recurrence:</strong>
+          <%= @launch.recurrence %>
+        </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @launch.user %>
-</p>
+        <p>
+          <strong>Type:</strong>
+          <%= @launch.launch_type %>
+        </p>
+
+        <p>
+          <strong>Category:</strong>
+          <%= @launch.category %>
+        </p>
+
+        <p>
+          <strong>User:</strong>
+          <%= @launch.user %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_launch_path(@launch) %> |
 <%= link_to 'Back', launches_path %>
