@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :confirmable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :twitter, :facebook]
 
   has_many :user_groups
   has_many :groups, through: :user_groups
@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
+      user.name = auth.name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
     end

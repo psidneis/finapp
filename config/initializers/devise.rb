@@ -261,4 +261,6 @@ Devise.setup do |config|
   #Add your ID and secret here
   #ID first, secret second
   config.omniauth :google_oauth2, Rails.application.secrets.google_client_id, Rails.application.secrets.google_client_secret
+  config.omniauth :twitter, Rails.application.secrets.twitter_client_id, Rails.application.secrets.twitter_client_secret
+  config.omniauth :facebook, Rails.application.secrets.facebook_client_id, Rails.application.secrets.facebook_client_secret
 end

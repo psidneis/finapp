@@ -26,19 +26,17 @@
         <div class='text-center'>
           <hr class='hr-normal'>
           <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-            <%= link_to t('devise.passwords.forget_your_password'), new_password_path(resource_name) %><br />
             <div class="col-md-12 social_login">
-              <%= link_to "#", class: "circle" do %>
+              <%= link_to user_omniauth_authorize_path(:facebook), class: "circle" do %>
                 <%= image_tag "face.png", size: "14x28", alt: "FinApp" %>
               <% end %>
-              <%= link_to "#", class: "circle" do %>
+              <%= link_to user_omniauth_authorize_path(:twitter), class: "circle" do %>
                 <%= image_tag "twt.png", size: "34x24", alt: "FinApp" %>
               <% end %>
-              <%= link_to "#", class: "circle" do %>
+              <%= link_to user_omniauth_authorize_path(:google_oauth2), class: "circle" do %>
                 <%= image_tag "gplus.png", size: "17x27", alt: "FinApp" %>
               <% end %>
-          </div>
-            <%#= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2), class: "btn-header" %>
+            </div>
           <% end %>
         </div>
       </div>
