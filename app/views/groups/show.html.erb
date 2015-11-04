@@ -5,29 +5,28 @@
     <div class='box bordered-box green-border'>
       <div class='box-header green-background'>
         <div class='title'>
-            <%= 'Show' %>
+          <%= t('helpers.show') %>
         </div>
-        
       </div>
       <div class='box-content box-double-padding'>
 				<p>
-				  <strong>Title:</strong>
+				  <strong><%= Group.human_attribute_name("group") %>:</strong>
 				  <%= @group.title %>
 				</p>
 
 				<p>
-				  <strong>Description:</strong>
+				  <strong><%= Group.human_attribute_name("description") %>:</strong>
 				  <%= @group.description %>
 				</p>
 
 				<p>
-				  <strong>User:</strong>
-				  <%= @group.user %>
+				  <strong><%= Group.human_attribute_name("user") %>:</strong>
+				  <%= @group.user.name %>
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', groups_path %>
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.launch.one")), edit_group_path(@group) %> |
+<%= link_to t('helpers.links.back'), groups_path %>

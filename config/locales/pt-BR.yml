@@ -288,7 +288,7 @@ pt-BR:
       group:
         title: Título
         description: Descrição
-        user: Usuário
+        user: Administrador
       installment:
         value: Valor
         date: Data

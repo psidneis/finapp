@@ -12,33 +12,33 @@
       <div class='box-content box-double-padding'>
 
         <p>
-          <strong>Type:</strong>
-          <%= @account.account_type %>
+          <strong><%= Account.human_attribute_name("account_type") %>:</strong>
+          <%= t("activerecord.attributes.account.account_types.#{@account.account_type}") %>
         </p>
 
         <p>
-          <strong>Title:</strong>
+          <strong><%= Account.human_attribute_name("title") %>:</strong>
           <%= @account.title %>
         </p>
 
         <p>
-          <strong>Description:</strong>
+          <strong><%= Account.human_attribute_name("description") %>:</strong>
           <%= @account.description %>
         </p>
 
         <p>
-          <strong>Value:</strong>
-          <%= @account.value %>
+          <strong><%= Account.human_attribute_name("value") %>:</strong>
+          <%= number_to_currency(@account.value) %>
         </p>
 
         <p>
-          <strong>User:</strong>
-          <%= @account.user %>
+          <strong><%= Account.human_attribute_name("user") %>:</strong>
+          <%= @account.user.name %>
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.account.one")), edit_account_path(@account) %> |
+<%= link_to t('helpers.links.back'), accounts_path %>

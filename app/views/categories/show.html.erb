@@ -5,30 +5,29 @@
     <div class='box bordered-box green-border'>
       <div class='box-header green-background'>
         <div class='title'>
-            <%= 'Show' %>
+          <%= t('helpers.show') %>
         </div>
-        
       </div>
       <div class='box-content box-double-padding'>
 
 				<p>
-				  <strong>Title:</strong>
+				  <strong><%= Category.human_attribute_name("title") %>:</strong>
 				  <%= @category.title %>
 				</p>
 
 				<p>
-				  <strong>Description:</strong>
+				  <strong><%= Category.human_attribute_name("description") %>:</strong>
 				  <%= @category.description %>
 				</p>
 
 				<p>
-				  <strong>Color:</strong>
-				  <%= @category.color %>
+				  <strong><%= Category.human_attribute_name("color") %>:</strong>
+				  <span style="background-color:<%= @category.color %>;">&nbsp;<%= @category.color %>&nbsp;</span>
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.category.one")), edit_category_path(@category) %> |
+<%= link_to t('helpers.links.back'), categories_path %>

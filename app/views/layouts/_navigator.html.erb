@@ -14,6 +14,13 @@
             <!-- <i class='icon-angle-down angle-down'></i> -->
           <% end %>
         </li>
+        <li class="<%= 'active' if controller_name == "installments" %>">
+          <%= link_to (installments_path) do %>
+            <i class='icon-tasks'></i>
+            <span><%= t('activerecord.models.installment.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
+        </li>
         <li class="<%= 'active' if controller_name == "accounts" %>">
           <%= link_to (accounts_path) do %>
             <i class='icon-usd'></i>
@@ -46,6 +53,27 @@
           <%= link_to (groups_path) do %>
             <i class='icon-user'></i>
             <span><%= t('activerecord.models.group.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
+        </li>
+        <li class="<%= 'active' if controller_name == "calendar" %>">
+          <%= link_to "#" do %>
+            <i class='icon-calendar'></i>
+            <span>Calendário</span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
+        </li>
+        <li class="<%= 'active' if controller_name == "reports" %>">
+          <%= link_to "#" do %>
+            <i class='icon-list-alt'></i>
+            <span>Relatórios</span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
+        </li>
+        <li class="<%= 'active' if controller_name == "graphs" %>">
+          <%= link_to "#" do %>
+            <i class='icon-signal'></i>
+            <span>Gráficos</span>
             <!-- <i class='icon-angle-down angle-down'></i> -->
           <% end %>
         </li>

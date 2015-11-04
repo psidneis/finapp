@@ -13,6 +13,11 @@ pt-BR:
       finapp_description: Seu sistema de gerencimento financeiro
   helpers:
     actions: "Ações"
+    are_you_sure: "Você tem certeza?"
+    index: Lista
+    new: Novo
+    edit: Edição
+    show: Mostrar
     links:
       back: "Voltar"
       cancel: "Cancelar"

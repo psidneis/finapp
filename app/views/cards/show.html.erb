@@ -5,45 +5,45 @@
     <div class='box bordered-box green-border'>
       <div class='box-header green-background'>
         <div class='title'>
-            <%= 'Show' %>
+            <%= t('helpers.show') %>
         </div>
         
       </div>
       <div class='box-content box-double-padding'>
 
         <p>
-          <strong>Brand:</strong>
-          <%= @card.brand %>
+          <strong><%= Card.human_attribute_name("brand") %>:</strong>
+          <%= t("activerecord.attributes.card.brands.#{@card.brand}") %>
         </p>
 
         <p>
-          <strong>Title:</strong>
+          <strong><%= Card.human_attribute_name("title") %>:</strong>
           <%= @card.title %>
         </p>
 
         <p>
-          <strong>Credit limit:</strong>
-          <%= @card.credit_limit %>
+          <strong><%= Card.human_attribute_name("credit_limit") %>:</strong>
+          <%= number_to_currency(@card.credit_limit) %>
         </p>
 
         <p>
-          <strong>Billing day:</strong>
+          <strong><%= Card.human_attribute_name("billing_day") %>:</strong>
           <%= @card.billing_day %>
         </p>
 
         <p>
-          <strong>Payment day:</strong>
+          <strong><%= Card.human_attribute_name("payment_day") %>:</strong>
           <%= @card.payment_day %>
         </p>
 
         <p>
-          <strong>Account:</strong>
-          <%= @card.account %>
+          <strong><%= Card.human_attribute_name("account") %>:</strong>
+          <%= @card.account.try(:title) %>
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_card_path(@card) %> |
-<%= link_to 'Back', cards_path %>
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.card.one")), edit_card_path(@card) %> |
+<%= link_to t('helpers.links.back'), cards_path %>

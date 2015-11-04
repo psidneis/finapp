@@ -1,29 +1,44 @@
-<p id="notice"><%= notice %></p>
+<%= render 'header' %>
 
-<p>
-  <strong>Value:</strong>
-  <%= @installment.value %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+          <%= t('helpers.show') %>
+        </div>
+      </div>
+      <div class='box-content box-double-padding'>
 
-<p>
-  <strong>Date:</strong>
-  <%= @installment.date %>
-</p>
+        <p>
+          <strong><%= Installment.human_attribute_name("value") %>:</strong>
+          <%= number_to_currency(@installment.value) %>
+        </p>
 
-<p>
-  <strong>Paid:</strong>
-  <%= @installment.paid %>
-</p>
+        <p>
+          <strong><%= Installment.human_attribute_name("date") %>:</strong>
+          <%= l(@installment.date, format: :date_picker) %>
+        </p>
 
-<p>
-  <strong>Number installment:</strong>
-  <%= @installment.number_installment %>
-</p>
+        <p>
+          <strong><%= Installment.human_attribute_name("paid") %>:</strong>
+          <%= human_boolean(@installment.paid) %>
+        </p>
 
-<p>
-  <strong>Launch:</strong>
-  <%= @installment.launch %>
-</p>
+        <p>
+          <strong><%= Installment.human_attribute_name("number_installment") %>:</strong>
+          <%= @installment.number_installment %> / <%= @installment.launch.amount_installment %>
+        </p>
 
-<%= link_to 'Edit', edit_installment_path(@installment) %> |
-<%= link_to 'Back', installments_path %>
+        <p>
+          <strong><%= Installment.human_attribute_name("launch") %>:</strong>
+          <%= @installment.launch.title %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.installment.one")), edit_installment_path(@installment) %> |
+<%= link_to t('helpers.links.back'), installments_path %>
+

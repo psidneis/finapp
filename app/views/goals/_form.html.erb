@@ -3,10 +3,9 @@
     <div class='box bordered-box green-border'>
       <div class='box-header green-background'>
         <div class='title'>
-            <%= 'New' if action_name == 'new' %>
-            <%= 'Edit' if action_name == 'edit' %>
+          <%= t('helpers.new') if action_name == 'new' %>
+          <%= t('helpers.edit') if action_name == 'edit' %>
         </div>
-        
       </div>
       <div class='box-content box-double-padding'>
       	<%= simple_form_for(@goal, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>

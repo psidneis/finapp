@@ -38,12 +38,12 @@ class Launch < ActiveRecord::Base
 
   def current_date_installment(date_installment)
     recurrence = {
-      yearly: {count: 1, period: :year}, 
-      biannual: {count: 6, period: :months}, 
-      quarterly: {count: 3, period: :months}, 
-      bimonthly: {count: 2, period: :months}, 
-      monthly: {count: 1, period: :month}, 
-      fortnightly: {count: 15, period: :days}, 
+      yearly: {count: 1, period: :year},
+      biannual: {count: 6, period: :months},
+      quarterly: {count: 3, period: :months},
+      bimonthly: {count: 2, period: :months},
+      monthly: {count: 1, period: :month},
+      fortnightly: {count: 15, period: :days},
       weekly: {count: 1, period: :week}, 
       daily: {count: 1, period: :day}
     }

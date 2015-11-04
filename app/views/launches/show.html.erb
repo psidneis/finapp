@@ -5,70 +5,74 @@
     <div class='box bordered-box green-border'>
       <div class='box-header green-background'>
         <div class='title'>
-            <%= 'Show' %>
+          <%= t('helpers.show') %>
         </div>
-        
       </div>
       <div class='box-content box-double-padding'>
 
         <p>
-          <strong>Title:</strong>
+          <strong><%= Launch.human_attribute_name("title") %>:</strong>
           <%= @launch.title %>
         </p>
 
         <p>
-          <strong>Description:</strong>
+          <strong><%= Launch.human_attribute_name("description") %>:</strong>
           <%= @launch.description %>
         </p>
 
         <p>
-          <strong>Value:</strong>
-          <%= @launch.value %>
+          <strong><%= Launch.human_attribute_name("value") %>:</strong>
+          <%= number_to_currency(@launch.value) %>
         </p>
 
         <p>
-          <strong>Date:</strong>
-          <%= @launch.date %>
+          <strong><%= Launch.human_attribute_name("date") %>:</strong>
+          <%= l(@launch.date, format: :date_picker) %>
         </p>
 
         <p>
-          <strong>Launchable:</strong>
-          <%= @launch.launchable %>
+          <strong><%= Launch.human_attribute_name("paid") %>:</strong>
+          <%= human_boolean(@launch.paid) %>
         </p>
 
         <p>
-          <strong>Recurrence type:</strong>
-          <%= @launch.recurrence_type %>
+          <strong><%= Launch.human_attribute_name("launchable") %>:</strong>
+          <%= @launch.launchable.title %>
         </p>
 
         <p>
-          <strong>Amount installment:</strong>
+          <strong><%= Launch.human_attribute_name("recurrence_type") %>:</strong>
+          <%= t("activerecord.attributes.launch.recurrence_types.#{@launch.recurrence_type}") %>
+        </p>
+
+        <p>
+          <strong><%= Launch.human_attribute_name("amount_installment") %>:</strong>
           <%= @launch.amount_installment %>
         </p>
 
         <p>
-          <strong>Recurrence:</strong>
-          <%= @launch.recurrence %>
+          <strong><%= Launch.human_attribute_name("recurrence") %>:</strong>
+          <%= t("activerecord.attributes.launch.recurrences.#{@launch.recurrence}") %>
         </p>
 
         <p>
-          <strong>Type:</strong>
-          <%= @launch.launch_type %>
+          <strong><%= Launch.human_attribute_name("launch_type") %>:</strong>
+          <%= t("activerecord.attributes.launch.launch_types.#{@launch.launch_type}") %>
         </p>
 
         <p>
-          <strong>Category:</strong>
-          <%= @launch.category %>
+          <strong><%= Launch.human_attribute_name("category") %>:</strong>
+          <%= @launch.category.title %>
         </p>
 
         <p>
-          <strong>User:</strong>
-          <%= @launch.user %>
+          <strong><%= Launch.human_attribute_name("user") %>:</strong>
+          <%= @launch.user.name %>
         </p>
       </div>
     </div>
   </div>
 </div>
 
-<%= link_to 'Edit', edit_launch_path(@launch) %> |
-<%= link_to 'Back', launches_path %>
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.launch.one")), edit_launch_path(@launch) %> |
+<%= link_to t('helpers.links.back'), launches_path %>

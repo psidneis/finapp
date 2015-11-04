@@ -1,6 +1,6 @@
-<h1>Editing Goal</h1>
+<%= render 'header' %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @goal %> |
-<%= link_to 'Back', goals_path %>
+<%= link_to t('helpers.links.show'), @goal %> |
+<%= link_to t('helpers.links.back'), goals_path %>

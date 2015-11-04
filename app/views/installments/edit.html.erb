@@ -1,6 +1,7 @@
-<h1>Editing Installment</h1>
+<%= render 'header' %>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @installment %> |
-<%= link_to 'Back', installments_path %>
+<%= link_to t('helpers.links.show'), @installment %> |
+<%= link_to t('helpers.links.back'), installments_path %>
+

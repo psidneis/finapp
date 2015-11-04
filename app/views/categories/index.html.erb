@@ -2,7 +2,9 @@
 
 <div class='box bordered-box green-border' style='margin-bottom:0;'>
   <div class='box-header green-background'>
-    <div class='title'>Lista</div>
+    <div class='title'>
+      <%= t('helpers.index') %>
+    </div>
   </div>
   <div class='box-content box-no-padding'>
     <div class='responsive-table'>
@@ -10,19 +12,25 @@
         <table class='table' style='margin-bottom:0;'>
           <thead>
             <tr>
-              <th>Title</th>
-              <th>Color</th>
-              <th colspan="3"></th>
+              <th>
+                <%= Category.human_attribute_name("title") %>
+              </th>
+              <th>
+                <%= Category.human_attribute_name("color") %>
+              </th>
+              <th colspan="3">
+                <%= t('helpers.actions') %>
+              </th>
             </tr>
           </thead>
           <tbody>
             <% @categories.each do |category| %>
               <tr>
                 <td><%= category.title %></td>
-                <td><%= category.color %></td>
+                <td style="background-color:<%= category.color %>;"><%= category.color %></td>
                 <td><%= link_to '<i class="icon-search"></i>'.html_safe, category %></td>
                 <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_category_path(category) %></td>
-                <td><%= link_to '<i class="icon-trash"></i>'.html_safe, category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= link_to '<i class="icon-trash"></i>'.html_safe, category, method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
               </tr>
             <% end %>
           </tbody>
@@ -32,4 +40,4 @@
   </div>
 </div>
 <br>
-<%= link_to 'New Category', new_category_path %>
+<%= link_to t('helpers.titles.new', model: t("activerecord.models.category.one")), new_category_path %>
