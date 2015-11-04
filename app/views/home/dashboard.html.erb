@@ -1,0 +1,11 @@
+<%= render 'header' %>
+
+<nav>
+  <ul class="pager">
+    <li class="previous"><%= link_to "<i class='icon-chevron-left'></i>".html_safe, home_dashboard_path(search_period: @search_period - 1.month) %></li>
+      <span><%= l(@search_period, format: :long_month_year) %></span>
+    <li class="next"><%= link_to "<i class='icon-chevron-right'></i>".html_safe, home_dashboard_path(search_period: @search_period + 1.month) %></li>
+  </ul>
+</nav>
+
+<%= render 'installments/list' %>
