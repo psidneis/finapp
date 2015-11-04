@@ -1,14 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%= render 'header' %>
 
-<p>
-  <strong>Value:</strong>
-  <%= @goal.value %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'Show' %>
+        </div>
+        
+      </div>
+      <div class='box-content box-double-padding'>
+				<p>
+				  <strong>Value:</strong>
+				  <%= @goal.value %>
+				</p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @goal.category %>
-</p>
+				<p>
+				  <strong>Category:</strong>
+				  <%= @goal.category %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_goal_path(@goal) %> |
 <%= link_to 'Back', goals_path %>

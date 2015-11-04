@@ -1,19 +1,33 @@
-<p id="notice"><%= notice %></p>
+<%= render 'header' %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @group.title %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'Show' %>
+        </div>
+        
+      </div>
+      <div class='box-content box-double-padding'>
+				<p>
+				  <strong>Title:</strong>
+				  <%= @group.title %>
+				</p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @group.description %>
-</p>
+				<p>
+				  <strong>Description:</strong>
+				  <%= @group.description %>
+				</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @group.user %>
-</p>
+				<p>
+				  <strong>User:</strong>
+				  <%= @group.user %>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

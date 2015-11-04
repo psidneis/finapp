@@ -9,6 +9,16 @@
         
       </div>
       <div class='box-content box-double-padding'>
+        <!-- <div class="row">
+          <div class='col-sm-7 col-sm-offset-5 btn-group'>
+            <button class='btn btn-default btn-lg' data-launch-type="income">
+              Receita
+            </button>
+            <button class='btn btn-default btn-lg' data-launch-type="expense">
+              Despesa
+            </button>
+          </div>
+        </div> -->
         <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
           <%= f.error_notification %>
           <fieldset>

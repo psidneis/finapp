@@ -29,6 +29,6 @@
 		<% else %>
 			<%= yield %>
 		<% end %>
-		<%#= render partial: "layouts/footer" %>
+		<%= render partial: "layouts/footer" unless user_signed_in? %>
 	</body>
 </html>

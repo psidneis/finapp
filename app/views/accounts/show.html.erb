@@ -1,27 +1,44 @@
-<p>
-  <strong>Type:</strong>
-  <%= @account.account_type %>
-</p>
+<%= render 'header' %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @account.title %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'Show' %>
+        </div>
+        
+      </div>
+      <div class='box-content box-double-padding'>
 
-<p>
-  <strong>Description:</strong>
-  <%= @account.description %>
-</p>
+        <p>
+          <strong>Type:</strong>
+          <%= @account.account_type %>
+        </p>
 
-<p>
-  <strong>Value:</strong>
-  <%= @account.value %>
-</p>
+        <p>
+          <strong>Title:</strong>
+          <%= @account.title %>
+        </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @account.user %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @account.description %>
+        </p>
+
+        <p>
+          <strong>Value:</strong>
+          <%= @account.value %>
+        </p>
+
+        <p>
+          <strong>User:</strong>
+          <%= @account.user %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>

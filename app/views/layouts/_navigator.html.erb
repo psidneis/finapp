@@ -35,6 +35,13 @@
             <!-- <i class='icon-angle-down angle-down'></i> -->
           <% end %>
         </li>
+        <li class="<%= 'active' if controller_name == "goals" %>">
+          <%= link_to (goals_path) do %>
+            <i class='icon-screenshot'></i>
+            <span><%= t('activerecord.models.goal.other') %></span>
+            <!-- <i class='icon-angle-down angle-down'></i> -->
+          <% end %>
+        </li>
         <li class="<%= 'active' if controller_name == "groups" %>">
           <%= link_to (groups_path) do %>
             <i class='icon-user'></i>

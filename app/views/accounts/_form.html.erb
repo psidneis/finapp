@@ -1,14 +1,43 @@
-<%= simple_form_for(@account) do |f| %>
-  <%= f.error_notification %>
+<%= render 'header' %>
 
-  <div class="form-inputs">
-    <%= f.input :account_type, collection: options_for_enum(Account, :account_type, @account), include_blank: false %>
-    <%= f.input :title %>
-    <%= f.input :description %>
-    <%= f.input :value %>
-  </div>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'New' if action_name == 'new' %>
+            <%= 'Edit' if action_name == 'edit' %>
+        </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+      </div>
+      <div class='box-content box-double-padding'>
+        <%= simple_form_for(@account, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+          <%= f.error_notification %>
+          <fieldset>
+            <div class='col-sm-8 col-sm-offset-2'>
+              <div class='form-group'>
+                <%= f.input :account_type, collection: options_for_enum(Account, :account_type, @account), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :title %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :description %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :value %>
+              </div>
+            </div>
+          </fieldset>
+          <hr class='hr-normal'>
+          
+          <div class='row'>
+            <div class='col-sm-7 col-sm-offset-5'>
+              <%= f.button :submit, class: 'btn-lg btn-success' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

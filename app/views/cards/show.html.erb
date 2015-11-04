@@ -1,32 +1,49 @@
-<p>
-  <strong>Brand:</strong>
-  <%= @card.brand %>
-</p>
+<%= render 'header' %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @card.title %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+            <%= 'Show' %>
+        </div>
+        
+      </div>
+      <div class='box-content box-double-padding'>
 
-<p>
-  <strong>Credit limit:</strong>
-  <%= @card.credit_limit %>
-</p>
+        <p>
+          <strong>Brand:</strong>
+          <%= @card.brand %>
+        </p>
 
-<p>
-  <strong>Billing day:</strong>
-  <%= @card.billing_day %>
-</p>
+        <p>
+          <strong>Title:</strong>
+          <%= @card.title %>
+        </p>
 
-<p>
-  <strong>Payment day:</strong>
-  <%= @card.payment_day %>
-</p>
+        <p>
+          <strong>Credit limit:</strong>
+          <%= @card.credit_limit %>
+        </p>
 
-<p>
-  <strong>Account:</strong>
-  <%= @card.account %>
-</p>
+        <p>
+          <strong>Billing day:</strong>
+          <%= @card.billing_day %>
+        </p>
+
+        <p>
+          <strong>Payment day:</strong>
+          <%= @card.payment_day %>
+        </p>
+
+        <p>
+          <strong>Account:</strong>
+          <%= @card.account %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_card_path(@card) %> |
 <%= link_to 'Back', cards_path %>

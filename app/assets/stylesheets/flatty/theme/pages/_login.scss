@@ -96,13 +96,14 @@ body.login {
       }
     }
   }
+  footer { 
+    .login-container-footer {
+      padding: 20px 0;
 
-  .login-container-footer {
-    padding: 20px 0;
-
-    a {
-      color: $white;
-      text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+      a {
+        color: $white;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+      }
     }
   }
 }
