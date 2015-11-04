@@ -6,7 +6,9 @@ class InstallmentsController < ApplicationController
   respond_to :html
 
   def index
+    @search_period = params[:search_period].try(:to_date) || Date.today
     @installments = policy_scope(Installment)
+    @installments = @installments.where(date: @search_period.beginning_of_month..@search_period.end_of_month)
     respond_with(@installments)
   end
 

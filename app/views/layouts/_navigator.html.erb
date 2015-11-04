@@ -1,8 +1,8 @@
   <nav class="main-nav-fixed" id="main-nav">
     <div class='navigation'>
       <ul class='nav nav-stacked'>
-        <li class="<%= 'active' if controller_name == "home" %>">
-          <%= link_to root_path do %>
+        <li class="<%= 'active' if controller_name == "installments" %>">
+          <%= link_to installments_path do %>
             <i class='icon-dashboard'></i>
             <span><%= t('breadcrumbs.pages.general_view') %></span>
           <% end %>
@@ -11,13 +11,6 @@
           <%= link_to (launches_path) do %>
             <i class='icon-upload'></i>
             <span><%= t('activerecord.models.launch.other') %></span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <% end %>
-        </li>
-        <li class="<%= 'active' if controller_name == "installments" %>">
-          <%= link_to (installments_path) do %>
-            <i class='icon-tasks'></i>
-            <span><%= t('activerecord.models.installment.other') %></span>
             <!-- <i class='icon-angle-down angle-down'></i> -->
           <% end %>
         </li>
