@@ -37,7 +37,7 @@
                 <td><%= number_to_currency(installment.value) %></td>
                 <td><%= l(installment.date, format: :date_picker) %></td>
                 <td><%= human_boolean(installment.paid) %></td>
-                <td><%= installment.number_installment %> / <%= installment.launch.amount_installment %></td>
+                <td><%= check_recurrence(installment) %></td>
                 <td><%= installment.launch.title %></td>
                 <td><%= link_to '<i class="icon-search"></i>'.html_safe, installment %></td>
                 <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_installment_path(installment) %></td>

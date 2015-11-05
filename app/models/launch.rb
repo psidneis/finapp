@@ -25,7 +25,8 @@ class Launch < ActiveRecord::Base
 
   def generate_installments(options={})
     date_installment = self.date
-    for i in 1..self.amount_installment
+    total_installments = self.recurrence? ? 100 : self.amount_installment
+    for i in 1..total_installments
       installment = self.installments.build
       installment.date = date_installment
       installment.value = self.value
