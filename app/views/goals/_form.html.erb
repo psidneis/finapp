@@ -16,7 +16,7 @@
                 <%= f.input :value %>
               </div>
               <div class='form-group'>
-                <%= f.association :category %>
+                <%= f.association :category, collection: policy_scope(Category) %>
               </div>
             </div>
           </fieldset>
