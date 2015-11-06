@@ -30,6 +30,10 @@ class InstallmentsController < ApplicationController
 
   def update
     @installment.update(installment_params)
+    if installment_params[:update_option] != 'only_this'
+      @installment.update_parent_launch
+      @installment.check_installments_to_update(installment_params[:update_option]) 
+    end
     respond_with(@installment)
   end
 
@@ -45,6 +49,6 @@ class InstallmentsController < ApplicationController
     end
 
     def installment_params
-      params.require(:installment).permit(:value, :date, :paid, :number_installment, :launch_id)
+      params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option)
     end
 end

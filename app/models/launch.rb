@@ -23,16 +23,12 @@ class Launch < ActiveRecord::Base
     self.launchable = GlobalID::Locator.locate launchable
   end
 
-  def generate_installments(options={})
+  def generate_installments
     date_installment = self.date
     total_installments = self.recurrence? ? 100 : self.amount_installment
-    for i in 1..total_installments
+    for index in 1..total_installments
       installment = self.installments.build
-      installment.date = date_installment
-      installment.value = self.value
-      installment.number_installment = i
-      installment.paid = i.eql?(1) ? self.paid : false
-      installment.save
+      installment.create_or_update_installment(date_installment, index)
       date_installment = self.current_date_installment(date_installment)
     end
   end

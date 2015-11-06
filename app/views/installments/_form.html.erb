@@ -13,19 +13,38 @@
           <fieldset>
             <div class='col-sm-8 col-sm-offset-2'>
               <div class='form-group'>
+                <%= f.input :title %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :description %>
+              </div>
+              <div class='form-group'>
                 <%= f.input :value %>
               </div>
               <div class='form-group'>
-                <%= f.input :date %>
+                <%= f.input :date do %>
+                  <div class='datepicker_button input-group'>
+                    <%= f.input_field :date, as: :datepicker, class: 'form-control', data: { format: 'dd/mm/yyyy' } %>
+                    <span class='input-group-addon'>
+                      <i class='icon-calendar'></i>
+                    </span>
+                  </div>
+                <% end %>
               </div>
               <div class='form-group'>
                 <%= f.input :paid %>
               </div>
               <div class='form-group'>
-                <%= f.input :number_installment %>
+                <%= f.input :global_installmentable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, value_method: :to_global_id, group_label_method: :human_model_name, include_blank: false %>
               </div>
               <div class='form-group'>
-                <%= f.association :launch, collection: policy_scope(Launch) %>
+                <%= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.association :category, collection: policy_scope(Category), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :update_option, collection: options_for_enum(Installment, :update_option, @installment), checked: :only_this, as: :radio_buttons %>
               </div>
             </div>
           </fieldset>

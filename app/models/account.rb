@@ -1,6 +1,7 @@
 class Account < ActiveRecord::Base
 
   has_many :launches, as: :launchable
+  has_many :installments, as: :installmentable
   belongs_to :user
 
   validates :account_type, :title, :value, presence: true

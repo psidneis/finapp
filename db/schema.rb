@@ -71,15 +71,22 @@ ActiveRecord::Schema.define(version: 20151031231612) do
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "installments", force: :cascade do |t|
-    t.decimal  "value",                        precision: 10
-    t.date     "date"
+    t.string   "title",                limit: 255
+    t.text     "description",          limit: 65535
+    t.decimal  "value",                              precision: 10
+    t.datetime "date"
     t.boolean  "paid"
-    t.integer  "number_installment", limit: 4
-    t.integer  "launch_id",          limit: 4
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.integer  "launch_type",          limit: 4
+    t.integer  "number_installment",   limit: 4
+    t.integer  "installmentable_id",   limit: 4
+    t.string   "installmentable_type", limit: 255
+    t.integer  "category_id",          limit: 4
+    t.integer  "launch_id",            limit: 4
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
   end
 
+  add_index "installments", ["category_id"], name: "index_installments_on_category_id", using: :btree
   add_index "installments", ["launch_id"], name: "index_installments_on_launch_id", using: :btree
 
   create_table "launches", force: :cascade do |t|
@@ -152,6 +159,7 @@ ActiveRecord::Schema.define(version: 20151031231612) do
   add_foreign_key "categories", "users"
   add_foreign_key "goals", "categories"
   add_foreign_key "groups", "users"
+  add_foreign_key "installments", "categories"
   add_foreign_key "installments", "launches"
   add_foreign_key "launches", "categories"
   add_foreign_key "launches", "groups"

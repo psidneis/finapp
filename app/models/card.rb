@@ -1,6 +1,7 @@
 class Card < ActiveRecord::Base
 
   has_many :launches, as: :launchable
+  has_many :installments, as: :installmentable
   belongs_to :account
   belongs_to :user
 

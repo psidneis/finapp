@@ -290,11 +290,25 @@ pt-BR:
         description: Descrição
         user: Administrador
       installment:
+        title: Título
+        description: Descrição
         value: Valor
         date: Data
         paid: Pago
+        launchable: Conta/Cartão
+        global_installmentable: Conta/Cartão
+        category: Categoria
+        launch_type: Receita/Despesa
+        launch_types:
+          expense: Despesa
+          income: Receita
         number_installment: Número da parcela
         launch: Lançamento
+        update_option: Opções de atualização
+        update_options:
+          only_this: Atualizar apenas este lançamento
+          update_future: Atualizar este e os próximos Lançamentos
+          all_update: Atualizar todos os lançamentos
       launch:
         title: Título
         description: Descrição

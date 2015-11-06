@@ -1,12 +1,13 @@
 module InstallmentsHelper
 
-	def check_recurrence(installment)
+	def format_title_recurrence(installment)
 		if installment.launch.recurrence?
-			t("activerecord.attributes.launch.recurrence_types.#{installment.launch.recurrence_type}")
-		else
-			"#{installment.number_installment} / #{installment.launch.amount_installment}"
+			"#{installment.title} - #{t("activerecord.attributes.launch.recurrence_types.#{installment.launch.recurrence_type}")}"
+		elsif installment.launch.installments?
+			"#{installment.title} #{installment.number_installment}/#{installment.launch.amount_installment}"
+    else
+      installment.title
 		end
-		
 	end
 
 end
