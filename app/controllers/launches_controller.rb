@@ -26,7 +26,7 @@ class LaunchesController < ApplicationController
     @launch = Launch.new(launch_params)
     @launch.user = current_user
     @launch.save
-    @launch.generate_installments
+    @launch.generate_launch_installments
     respond_with(@launch)
   end
 

@@ -23,9 +23,9 @@ class Launch < ActiveRecord::Base
     self.launchable = GlobalID::Locator.locate launchable
   end
 
-  def generate_installments
-    date_installment = self.date
-    total_installments = self.recurrence? ? 100 : self.amount_installment
+  def generate_launch_installments(current_date = nil)
+    date_installment = current_date || self.date
+    total_installments = self.recurrence? ? 60 : self.amount_installment
     for index in 1..total_installments
       installment = self.installments.build
       installment.create_or_update_installment(date_installment, index)
@@ -47,6 +47,16 @@ class Launch < ActiveRecord::Base
 
     recurrence = recurrence[self.recurrence.to_sym]
     date_installment + recurrence[:count].send(recurrence[:period])
+  end
+
+  def self.generate_recurrence_launches(user, period)
+    Launch.where("user_id = ? and recurrence_type = ?", user.id, 2).each do |launch|
+      installment = launch.installments.last
+      if installment.present? and installment.date <= period.end_of_month
+        date_installment = launch.current_date_installment(installment.date)
+        launch.generate_launch_installments(date_installment)
+      end
+    end
   end
 
 end
