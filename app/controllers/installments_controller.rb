@@ -38,14 +38,19 @@ class InstallmentsController < ApplicationController
   end
 
   def destroy
-    cancel_option = installment_params[:cancel_option]
-    launch = @installment.launch
-    if cancel_option.eql?('cancel_this')
+    if params[:cancel_this].present?
       @installment.destroy
-    elsif cancel_option.eql?('cancel_future')
-      launch.installments.where("date >= ?", @installment.date).destroy_all
-    elsif cancel_option.eql?('cancel_all')
-      launch.destroy
+    else
+      cancel_option = installment_params[:cancel_option] 
+      launch = @installment.launch
+      if cancel_option.eql?('cancel_this') or cancel_option.blank?
+        @installment.destroy
+      elsif cancel_option.eql?('cancel_future')
+        launch.update_attributes(enabled: false)
+        launch.installments.where("date >= ?", @installment.date).destroy_all
+      elsif cancel_option.eql?('cancel_all')
+        launch.destroy
+      end
     end
     respond_with(@installment, location: home_dashboard_path)
   end

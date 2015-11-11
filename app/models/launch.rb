@@ -29,8 +29,10 @@ class Launch < ActiveRecord::Base
     for index in 1..total_installments
       installment = self.installments.build
       installment.create_or_update_installment(date_installment, index)
+      self.last_installment_date = installment.date
       date_installment = self.current_date_installment(date_installment)
     end
+    self.save
   end
 
   def current_date_installment(date_installment)
@@ -50,10 +52,10 @@ class Launch < ActiveRecord::Base
   end
 
   def self.generate_recurrence_launches(user, period)
-    Launch.where("user_id = ? and recurrence_type = ?", user.id, 2).each do |launch|
+    Launch.where("user_id = ? and recurrence_type = ? and enabled = ?", user.id, 2, true).each do |launch|
       installment = launch.installments.last
-      if installment.present? and installment.date <= period.end_of_month
-        date_installment = launch.current_date_installment(installment.date)
+      if launch.last_installment_date <= period.end_of_month
+        date_installment = launch.current_date_installment(launch.last_installment_date)
         launch.generate_launch_installments(date_installment)
       end
     end

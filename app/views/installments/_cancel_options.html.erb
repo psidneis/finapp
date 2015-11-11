@@ -4,7 +4,7 @@
     <fieldset>
       <div class='col-sm-8 col-sm-offset-2'>
         <div class='form-group'>
-          <%= f.input :cancel_option, collection: options_for_enum(Installment, :cancel_option, @installment), checked: :only_this, as: :radio_buttons %>
+          <%= f.input :cancel_option, collection: options_for_enum(Installment, :cancel_option, @installment), checked: :cancel_this, as: :radio_buttons %>
         </div>
       </div>
     </fieldset>

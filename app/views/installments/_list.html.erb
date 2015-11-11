@@ -43,7 +43,7 @@
                 <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_installment_path(installment) %></td>
                 <td>
                   <% if installment.launch.not_recurrence? %>
-                    <%= link_to '<i class="icon-trash"></i>'.html_safe, installment, method: :delete, data: { confirm: t('helpers.are_you_sure') } %>
+                    <%= link_to '<i class="icon-trash"></i>'.html_safe, installment_path(installment, cancel_this: true), method: :delete, data: { confirm: t('helpers.are_you_sure') } %>
                   <% else %>
                     <%= link_to '<i class="icon-trash"></i>'.html_safe, cancel_installment_path(installment), remote: true %>
                   <% end %>
