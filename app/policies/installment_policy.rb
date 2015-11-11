@@ -26,6 +26,10 @@ class InstallmentPolicy < ApplicationPolicy
     can_perform_action?
   end
 
+  def cancel?
+    can_perform_action?
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end

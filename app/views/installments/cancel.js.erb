@@ -1,0 +1,2 @@
+$('#main_modal .modal-content .modal-body').html("<%= escape_javascript(render(partial: 'cancel_options', locals: {installment: @installment})) %>");
+$('#main_modal').modal('show');

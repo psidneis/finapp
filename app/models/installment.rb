@@ -10,8 +10,9 @@ class Installment < ActiveRecord::Base
 
   enum launch_type: %w(expense income)
   enum update_options: %w(only_this update_future all_update)
+  enum cancel_options: %w(cancel_this cancel_future cancel_all)
 
-  attr_accessor :update_option
+  attr_accessor :update_option, :cancel_option
 
   def global_installmentable
     self.installmentable.to_global_id if self.installmentable.present?

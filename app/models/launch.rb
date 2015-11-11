@@ -1,6 +1,6 @@
 class Launch < ActiveRecord::Base
 
-  has_many :installments
+  has_many :installments, dependent: :destroy
   belongs_to :launchable, polymorphic: true
   belongs_to :category
   belongs_to :user

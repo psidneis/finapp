@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get 'home/dashboard'
 
   resources :users, only: [:index, :show]
-  resources :installments
+  resources :installments do
+    get 'cancel', on: :member
+  end
   resources :launches
   resources :categories
   resources :accounts

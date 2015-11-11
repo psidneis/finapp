@@ -10,6 +10,7 @@
 
 	<body class="contrast-green <%= user_signed_in? ? 'fixed-header fixed-navigation' : 'login contrast-background' %>">
 		<%= render partial: "layouts/header" %>
+		<%= render partial: 'layouts/modal' %>
 
 		<% if user_signed_in? %>
 			<div id="wrapper">

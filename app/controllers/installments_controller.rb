@@ -1,9 +1,9 @@
 class InstallmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_installment, only: [:show, :edit, :update, :destroy]
+  before_action :set_installment, only: [:show, :edit, :update, :destroy, :cancel]
   after_action :verify_authorized, except: [:index, :new, :create]
 
-  respond_to :html
+  respond_to :html, :js, :json
 
   def index
     @installments = policy_scope(Installment)
@@ -34,11 +34,23 @@ class InstallmentsController < ApplicationController
       @installment.update_parent_launch
       @installment.check_installments_to_update(installment_params[:update_option]) 
     end
-    respond_with(@installment)
+    respond_with(@installment, location: home_dashboard_path)
   end
 
   def destroy
-    @installment.destroy
+    cancel_option = installment_params[:cancel_option]
+    launch = @installment.launch
+    if cancel_option.eql?('cancel_this')
+      @installment.destroy
+    elsif cancel_option.eql?('cancel_future')
+      launch.installments.where("date >= ?", @installment.date).destroy_all
+    elsif cancel_option.eql?('cancel_all')
+      launch.destroy
+    end
+    respond_with(@installment, location: home_dashboard_path)
+  end
+
+  def cancel
     respond_with(@installment)
   end
 
@@ -49,6 +61,6 @@ class InstallmentsController < ApplicationController
     end
 
     def installment_params
-      params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option)
+      params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option, :cancel_option)
     end
 end

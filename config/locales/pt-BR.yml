@@ -309,6 +309,11 @@ pt-BR:
           only_this: Atualizar apenas este lançamento
           update_future: Atualizar este e os próximos Lançamentos
           all_update: Atualizar todos os lançamentos
+        cancel_option: 'Existem outros lançamentos, o que deseja fazer?'
+        cancel_options:
+          cancel_this: Cancelar apenas este lançamento
+          cancel_future: Cancelar este e os próximos Lançamentos
+          cancel_all: Cancelar todos os lançamentos
       launch:
         title: Título
         description: Descrição

@@ -1,0 +1,19 @@
+<div class='box-content box-double-padding'>
+  <%= simple_form_for(@installment, method: :delete, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+    <%= f.error_notification %>
+    <fieldset>
+      <div class='col-sm-8 col-sm-offset-2'>
+        <div class='form-group'>
+          <%= f.input :cancel_option, collection: options_for_enum(Installment, :cancel_option, @installment), checked: :only_this, as: :radio_buttons %>
+        </div>
+      </div>
+    </fieldset>
+    <hr class='hr-normal'>
+    
+    <div class='row'>
+      <div class='col-sm-7 col-sm-offset-5'>
+        <%= f.submit t('helpers.links.cancel'), class: 'btn-lg btn-danger' %>
+      </div>
+    </div>
+  <% end %>
+</div>
