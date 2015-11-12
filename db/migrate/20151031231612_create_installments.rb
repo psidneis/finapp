@@ -3,7 +3,7 @@ class CreateInstallments < ActiveRecord::Migration
     create_table :installments do |t|
       t.string :title
       t.text :description
-      t.decimal :value
+      t.decimal :value, default: 0.0, precision: 15, scale: 2
       t.datetime :date
       t.boolean :paid
       t.integer :launch_type

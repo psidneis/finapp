@@ -4,7 +4,7 @@ class CreateAccounts < ActiveRecord::Migration
       t.integer :account_type, default: 0
       t.string :title
       t.text :description
-      t.decimal :value
+      t.decimal :value, default: 0.0, precision: 15, scale: 2
       t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
