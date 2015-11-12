@@ -19,7 +19,7 @@
                 <%= f.input :title %>
               </div>
               <div class='form-group'>
-                <%= f.input :credit_limit %>
+                <%= f.input :credit_limit, as: :string, input_html: {class: 'format_value'} %>
               </div>
               <div class='form-group'>
                 <%= f.association :account, collection: policy_scope(Account) %>

@@ -8,12 +8,18 @@ class Launch < ActiveRecord::Base
 
   validates :title, :value, :date, :recurrence_type, :recurrence, :launch_type, :category, presence: true
   validates :title, length: { in: 2..100 }
-  validates :value, numericality: { greater_than_or_equal_to: 0 }
+  validates :value, numericality: true
   validates :amount_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   enum recurrence_type: %w(not_recurrence installments recurrence)
   enum recurrence: %w(yearly biannual quarterly bimonthly monthly fortnightly weekly daily)
   enum launch_type: %w(expense income)
+
+  def value= value
+    if value =~ /^R\$ ([\d.,]+)$/
+      write_attribute :value, $1.gsub('.', '').gsub(',', '.').to_d
+    end
+  end
 
   def global_launchable
     self.launchable.to_global_id if self.launchable.present?

@@ -5,7 +5,7 @@ class Installment < ActiveRecord::Base
   belongs_to :category
 
   validates :value, :date, :number_installment, :launch, presence: true
-  validates :value, numericality: { greater_than_or_equal_to: 0 }
+  validates :value, numericality: true
   validates :number_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   enum launch_type: %w(expense income)
@@ -13,6 +13,12 @@ class Installment < ActiveRecord::Base
   enum cancel_options: %w(cancel_this cancel_future cancel_all)
 
   attr_accessor :update_option, :cancel_option
+
+  def value= value
+    if value =~ /^R\$ ([\d.,]+)$/
+      write_attribute :value, $1.gsub('.', '').gsub(',', '.').to_d
+    end
+  end
 
   def global_installmentable
     self.installmentable.to_global_id if self.installmentable.present?

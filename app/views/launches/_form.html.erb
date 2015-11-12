@@ -29,7 +29,7 @@
                 <%= f.input :description %>
               </div>
               <div class='form-group'>
-                <%= f.input :value %>
+                <%= f.input :value, as: :string, input_html: {class: 'format_value'} %>
               </div>
               <div class='form-group'>
                 <%= f.input :date do %>

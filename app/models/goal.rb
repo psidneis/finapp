@@ -3,6 +3,12 @@ class Goal < ActiveRecord::Base
   belongs_to :category
 
   validates :category, :value, presence: true
-  validates :value, numericality: { greater_than_or_equal_to: 0 }
+  validates :value, numericality: true
+
+  def value= value
+    if value =~ /^R\$ ([\d.,]+)$/
+      write_attribute :value, $1.gsub('.', '').gsub(',', '.').to_d
+    end
+  end
   
 end

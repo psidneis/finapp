@@ -6,9 +6,15 @@ class Account < ActiveRecord::Base
 
   validates :account_type, :title, :value, presence: true
   validates :title, uniqueness: { scope: :user_id }, length: { in: 2..100 }
-  validates :value, numericality: { greater_than_or_equal_to: 0 }
+  validates :value, numericality: true
 
   enum account_type: %w(wallet checking_account savings_account)
+
+  def value= value
+    if value =~ /^R\$ ([\d.,]+)$/
+      write_attribute :value, $1.gsub('.', '').gsub(',', '.').to_d
+    end
+  end
 
   def self.human_model_name
     self.model_name.human
