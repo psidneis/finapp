@@ -56,7 +56,7 @@ class Installment < ActiveRecord::Base
     self.description = launch.description
     self.value = launch.value
     self.date = date_installment
-    self.paid = false
+    self.paid = launch.date.eql?(date_installment) ? launch.paid : false
     self.launch_type = launch.launch_type
     self.number_installment ||= index
     self.installmentable = launch.launchable

@@ -3,7 +3,7 @@ class LaunchesController < ApplicationController
   before_action :set_launch, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :new, :create]
 
-  respond_to :html
+  respond_to :html, :js, :json
 
   def index
     @launches = policy_scope(Launch)
@@ -26,7 +26,7 @@ class LaunchesController < ApplicationController
     @launch = Launch.new(launch_params)
     @launch.user = current_user
     @launch.save
-    @launch.generate_launch_installments
+    @launch.generate_launch_installments if @launch.persisted?
     respond_with(@launch, location: home_dashboard_path)
   end
 

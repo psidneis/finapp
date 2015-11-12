@@ -2,6 +2,7 @@
 
 <nav>
   <ul class="pager">
+    <%= link_to t('helpers.titles.new', model: t("activerecord.models.launch.one")), new_launch_path, class: 'btn btn-success' %>
     <li class="previous"><%= link_to "<i class='icon-chevron-left'></i>".html_safe, home_dashboard_path(search_period: @search_period - 1.month) %></li>
       <span><%= l(@search_period, format: :long_month_year) %></span>
     <li class="next"><%= link_to "<i class='icon-chevron-right'></i>".html_safe, home_dashboard_path(search_period: @search_period + 1.month) %></li>
