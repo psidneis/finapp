@@ -3,8 +3,9 @@ class Installment < ActiveRecord::Base
   belongs_to :launch
   belongs_to :installmentable, polymorphic: true
   belongs_to :category
+  belongs_to :user
 
-  validates :value, :date, :number_installment, :launch, presence: true
+  validates :value, :date, :number_installment, :launch, :user, presence: true
   validates :value, numericality: true
   validates :number_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
@@ -57,7 +58,7 @@ class Installment < ActiveRecord::Base
     end
   end
 
-  def create_or_update_installment(date_installment, index=nil)
+  def create_or_update_installment(date_installment, index=nil, user)
     launch = self.launch
 
     self.title = launch.title
@@ -69,6 +70,7 @@ class Installment < ActiveRecord::Base
     self.number_installment ||= index
     self.installmentable = launch.launchable
     self.category = launch.category
+    launch.user = user
     self.save
   end
   

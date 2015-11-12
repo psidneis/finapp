@@ -10,6 +10,7 @@ class CreateInstallments < ActiveRecord::Migration
       t.integer :number_installment
       t.references :installmentable, polymorphic: true
       t.references :category, index: true, foreign_key: true
+      t.references :user, index: true, foreign_key: true
       t.references :launch, index: true, foreign_key: true
 
       t.timestamps null: false

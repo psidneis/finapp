@@ -48,7 +48,8 @@ class InstallmentPolicy < ApplicationPolicy
       end
 
       def resolve
-        scope.joins(:launch).where("launches.user_id = ?", user.id)
+        # scope.joins(:launch).where("launches.user_id = ?", user.id)
+        scope.where(user: user)
       end
     end
 

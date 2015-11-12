@@ -25,8 +25,7 @@ class LaunchesController < ApplicationController
   def create
     @launch = Launch.new(launch_params)
     @launch.user = current_user
-    @launch.save
-    @launch.generate_launch_installments if @launch.persisted?
+    @launch.generate_launch_installments if @launch.save
     respond_with(@launch, location: home_dashboard_path)
   end
 

@@ -1,22 +1,36 @@
-<p>
-  <strong>Enabled:</strong>
-  <%= @user_group.enabled %>
-</p>
+<%= render 'header' %>
 
-<p>
-  <strong>Role:</strong>
-  <%= @user_group.role %>
-</p>
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+          <%= t('helpers.show') %>
+        </div>
+      </div>
+      <div class='box-content box-double-padding'>
+        <p>
+          <strong><%= UserGroup.human_attribute_name("group") %>:</strong>
+          <%= @user_group.group.title %>
+        </p>
 
-<p>
-  <strong>Group:</strong>
-  <%= @user_group.group %>
-</p>
+        <p>
+          <strong><%= UserGroup.human_attribute_name("user") %>:</strong>
+          <%= @user_group.user.name %>
+        </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @user_group.user %>
-</p>
+        <p>
+          <strong><%= UserGroup.human_attribute_name("role") %>:</strong>
+          <%= @user_group.role %>
+        </p>
+        <p>
+          <strong><%= UserGroup.human_attribute_name("enabled") %>:</strong>
+          <%= human_boolean(@user_group.enabled) %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_user_group_path(@user_group) %> |
-<%= link_to 'Back', user_groups_path %>
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.user_group.one")), edit_user_group_path(@user_group) %> |
+<%= link_to t('helpers.links.back'), user_groups_path %>

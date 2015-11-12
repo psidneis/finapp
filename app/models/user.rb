@@ -6,12 +6,13 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :twitter, :facebook]
 
-  has_many :user_groups
+  has_many :user_groups, dependent: :destroy
   has_many :groups, through: :user_groups
-  has_many :accounts
-  has_many :cards
-  has_many :lauches
-  has_many :categories
+  has_many :accounts, dependent: :destroy
+  has_many :cards, dependent: :destroy
+  has_many :lauches, dependent: :destroy
+  has_many :installments, dependent: :destroy
+  has_many :categories, dependent: :destroy
   has_many :manager_groups, class_name: "Group", foreign_key: "user_id"
 
   before_save -> { skip_confirmation! }

@@ -31,14 +31,48 @@ class Launch < ActiveRecord::Base
 
   def generate_launch_installments(current_date = nil)
     date_installment = current_date || self.date
-    total_installments = self.recurrence? ? 60 : self.amount_installment
+    total_installments = self.recurrence? ? 31 : self.amount_installment
+
     for index in 1..total_installments
-      installment = self.installments.build
-      installment.create_or_update_installment(date_installment, index)
-      self.last_installment_date = installment.date
+      if self.group.present?
+        self.generate_group_installments(date_installment, index)
+      else
+        self.generate_installments(date_installment, index)
+      end
       date_installment = self.current_date_installment(date_installment)
     end
+
+    self.last_installment_date = self.installments.unscoped.last.date
     self.save
+  end
+
+  def generate_installments(date_installment, index)
+    installment = self.installments.build
+    installment.create_or_update_installment(date_installment, index, self.user)
+  end
+
+  def generate_group_installments(date_installment, index)
+    user_groups = self.group.user_groups.where(enabled: true)
+    value_to_user = self.calculate_amount_division_group(user_groups.count)
+
+    user_groups.each do |user_group|
+      installment = self.installments.build
+      installment.title = self.title
+      installment.description = self.description
+      installment.value = value_to_user
+      installment.date = date_installment
+      installment.paid = self.date.eql?(date_installment) ? self.paid : false
+      installment.launch_type = self.launch_type
+      installment.number_installment = index
+      installment.installmentable = self.launchable
+      installment.category = self.category
+      installment.user = user_group.user
+      installment.save
+    end
+  end
+
+  def calculate_amount_division_group(total_user_group)
+    self.value / total_user_group
   end
 
   def current_date_installment(date_installment)
