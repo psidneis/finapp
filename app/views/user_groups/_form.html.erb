@@ -8,13 +8,10 @@
         </div>
       </div>
       <div class='box-content box-double-padding'>
-        <%= simple_form_for(@user_group, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+        <%= simple_form_for([@group, @user_group], wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
           <%= f.error_notification %>
           <fieldset>
             <div class='col-sm-8 col-sm-offset-2'>
-              <div class='form-group'>
-                <%= f.association :group, collection: policy_scope(Group) %>
-              </div>
               <div class='form-group'>
                 <%= f.input :role, collection: options_for_enum(UserGroup, :role, @user_group), include_blank: false %>
               </div>

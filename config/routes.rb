@@ -25,8 +25,9 @@ Rails.application.routes.draw do
   resources :categories
   resources :accounts
   resources :cards
-  resources :groups
-  resources :user_groups
+  resources :groups do
+    resources :user_groups
+  end
   resources :goals
 
   # Example of regular route:

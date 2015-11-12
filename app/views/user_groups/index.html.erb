@@ -35,11 +35,11 @@
               <tr>
                 <td><%= user_group.group.title %></td>
                 <td><%= user_group.user.name %></td>
-                <td><%= user_group.role %></td>
+                <td><%= t("activerecord.attributes.user_group.roles.#{user_group.role}") %></td>
                 <td><%= human_boolean(user_group.enabled) %></td>
-                <td><%= link_to '<i class="icon-search"></i>'.html_safe, user_group %></td>
-                <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_user_group_path(user_group) %></td>
-                <td><%= link_to '<i class="icon-trash"></i>'.html_safe, user_group, method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
+                <td><%= link_to '<i class="icon-search"></i>'.html_safe, [@group, user_group] %></td>
+                <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_group_user_group_path(@group, user_group) %></td>
+                <td><%= link_to '<i class="icon-trash"></i>'.html_safe, [@group, user_group], method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
               </tr>
             <% end %>
           </tbody>
@@ -49,5 +49,5 @@
   </div>
 </div>
 <br>
-<%= link_to t('helpers.titles.new', model: t("activerecord.models.user_group.one")), new_user_group_path %>
+<%= link_to t('helpers.titles.new', model: t("activerecord.models.user_group.one")), new_group_user_group_path(@group) %>
 

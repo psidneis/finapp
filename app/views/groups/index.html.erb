@@ -29,7 +29,7 @@
               <tr>
                 <td><%= group.title %></td>
                 <td><%= group.user.name %></td>
-                <td><%= link_to '<i class="icon-search"></i>'.html_safe, group %></td>
+                <td><%= link_to '<i class="icon-search"></i>'.html_safe, group_user_groups_path(group) %></td>
                 <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_group_path(group) %></td>
                 <td><%= link_to '<i class="icon-trash"></i>'.html_safe, group, method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
               </tr>

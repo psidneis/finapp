@@ -1,6 +1,6 @@
 <%= render 'header' %>
 <%= render 'form' %>
 
-<%= link_to t('helpers.links.show'), @user_group %> |
-<%= link_to t('helpers.links.back'), user_groups_path %>
+<%= link_to t('helpers.links.show'), [@group, @user_group] %> |
+<%= link_to t('helpers.links.back'), group_user_groups_path(@group) %>
 
