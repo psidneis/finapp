@@ -70,7 +70,7 @@ class Installment < ActiveRecord::Base
     self.number_installment ||= index
     self.installmentable = launch.launchable
     self.category = launch.category
-    launch.user = user
+    self.user = user
     self.save
   end
   

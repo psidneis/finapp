@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   resources :installments do
     get 'cancel', on: :member
   end
-  resources :launches
+  resources :launches do
+    resources :installments, only: [:index, :edit, :update]
+  end
   resources :categories
   resources :accounts
   resources :cards

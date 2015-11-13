@@ -8,6 +8,7 @@ class UserGroupsController < ApplicationController
 
   def index
     @user_groups = policy_scope(UserGroup)
+    @user_groups = @user_groups.where(group: @group)
     respond_with(@user_groups)
   end
 

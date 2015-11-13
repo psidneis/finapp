@@ -26,7 +26,8 @@ class LaunchesController < ApplicationController
     @launch = Launch.new(launch_params)
     @launch.user = current_user
     @launch.generate_launch_installments if @launch.save
-    respond_with(@launch, location: home_dashboard_path)
+    location = @launch.group.present? ? launch_installments_path(@launch) : home_dashboard_path
+    respond_with(@launch, location: location)
   end
 
   def update

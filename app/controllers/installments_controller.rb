@@ -1,12 +1,14 @@
 class InstallmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_installment, only: [:show, :edit, :update, :destroy, :cancel]
+  before_action :set_launch, only: [:index]
   after_action :verify_authorized, except: [:index, :new, :create]
 
   respond_to :html, :js, :json
 
   def index
     @installments = policy_scope(Installment)
+    @installments = @installments.where(launch: @launch)
     respond_with(@installments)
   end
 
@@ -67,5 +69,9 @@ class InstallmentsController < ApplicationController
 
     def installment_params
       params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option, :cancel_option)
+    end
+
+    def set_launch
+      @launch = Launch.find(params[:launch_id])
     end
 end
