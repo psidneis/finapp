@@ -40,5 +40,12 @@
 </div>
 
 <%= link_to t('helpers.titles.edit', model: t("activerecord.models.installment.one")), edit_installment_path(@installment) %> |
-<%= link_to t('helpers.links.back'), installments_path %>
+
+<% if @installment.launch.not_recurrence? %>
+  <%= link_to t('helpers.titles.delete', model: t("activerecord.models.installment.one")), installment_path(@installment, cancel_this: true), method: :delete, data: { confirm: t('helpers.are_you_sure') } %>
+<% else %>
+  <%= link_to link_to t('helpers.titles.delete', model: t("activerecord.models.installment.one")), cancel_installment_path(@installment), remote: true %>
+<% end %>|
+
+<%= link_to t('helpers.links.back'), root_path %>
 
