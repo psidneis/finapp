@@ -27,6 +27,7 @@ class LaunchesController < ApplicationController
     @launch.user = current_user
     @launch.generate_launch_installments if @launch.save
     location = @launch.group.present? ? launch_installments_path(@launch) : home_dashboard_path
+    @launch.update_account
     respond_with(@launch, location: location)
   end
 

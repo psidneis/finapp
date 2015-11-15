@@ -27,3 +27,4 @@
 //= require base
 //= require jquery.price_format.2.0
 //= require jquery.price_format.2.0.min
+//= require dashboard

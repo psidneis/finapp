@@ -10,9 +10,10 @@ class HomeController < ApplicationController
   def dashboard
     @search_period = params[:search_period].try(:to_date) || Date.today
     Launch.generate_recurrence_launches(current_user, @search_period)
+    @accounts = policy_scope(Account)
     @installments = policy_scope(Installment)
     @installments = @installments.where(date: @search_period.beginning_of_month..@search_period.end_of_month).order(:date)
 
-    respond_with(@installments)
+    respond_with(@accounts, @installments)
   end
 end

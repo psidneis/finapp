@@ -20,4 +20,8 @@ class Account < ActiveRecord::Base
     self.model_name.human
   end
 
+  def self.sum_of_values 
+    Account.sum(:value)
+  end
+
 end

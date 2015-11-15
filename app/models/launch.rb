@@ -1,6 +1,7 @@
 class Launch < ActiveRecord::Base
 
   has_many :installments, dependent: :destroy
+
   belongs_to :launchable, polymorphic: true
   belongs_to :category
   belongs_to :user
@@ -99,6 +100,16 @@ class Launch < ActiveRecord::Base
         launch.generate_launch_installments(date_installment)
       end
     end
+  end
+
+  def update_account
+    account = self.launchable
+    if self.income?
+      account.value += self.value
+    else
+      account.value -= self.value
+    end
+    account.save
   end
 
 end
