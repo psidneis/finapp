@@ -10,7 +10,8 @@ pt-BR:
       edit_profile: "Editar perfil"
       settings: "Configurações"
       logout: "Sair"
-      finapp_description: Seu sistema de gerencimento financeiro
+      finapp_description: "Seu sistema de gerencimento financeiro"
+      total_balance: "Saldo total"
   helpers:
     actions: "Ações"
     are_you_sure: "Você tem certeza?"

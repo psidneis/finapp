@@ -1,6 +1,6 @@
 class Launch < ActiveRecord::Base
 
-  has_many :installments
+  has_many :installments, :dependent => :destroy
   belongs_to :launchable, polymorphic: true
   belongs_to :category
   belongs_to :user
@@ -47,6 +47,16 @@ class Launch < ActiveRecord::Base
 
     recurrence = recurrence[self.recurrence.to_sym]
     date_installment + recurrence[:count].send(recurrence[:period])
+  end
+
+  def update_account
+    account = self.launchable
+    if self.income?
+      account.value += self.value
+    else
+      account.value -= self.value
+    end
+    account.save
   end
 
 end

@@ -27,6 +27,7 @@ class LaunchesController < ApplicationController
     @launch.user = current_user
     @launch.save
     @launch.generate_installments
+    @launch.update_account
     respond_with(@launch)
   end
 
