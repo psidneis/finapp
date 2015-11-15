@@ -14,7 +14,7 @@
         <% if @accounts.present? %>
           <div class=' accounts_general'>
             <div class='pull-left'>
-              <% sum_of_accounts_value = Account.sum_of_values %>
+              <% sum_of_accounts_value = Account.sum_of_values(@accounts) %>
               <h4><i class='icon-chevron-down'></i> <%= t('breadcrumbs.pages.total_balance') %></h4>
             </div>
             <div class='pull-right'>
