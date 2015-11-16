@@ -1,6 +1,6 @@
 class LaunchesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_launch, only: [:show, :edit, :update, :destroy]
+  before_action :set_launch, only: [:show, :edit, :update, :destroy, :apportionment]
   after_action :verify_authorized, except: [:index, :new, :create]
 
   respond_to :html, :js, :json
@@ -26,19 +26,24 @@ class LaunchesController < ApplicationController
     @launch = Launch.new(launch_params)
     @launch.user = current_user
     @launch.generate_launch_installments if @launch.save
-    location = @launch.group.present? ? launch_installments_path(@launch) : home_dashboard_path
+    location = @launch.group.present? ? apportionment_launch_path(@launch) : home_dashboard_path
     @launch.update_account
     respond_with(@launch, location: location)
   end
 
   def update
     @launch.update(launch_params)
-    respond_with(@launch)
+    respond_with(@launch, location: launch_installments_path(@launch))
   end
 
   def destroy
     @launch.destroy
     respond_with(@launch)
+  end
+
+  def apportionment
+    @search_period = params[:search_period].try(:to_date) || @launch.date
+    @apportionments = @launch.installments.where(date: @search_period.beginning_of_month..@search_period.end_of_month).order(:date)
   end
 
   private
@@ -48,6 +53,6 @@ class LaunchesController < ApplicationController
     end
 
     def launch_params
-      params.require(:launch).permit(:title, :description, :value, :date, :paid, :recurrence_type, :amount_installment, :recurrence, :launch_type, :category_id, :group_id, :global_launchable)
+      params.require(:launch).permit(:title, :description, :value, :date, :paid, :recurrence_type, :amount_installment, :recurrence, :launch_type, :category_id, :group_id, :global_launchable, installments_attributes: [:id, :value] )
     end
 end

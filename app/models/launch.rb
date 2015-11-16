@@ -12,6 +12,8 @@ class Launch < ActiveRecord::Base
   validates :value, numericality: true
   validates :amount_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
+  accepts_nested_attributes_for :installments
+
   enum recurrence_type: %w(not_recurrence installments recurrence)
   enum recurrence: %w(yearly biannual quarterly bimonthly monthly fortnightly weekly daily)
   enum launch_type: %w(expense income)
@@ -105,13 +107,13 @@ class Launch < ActiveRecord::Base
   end
 
   def update_account
-    account = self.launchable
-    if self.income?
-      account.value += self.value
-    else
-      account.value -= self.value
-    end
-    account.save
+    # account = self.launchable
+    # if self.income?
+    #   account.value += self.value
+    # else
+    #   account.value -= self.value
+    # end
+    # account.save
   end
 
 end

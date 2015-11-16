@@ -1,0 +1,47 @@
+<nav>
+  <ul class="pager">
+    <li class="previous"><%= link_to "<i class='icon-chevron-left'></i>".html_safe, apportionment_launch_path(@launch, search_period: @search_period - 1.month) %></li>
+      <span><%= l(@search_period, format: :long_month_year) %></span>
+    <li class="next"><%= link_to "<i class='icon-chevron-right'></i>".html_safe, apportionment_launch_path(@launch, search_period: @search_period + 1.month) %></li>
+  </ul>
+</nav>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+          <%= t('helpers.new') if action_name == 'new' %>
+          <%= t('helpers.edit') if action_name == 'apportionment' %>
+        </div>
+      </div>
+      <div class='box-content box-double-padding'>
+        <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+          <%= f.error_notification %>
+          <fieldset>
+            <% @apportionments.each do |apportionment| %>
+              <div class="row">
+                <div class='col-sm-2 col-sm-offset-2'>
+                  <%= apportionment.user.name %>
+                </div>
+                <div class='col-sm-4'>
+                  <%= f.simple_fields_for :installments, apportionment do |ff| %>
+                    <div class='form-group'>
+                      <%= ff.input :value, as: :string, input_html: {class: 'format_value'} %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </fieldset>
+          <hr class='hr-normal'>
+          <div class='row'>
+            <div class='col-sm-7 col-sm-offset-5'>
+              <%= f.button :submit, class: 'btn-lg btn-success' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

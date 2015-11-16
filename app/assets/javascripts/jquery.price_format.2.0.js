@@ -19,13 +19,13 @@
     var defaults =
     {
       prefix: 'US$ ',
-            suffix: '',
+      suffix: '',
       centsSeparator: '.',
       thousandsSeparator: ',',
       limit: false,
       centsLimit: 2,
       clearPrefix: false,
-            clearSufix: false,
+      clearSufix: false,
       allowNegative: false,
       insertPlusSign: false,
       clearOnEmpty:false
@@ -48,13 +48,13 @@
 
       // load the pluggings settings
       var prefix = options.prefix;
-            var suffix = options.suffix;
+      var suffix = options.suffix;
       var centsSeparator = options.centsSeparator;
       var thousandsSeparator = options.thousandsSeparator;
       var limit = options.limit;
       var centsLimit = options.centsLimit;
       var clearPrefix = options.clearPrefix;
-            var clearSuffix = options.clearSuffix;
+      var clearSuffix = options.clearSuffix;
       var allowNegative = options.allowNegative;
       var insertPlusSign = options.insertPlusSign;
       var clearOnEmpty = options.clearOnEmpty;
@@ -76,6 +76,11 @@
           value = obj.val();
         else
           value = obj.html();
+
+        var array = value.split('.');
+        if(array.slice(-1).pop() == '0'){
+          value = value + '0';
+        }
           
         return value;
       }
@@ -227,7 +232,7 @@
         obj.val(prefix + get());
       }
             
-            function add_suffix()
+      function add_suffix()
       {
         obj.val(get() + suffix);
       }
@@ -276,12 +281,12 @@
       {
         obj.bind('focusout.price_format', function()
         {
-                    clear_suffix();
+          clear_suffix();
         });
 
         obj.bind('focusin.price_format', function()
         {
-                    add_suffix();
+          add_suffix();
         });
       }
 
@@ -290,7 +295,7 @@
       {
         price_it();
         clear_prefix();
-                clear_suffix();
+        clear_suffix();
       }
 
     });
@@ -309,20 +314,20 @@
     *******************/
     $.fn.unmask = function(){
 
-        var field;
-    var result = "";
-    
-    if($(this).is('input'))
-      field = $(this).val();
-    else
-      field = $(this).html();
+      var field;
+      var result = "";
+      
+      if($(this).is('input'))
+        field = $(this).val();
+      else
+        field = $(this).html();
 
-        for(var f in field)
-        {
-            if(!isNaN(field[f]) || field[f] == "-") result += field[f];
-        }
+          for(var f in field)
+          {
+              if(!isNaN(field[f]) || field[f] == "-") result += field[f];
+          }
 
-        return result;
-    };
+          return result;
+      };
 
 })(jQuery);

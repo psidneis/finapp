@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get 'cancel', on: :member
   end
   resources :launches do
+    get 'apportionment', on: :member
     resources :installments, only: [:index, :edit, :update]
   end
   resources :categories
