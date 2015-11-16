@@ -13,6 +13,8 @@ class Account < ActiveRecord::Base
   def value= value
     if value =~ /^R\$ ([\d.,]+)$/
       write_attribute :value, $1.gsub('.', '').gsub(',', '.').to_d
+    else
+      write_attribute :value, value
     end
   end
 

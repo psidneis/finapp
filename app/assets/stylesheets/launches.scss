@@ -1,0 +1,60 @@
+/*.launch_type_list {
+	text-align:center;
+	padding-bottom:20px;
+
+	li {
+		font-size:20px;
+		cursor: pointer;
+		&.expense {
+			&.active {
+				border-bottom: solid 2px red;
+			}
+		}
+		&.income {
+			&.active {
+				border-bottom: solid 2px green;
+			}
+		}
+	}
+	@media (max-width: $screen-xs) {
+		padding-bottom: 10px;
+		li {
+			font-size: 15px;
+		}
+  }
+}*/
+
+.launch_type_list_wrapper {
+	text-align: center;
+	padding-bottom:20px;
+
+	.launch_type_list {
+		.btn {
+			background-color: #FFF;
+			border: none;
+			font-size: 20px;
+			box-shadow: none;
+
+			font-size:20px;
+			cursor: pointer;
+			&.expense {
+				&.active {
+					border-bottom: solid 2px red;
+				}
+			}
+			&.income {
+				&.active {
+					border-bottom: solid 2px green;
+				}
+			}
+
+		}
+	}
+
+	@media (max-width: $screen-xs) {
+		padding-bottom: 10px;
+		.btn {
+			font-size: 15px;
+		}
+  }
+}
