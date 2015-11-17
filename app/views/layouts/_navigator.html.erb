@@ -7,75 +7,133 @@
             <span><%= t('breadcrumbs.pages.general_view') %></span>
           <% end %>
         </li>
-        <!-- <li class="<%#= 'active' if controller_name == "launches" %>"> -->
-          <%#= link_to (launches_path) do %>
-            <!-- <i class='icon-upload'></i> -->
-            <!-- <span><%#= t('activerecord.models.launch.other') %></span> -->
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <%# end %>
-        <!-- </li> -->
-        <!-- <li class="<%#= 'active' if controller_name == "installments" %>"> -->
-          <%#= link_to (installments_path) do %>
-            <!-- <i class='icon-list-alt'></i> -->
-            <!-- <span><%#= t('activerecord.models.installment.other') %></span> -->
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <%# end %>
-        <!-- </li> -->
+
         <li class="<%= 'active' if controller_name == "accounts" %>">
-          <%= link_to (accounts_path) do %>
-            <i class='icon-usd'></i>
-            <span><%= t('activerecord.models.account.other') %></span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <% end %>
+          <a class="dropdown-collapse" href="#"><i class='icon-edit'></i>
+          <span><%= t('activerecord.models.account.other') %></span>
+          <i class='icon-angle-down angle-down'></i>
+          </a>
+          <ul class='nav nav-stacked <%= 'in' if controller_name == "accounts" %>'>
+            <li class="<%= 'active' if action_name == "index" %>">
+              <%= link_to (accounts_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.index') %></span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if action_name == "new" %>">
+              <%= link_to (new_account_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.new') %></span>
+                <% end %>
+            </li>
+          </ul>
         </li>
+
         <li class="<%= 'active' if controller_name == "cards" %>">
-          <%= link_to (cards_path) do %>
-            <i class='icon-credit-card'></i>
-            <span><%= t('activerecord.models.card.other') %></span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <% end %>
+          <a class="dropdown-collapse" href="#"><i class='icon-credit-card'></i>
+          <span><%= t('activerecord.models.card.other') %></span>
+          <i class='icon-angle-down angle-down'></i>
+          </a>
+          <ul class='nav nav-stacked <%= 'in' if controller_name == "cards" %>'>
+            <li class="<%= 'active' if action_name == "index" %>">
+              <%= link_to (cards_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.index') %></span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if action_name == "new" %>">
+              <%= link_to (new_card_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.new') %></span>
+                <% end %>
+            </li>
+          </ul>
         </li>
+
         <li class="<%= 'active' if controller_name == "categories" %>">
-          <%= link_to (categories_path) do %>
-            <i class='icon-tag'></i>
-            <span><%= t('activerecord.models.category.other') %></span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <% end %>
+          <a class="dropdown-collapse" href="#"><i class='icon-tag'></i>
+          <span><%= t('activerecord.models.category.other') %></span>
+          <i class='icon-angle-down angle-down'></i>
+          </a>
+          <ul class='nav nav-stacked <%= 'in' if controller_name == "categories" %>'>
+            <li class="<%= 'active' if action_name == "index" %>">
+              <%= link_to (categories_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.index') %></span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if action_name == "new" %>">
+              <%= link_to (new_category_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.new') %></span>
+                <% end %>
+            </li>
+          </ul>
         </li>
+
         <li class="<%= 'active' if controller_name == "goals" %>">
-          <%= link_to (goals_path) do %>
-            <i class='icon-screenshot'></i>
-            <span><%= t('activerecord.models.goal.other') %></span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <% end %>
+          <a class="dropdown-collapse" href="#"><i class='icon-screenshot'></i>
+          <span><%= t('activerecord.models.goal.other') %></span>
+          <i class='icon-angle-down angle-down'></i>
+          </a>
+          <ul class='nav nav-stacked <%= 'in' if controller_name == "goals" %>'>
+            <li class="<%= 'active' if action_name == "index" %>">
+              <%= link_to (goals_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.index') %></span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if action_name == "new" %>">
+              <%= link_to (new_goal_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.new') %></span>
+                <% end %>
+            </li>
+          </ul>
         </li>
+
         <li class="<%= 'active' if controller_name == "groups" %>">
-          <%= link_to (groups_path) do %>
-            <i class='icon-user'></i>
-            <span><%= t('activerecord.models.group.other') %></span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
-          <% end %>
+          <a class="dropdown-collapse" href="#"><i class='icon-user'></i>
+          <span><%= t('activerecord.models.group.other') %></span>
+          <i class='icon-angle-down angle-down'></i>
+          </a>
+          <ul class='nav nav-stacked <%= 'in' if controller_name == "groups" %>'>
+            <li class="<%= 'active' if action_name == "index" %>">
+              <%= link_to (groups_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.index') %></span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if action_name == "new" %>">
+              <%= link_to (new_group_path) do %>
+                <i class='icon-caret-right'></i>
+                <span><%= t('helpers.new') %></span>
+                <% end %>
+            </li>
+          </ul>
         </li>
+
         <li class="<%= 'active' if controller_name == "home" and action_name == "calendar" %>">
           <%= link_to home_calendar_path do %>
             <i class='icon-calendar'></i>
             <span><%= t('breadcrumbs.pages.calendar') %></span>
           <% end %>
         </li>
-        <li class="<%= 'active' if controller_name == "reports" %>">
-          <%= link_to "#" do %>
+
+        <li class="<%= 'active' if controller_name == "home" and action_name == "report" %>">
+          <%= link_to home_report_path do %>
             <i class='icon-list-alt'></i>
-            <span>Relatórios</span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
+            <span><%= t('breadcrumbs.pages.reports') %></span>
           <% end %>
         </li>
-        <li class="<%= 'active' if controller_name == "graphs" %>">
-          <%= link_to "#" do %>
+
+        <li class="<%= 'active' if controller_name == "home" and action_name == "chart" %>">
+          <%= link_to home_chart_path do %>
             <i class='icon-signal'></i>
-            <span>Gráficos</span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
+            <span><%= t('breadcrumbs.pages.charts') %></span>
           <% end %>
         </li>
+
       </ul>
     </div>
   </nav>

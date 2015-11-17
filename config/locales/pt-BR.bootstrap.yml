@@ -13,6 +13,8 @@ pt-BR:
       finapp_description: "Seu sistema de gerencimento financeiro"
       total_balance: "Saldo total"
       calendar: "Calendário"
+      reports: "Relatórios"
+      charts: "Gráficos"
   helpers:
     actions: "Ações"
     are_you_sure: "Você tem certeza?"
@@ -33,3 +35,5 @@ pt-BR:
       save: "Salvar %{model}"
       new: "Criar %{model}"
       delete: "Apagar %{model}"
+    charts:
+      pie_chart: Gráfico de pizza

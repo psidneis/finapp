@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, only: [:dashboard, :calendar]
+  before_action :authenticate_user!, only: [:dashboard, :calendar, :report, :chart]
 	
 	respond_to :html, :json
   	
@@ -23,6 +23,21 @@ class HomeController < ApplicationController
 
   def calendar
 
+  end
+
+  def report
+
+  end
+
+  def chart
+    @search_period = params[:search_period].try(:to_date) || Date.today
+    start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
+    end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
+
+    @categories = policy_scope(Category)
+    @total_period = @categories.joins(:installments).where("installments.user_id = ? and installments.date between ? and ?", current_user.id, start_date, end_date).sum('installments.value')
+
+    respond_with(@categories)
   end
 
 end

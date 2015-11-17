@@ -6,4 +6,5 @@ class Group < ActiveRecord::Base
   belongs_to :user
 
   validates :title, presence: true, uniqueness: { scope: :user_id }, length: { in: 2..100 }
+  
 end

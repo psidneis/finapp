@@ -52,9 +52,8 @@ $(document).on("page:restore page:load ready", function() {
               editable: false,
               start: moment($(this)[0].date).format(),
               end: moment($(this)[0].date).add(60, 'minutes').format(),
+              backgroundColor: '#49bf67'
               // url: $(this)[0].calendar_click_url,
-              // backgroundColor: '#' + $(this)[0].calendar_background_color,
-              // textColor: '#' + $(this)[0].calendar_text_color
             });
           });
           callback(events);
@@ -63,5 +62,48 @@ $(document).on("page:restore page:load ready", function() {
     }    
 
   })
+
+});
+
+$(document).on("page:restore page:load ready", function() {
+  var placeholder = $("#pie_chart");
+  var placeholder_url = placeholder.attr('data-url');
+  var data = [];
+
+  $.ajax({
+    url: placeholder_url,
+    dataType: 'json',
+    success: function(doc) {
+      $(doc).each(function() {
+        var obj = {};
+        obj['label'] = $(this)[0].title + ' - ' + $(this)[0].total_value;
+        obj['data'] = parseFloat($(this)[0].percentage);
+        obj['color'] = $(this)[0].color;
+        data.push(obj);
+      });
+
+      $.plot(placeholder, data, {
+        series: {
+          pie: {
+            show: true,             
+            label: {
+              show:true,
+              radius: 0.8,
+              formatter: function (label, series) {                
+                return '<div style="border:1px solid grey;font-size:8pt;text-align:center;padding:5px;color:white;opacity: 0.8;background: #000">' +
+                label + ' : ' +
+                Math.round(series.percent) +
+                '%</div>';
+              },       
+            }
+          }
+        },
+        grid: {
+          hoverable: true,
+          clickable: true
+        }
+      });
+    }
+  });
 
 });

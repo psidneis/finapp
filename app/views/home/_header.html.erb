@@ -6,17 +6,12 @@
     <% elsif action_name.eql?('calendar') %>
       <i class='icon-calendar'></i>
       <span><%= t('breadcrumbs.pages.calendar') %></span>
+    <% elsif action_name.eql?('report') %>
+      <i class='icon-list-alt'></i>
+      <span><%= t('breadcrumbs.pages.reports') %></span>
+    <% elsif action_name.eql?('chart') %>
+      <i class='icon-signal'></i>
+      <span><%= t('breadcrumbs.pages.charts') %></span>
     <% end %>
   </h1>
-  <!-- <div class='pull-right'>
-    <div class='btn-group'>
-      <a class="btn btn-white hidden-xs" href="#">Last month</a>
-      <a class="btn btn-white" href="#">Last week</a>
-      <a class="btn btn-white " href="#">Today</a>
-            <a class="btn btn-white" id="daterange" href="#"><i class='icon-calendar'></i>
-      <span>Custom</span>
-      <b class='caret'></b>
-      </a>
-    </div>
-  </div> -->
 </div>

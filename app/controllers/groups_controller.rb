@@ -25,13 +25,14 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.user = current_user
+    @group.user_groups.build(user: current_user, email: current_user.email, role: 'admin', enabled: true)
     @group.save
-    respond_with(@group)
+    respond_with(@group, location: group_user_groups_path(@group))
   end
 
   def update
     @group.update(group_params)
-    respond_with(@group)
+    respond_with(@group, location: group_user_groups_path(@group))
   end
 
   def destroy
