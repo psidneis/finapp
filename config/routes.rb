@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   get 'home/index'
   get 'home/dashboard'
+  get 'home/calendar'
 
   resources :users, only: [:index, :show]
   resources :installments do

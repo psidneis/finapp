@@ -56,11 +56,10 @@
             <!-- <i class='icon-angle-down angle-down'></i> -->
           <% end %>
         </li>
-        <li class="<%= 'active' if controller_name == "calendar" %>">
-          <%= link_to "#" do %>
+        <li class="<%= 'active' if controller_name == "home" and action_name == "calendar" %>">
+          <%= link_to home_calendar_path do %>
             <i class='icon-calendar'></i>
-            <span>Calendário</span>
-            <!-- <i class='icon-angle-down angle-down'></i> -->
+            <span><%= t('breadcrumbs.pages.calendar') %></span>
           <% end %>
         </li>
         <li class="<%= 'active' if controller_name == "reports" %>">

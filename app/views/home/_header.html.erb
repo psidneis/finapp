@@ -1,7 +1,12 @@
 <div class='page-header page-header-with-buttons'>
   <h1 class='pull-left'>
-    <i class='icon-dashboard'></i>
-    <span><%= t('breadcrumbs.pages.general_view') %></span>
+    <% if action_name.eql?('dashboard') %>
+      <i class='icon-dashboard'></i>
+      <span><%= t('breadcrumbs.pages.general_view') %></span>
+    <% elsif action_name.eql?('calendar') %>
+      <i class='icon-calendar'></i>
+      <span><%= t('breadcrumbs.pages.calendar') %></span>
+    <% end %>
   </h1>
   <!-- <div class='pull-right'>
     <div class='btn-group'>

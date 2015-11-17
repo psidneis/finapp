@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, only: [:dashboard]
+  before_action :authenticate_user!, only: [:dashboard, :calendar]
 	
 	respond_to :html, :json
   	
@@ -12,8 +12,17 @@ class HomeController < ApplicationController
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
     @installments = policy_scope(Installment)
-    @installments = @installments.where(date: @search_period.beginning_of_month..@search_period.end_of_month).order(:date)
 
-    respond_with(@accounts, @installments)
+    start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
+    end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
+
+    @installments = @installments.where(date: start_date..end_date).order(:date)
+
+    respond_with(@installments)
   end
+
+  def calendar
+
+  end
+
 end

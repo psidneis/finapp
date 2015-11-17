@@ -12,6 +12,7 @@ pt-BR:
       logout: "Sair"
       finapp_description: "Seu sistema de gerencimento financeiro"
       total_balance: "Saldo total"
+      calendar: "Calendário"
   helpers:
     actions: "Ações"
     are_you_sure: "Você tem certeza?"

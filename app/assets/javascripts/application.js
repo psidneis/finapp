@@ -29,3 +29,5 @@
 //= require jquery.price_format.2.0.min
 //= require dashboard
 //= require launches
+//= require fullcalendar/fullcalendar
+//= require fullcalendar/pt-br
