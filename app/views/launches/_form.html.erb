@@ -8,42 +8,22 @@
         </div>
       </div>
       <div class='box-content box-double-padding'>
-        <!-- <div class='row'>
-          <div class='col-sm-12'>
-            <ul class='launch_type_list  list-unstyled list-inline'>
-              <li class='expense active' data-launch-type='expense'>
-                <i class='icon-arrow-down text-red'></i>
-                <%#= t('activerecord.attributes.launch.launch_types.expense') %>
-              </li>
-              <li class='income' data-launch-type='income'>
-                <i class='icon-arrow-up text-green'></i>
-                <%#= t('activerecord.attributes.launch.launch_types.income') %>
-              </li>
-            </ul>
-          </div>
-        </div> -->
         <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
           <%= f.error_notification %>
           <fieldset>
             <div class='form-group launch_type_list_wrapper'>
-              <!-- <div class='row'> -->
-                <!-- <div class='col-sm-12'> -->
-                  <div class="btn-group launch_type_list" data-toggle="buttons">
-                    <label class="btn expense active">
-                      <i class='icon-arrow-down text-red'></i>
-                      <%= Launch.launch_types.keys.first.capitalize %>
-                      <%= f.radio_button :launch_type, Launch.launch_types.keys.first, checked: true, :style=>"display:none;" %>
-                      <!-- <input type="radio" name="launch[launch_type]" id="option1" autocomplete="off" checked value="expense"><%=  %> -->
-                    </label>
-                    <label class="btn income">
-                      <i class='icon-arrow-up text-green'></i>
-                      <%= Launch.launch_types.keys.last.capitalize %>
-                      <%= f.radio_button :launch_type, Launch.launch_types.keys.last, style: "display:none;" %>
-                      <!-- <input type="radio" name="launch[launch_type]" id="option2" autocomplete="off" value="income"> Receita -->
-                    </label>
-                  </div>
-                <!-- </div> -->
-              <!-- </div> -->
+              <div class="btn-group launch_type_list" data-toggle="buttons">
+                <label class="btn expense active">
+                  <i class='icon-arrow-down text-red'></i>
+                  <%= Launch.launch_types.keys.first.capitalize %>
+                  <%= f.radio_button :launch_type, Launch.launch_types.keys.first, checked: true, :style=>"display:none;" %>
+                </label>
+                <label class="btn income">
+                  <i class='icon-arrow-up text-green'></i>
+                  <%= Launch.launch_types.keys.last.capitalize %>
+                  <%= f.radio_button :launch_type, Launch.launch_types.keys.last, style: "display:none;" %>
+                </label>
+              </div>
               <%#= f.input_field :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), checked: :expense, as: :radio_buttons, boolean_style: :inline %>
             </div>
 
@@ -82,15 +62,23 @@
               <div class='form-group'>
                 <%= f.association :group, collection: policy_scope(Group) %>
               </div>
-              <div class='form-group' id='recurrence_type_input'>
-                <%= f.input :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false %>
+
+              <div class='form-group'>
+                <%= link_to "Repetir", "#launchRepeatCollapse", class: 'btn btn-default', data: { toggle: 'collapse' } %>
+
+                <div class="collapse" id="launchRepeatCollapse">
+                  <%= f.input_field :recurrence_type, collection: options_for_enum(Launch, :recurrence_type, @launch), include_blank: false, as: :radio_buttons, :item_wrapper_class => 'radio-inline recurrence_type_input' %>
+                </div>
+
+                <div class='form-group' id='amount_installment_input' style='display:none;'>
+                  <%= f.input :amount_installment %>
+                </div>
+                
+                <div class='form-group collapseRecorrente' id='recurrence_input' style='display:none;'>
+                  <%= f.input :recurrence, collection: options_for_enum(Launch, :recurrence, @launch), include_blank: false %>
+                </div>
               </div>
-              <div class='form-group' id='amount_installment_input' style='display:none;'>
-                <%= f.input :amount_installment %>
-              </div>
-              <div class='form-group' id='recurency_input' style='display:none;'>
-                <%= f.input :recurrence, collection: options_for_enum(Launch, :recurrence, @launch), include_blank: false, style: 'display:none;' %>
-              </div>
+
             </div>
           </fieldset>
           <hr class='hr-normal'>
