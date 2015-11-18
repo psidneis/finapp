@@ -7,6 +7,9 @@
 	date_format = "#{l(@start_date, format: :default)} à #{l(@end_date, format: :default)}" if @search_period_type == 'period'
 %>
 
+<div class="previous_date" data-value="<%= @search_period.send("beginning_of_#{@search_period_type}") %>"></div>
+<div class="next_date" data-value="<%= @search_period.send("end_of_#{@search_period_type}") %>"></div>
+
 <nav class='text-center'>
 	<div class='btn-group'>
 			<% if @search_period_type != 'period' %>

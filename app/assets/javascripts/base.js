@@ -63,8 +63,8 @@ $(document).on("page:restore page:load ready", function() {
     url: placeholder_url,
     dataType: 'json',
     data: {
-      start_date: moment($('li.previous').attr('data-value')).format(),
-      end_date: moment($('li.next').attr('data-value')).format(),
+      start_date: moment($('div.previous_date').attr('data-value')).format(),
+      end_date: moment($('div.next_date').attr('data-value')).format(),
     },
     success: function(doc) {
       $(doc).each(function() {
