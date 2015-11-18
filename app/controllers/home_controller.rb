@@ -8,15 +8,18 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-    @search_period = params[:search_period].try(:to_date) || Date.today
+    @search_period_type = params[:search_period_type] || 'month'
+    @search_period = params[:search_period].try(:to_datetime) || DateTime.now
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
     @installments = policy_scope(Installment)
 
-    start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
-    end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
+    # start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
+    @start_date = params[:start_date].try(:to_datetime) || @search_period.send("beginning_of_#{@search_period_type}")
+    # end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
+    @end_date = params[:end_date].try(:to_datetime) || @search_period.send("end_of_#{@search_period_type}")
 
-    @installments = @installments.where(date: start_date..end_date).order(:date)
+    @installments = @installments.where(date: @start_date..@end_date).order(:date)
 
     respond_with(@installments)
   end

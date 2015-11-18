@@ -15,6 +15,7 @@ pt-BR:
       calendar: "Calendário"
       reports: "Relatórios"
       charts: "Gráficos"
+      search_by_period: "Busca por período"
   helpers:
     actions: "Ações"
     are_you_sure: "Você tem certeza?"
@@ -30,6 +31,7 @@ pt-BR:
       new: "Criar"
       edit: "Editar"
       show: "Mostrar"
+      search: "Buscar"
     titles:
       edit: "Editar %{model}"
       save: "Salvar %{model}"
