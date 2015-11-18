@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, only: [:dashboard, :calendar, :report, :chart]
+  before_action :authenticate_user!, except: [:index]
+  before_action :get_period_installments, only: [:dashboard, :calendar, :report, :chart]
 	
 	respond_to :html, :json
   	
@@ -8,36 +9,39 @@ class HomeController < ApplicationController
   end
 
   def dashboard
-    @search_period = params[:search_period].try(:to_date) || Date.today
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
-    @installments = policy_scope(Installment)
-
-    start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
-    end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
-
-    @installments = @installments.where(date: start_date..end_date).order(:date)
 
     respond_with(@installments)
   end
 
   def calendar
 
+    respond_with(@installments)
   end
 
   def report
 
+    respond_with(@installments)
   end
 
   def chart
-    @search_period = params[:search_period].try(:to_date) || Date.today
-    start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
-    end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
-
-    @categories = policy_scope(Category)
-    @total_period = @categories.joins(:installments).where("installments.user_id = ? and installments.date between ? and ?", current_user.id, start_date, end_date).sum('installments.value')
+    @total_period = @installments.sum(:value)
+    @categories = @installments.select("categories.title, categories.color, sum(value) as total_category")
+      .joins(:category).group(:category_id).where(launch_type: 'expense')
 
     respond_with(@categories)
   end
+
+  private
+
+    def get_period_installments
+      @search_period = params[:search_period].try(:to_date) || Date.today
+      @start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
+      @end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
+
+      @installments = policy_scope(Installment)
+      @installments = @installments.where(date: @start_date..@end_date).order(:date)
+    end
 
 end

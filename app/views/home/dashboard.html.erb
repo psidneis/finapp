@@ -2,12 +2,36 @@
 
 <nav>
   <ul class="pager">
-    <li class="previous"><%= link_to "<i class='icon-chevron-left'></i>".html_safe, home_dashboard_path(search_period: @search_period - 1.month) %></li>
-      <span><%= l(@search_period, format: :long_month_year) %></span>
-    <li class="next"><%= link_to "<i class='icon-chevron-right'></i>".html_safe, home_dashboard_path(search_period: @search_period + 1.month) %></li>
+    <li class="previous" data-value="<%= @search_period.beginning_of_month %>">
+      <%= link_to "<i class='icon-chevron-left'></i>".html_safe, home_dashboard_path(search_period: @search_period - 1.month) %>
+    </li>
+    <span><%= l(@search_period, format: :long_month_year) %></span>
+    <li class="next" data-value="<%= @search_period.end_of_month %>">
+      <%= link_to "<i class='icon-chevron-right'></i>".html_safe, home_dashboard_path(search_period: @search_period + 1.month) %>
+    </li>
   </ul>
 </nav>
 
 <%= render 'accounts/list_dashboard' %>
 
-<%= render 'installments/list_dashboard' %>
+<div class='row'>
+  <div class='col-sm-6'>
+    <%= render 'installments/list_dashboard' %>
+  </div>
+
+  <div class='col-sm-6'>
+    <%= render 'pie_chart' %>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+    </div>
+
+    <div class="col-sm-6">
+      <%= render 'fullcalendar' %>
+    </div>
+  </div>
+</div>
+
+
+

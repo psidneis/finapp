@@ -36,4 +36,5 @@ pt-BR:
       new: "Criar %{model}"
       delete: "Apagar %{model}"
     charts:
-      pie_chart: Gráfico de pizza
+      expense_pie_chart: Gráfico de despesas
+      income_pie_chart: Gráfico de receitas

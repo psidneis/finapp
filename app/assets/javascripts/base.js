@@ -19,30 +19,20 @@ $(document).on("page:restore page:load ready", function() {
       left: 'prev,next today',
       center: 'title',
       right: 'month'
-      // right: 'month,agendaWeek,agendaDay'
     },
     buttonIcons: {
       prev: 'left-single-arrow',
       next: 'right-single-arrow'
     },
-
-    // eventClick: function(calEvent, jsEvent, view) {
-    //   $.ajax({
-    //     method: "GET",
-    //     dataType: 'script',
-    //     url: calEvent.url
-    //   });
-    //   return false;
-    // },
     
     events: function(start, end, timezone, callback) {
       $.ajax({
         url: calendar_url,
+        dataType: 'json',
         data: {
           start_date: start.format(),
           end_date: end.format(),
         },
-        dataType: 'json',
         success: function(doc) {
           var events = [];
           $(doc).each(function() {
@@ -53,7 +43,6 @@ $(document).on("page:restore page:load ready", function() {
               start: moment($(this)[0].date).format(),
               end: moment($(this)[0].date).add(60, 'minutes').format(),
               backgroundColor: '#49bf67'
-              // url: $(this)[0].calendar_click_url,
             });
           });
           callback(events);
@@ -73,6 +62,10 @@ $(document).on("page:restore page:load ready", function() {
   $.ajax({
     url: placeholder_url,
     dataType: 'json',
+    data: {
+      start_date: moment($('li.previous').attr('data-value')).format(),
+      end_date: moment($('li.next').attr('data-value')).format(),
+    },
     success: function(doc) {
       $(doc).each(function() {
         var obj = {};
