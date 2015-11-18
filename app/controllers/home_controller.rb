@@ -36,9 +36,10 @@ class HomeController < ApplicationController
   private
 
     def get_period_installments
-      @search_period = params[:search_period].try(:to_date) || Date.today
-      @start_date = params[:start_date].try(:to_date) || @search_period.beginning_of_month
-      @end_date = params[:end_date].try(:to_date) || @search_period.end_of_month
+      @search_period_type = params[:search_period_type] || 'month'
+      @search_period = params[:search_period].try(:to_datetime) || DateTime.now
+      @start_date = params[:start_date].try(:to_datetime) || @search_period.send("beginning_of_#{@search_period_type}")
+      @end_date = params[:end_date].try(:to_datetime) || @search_period.send("end_of_#{@search_period_type}")
 
       @installments = policy_scope(Installment)
       @installments = @installments.where(date: @start_date..@end_date).order(:date)

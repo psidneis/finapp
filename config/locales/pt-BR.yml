@@ -36,6 +36,8 @@ pt-BR:
       long: "%d de %B de %Y"
       short: "%d de %B"
       date_picker: "%d/%m/%Y %H:%M %p"
+      long_day_month_year: "%d de %b de %Y"
+      long_week_month: "%d de %b"
       long_month_year: "%B de %Y"
     month_names:
     - 
@@ -98,6 +100,7 @@ pt-BR:
       month: Mês
       second: Segundo
       year: Ano
+      week: Semana
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -208,6 +211,9 @@ pt-BR:
       short: "%d de %B, %H:%M"
       date_picker: "%d/%m/%Y %H:%M %p"
       long_month_year: "%B de %Y"
+      short_time: "%H:%M"
+      long_day_month_year: "%d de %b de %Y"
+      long_week_month: "%d de %b"
     pm: ''
 
 
@@ -328,7 +334,7 @@ pt-BR:
         group: grupo
         recurrence_type: Tipo de recorrência
         recurrence_types:
-          not_recurrence: Sem recorrência
+          not_recurrence: Sem repetição
           installments: Parcelado
           recurrence: Recorrente
         recurrence: Recorrência

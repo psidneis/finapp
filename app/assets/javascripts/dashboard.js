@@ -9,3 +9,10 @@ $(document).on('click', '.accounts_general', function(){
 		}
 	});
 });
+
+$(document).on('click', '#search_period_modal_link', function(){
+	date_from = $('#datetimepicker_from').find('input').val();
+	date_to = $('#datetimepicker_to').find('input').val();
+	$('#search_period_modal').modal('toggle');
+	$.get( $(this).data('url').toString(), { start_date: date_from, end_date: date_to, search_period_type: 'period' } );
+});
