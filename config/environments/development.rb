@@ -37,9 +37,9 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.delivery_method = :smtp
   
   config.action_mailer.smtp_settings = {
-    openssl_verify_mode: OpenSSL::SSL::VERIFY_NONE,
     user_name: Rails.application.secrets.email_username,
     password: Rails.application.secrets.messages_email_password,
     domain: "gmail.com",
@@ -48,4 +48,5 @@ Rails.application.configure do
     authentication: :plain,
     enable_starttls_auto: true
   }
+
 end
