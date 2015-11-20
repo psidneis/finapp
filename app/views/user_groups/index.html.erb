@@ -34,7 +34,7 @@
             <% @user_groups.each do |user_group| %>
               <tr>
                 <td><%= user_group.group.title %></td>
-                <td><%= user_group.user.name %></td>
+                <td><%= user_group.user.try(:name) %></td>
                 <td><%= t("activerecord.attributes.user_group.roles.#{user_group.role}") %></td>
                 <td><%= human_boolean(user_group.enabled) %></td>
                 <td><%= link_to '<i class="icon-search"></i>'.html_safe, [@group, user_group] %></td>

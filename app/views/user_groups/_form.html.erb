@@ -21,16 +21,16 @@
               <div class='form-group'>
                 <%= f.input :email, disabled: @user_group.persisted? %>
               </div>
-              <div class='form-group'>
-                <%= f.input :enabled %>
-              </div>
+              <!-- <div class='form-group'> -->
+                <%#= f.input :enabled %>
+              <!-- </div> -->
             </div>
           </fieldset>
           <hr class='hr-normal'>
           
           <div class='row'>
             <div class='col-sm-7 col-sm-offset-5'>
-              <%= f.button :submit, class: 'btn-lg btn-success' %>
+              <%= f.button :submit, t('models.user_group.invite'), class: 'btn-lg btn-success' %>
             </div>
           </div>
         <% end %>

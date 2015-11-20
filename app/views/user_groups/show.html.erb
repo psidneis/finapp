@@ -16,7 +16,7 @@
 
         <p>
           <strong><%= UserGroup.human_attribute_name("user") %>:</strong>
-          <%= @user_group.user.name %>
+          <%= @user_group.user.try(:name) %>
         </p>
 
         <p>

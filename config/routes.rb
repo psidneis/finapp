@@ -32,7 +32,10 @@ Rails.application.routes.draw do
   resources :accounts
   resources :cards
   resources :groups do
-    resources :user_groups
+    resources :user_groups do
+      get 'enable', on: :member
+      get 'disable', on: :member
+    end
   end
   resources :goals
 

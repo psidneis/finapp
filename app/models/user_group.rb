@@ -18,11 +18,7 @@ class UserGroup < ActiveRecord::Base
 
   def search_user
     user = User.find_by(email: self.email)
-    if user.present?
-      self.user = user
-    else
-      # invite user to sign up
-    end
+    self.user = user
   end
 
 end

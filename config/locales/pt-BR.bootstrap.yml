@@ -40,3 +40,8 @@ pt-BR:
     charts:
       expense_pie_chart: Gráfico de despesas
       income_pie_chart: Gráfico de receitas
+  models:
+    user_group:
+      invite: Convidar usuário para grupo
+      enabled: Você foi habilitado(a) com sucesso ao grupo
+      disabled: Você foi desabilitado(a) com sucesso do grupo

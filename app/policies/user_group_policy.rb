@@ -26,6 +26,14 @@ class UserGroupPolicy < ApplicationPolicy
     can_perform_action?
   end
 
+  def enable?
+    can_perform_action?
+  end
+
+  def disable?
+    can_perform_action?
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end
@@ -46,7 +54,6 @@ class UserGroupPolicy < ApplicationPolicy
       def resolve
         group_ids = Array.new
         group_ids = user.manager_groups.pluck(:id)
-        group_ids = user.user_groups.where(role: 'admin', enabled: true).pluck(:group_id)
         scope.where("group_id in (?) or user_id = ?", group_ids, user.id)
       end
     end
