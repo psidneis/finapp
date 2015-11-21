@@ -16,6 +16,7 @@ pt-BR:
       reports: "Relatórios"
       charts: "Gráficos"
       search_by_period: "Busca por período"
+      no_launches: Não há lançamentos nesse período
   helpers:
     actions: "Ações"
     are_you_sure: "Você tem certeza?"
