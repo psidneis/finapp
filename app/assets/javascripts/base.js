@@ -1,4 +1,11 @@
-$(document).on('page:change', function(event) {
+$(document).on('page:change ', function(event) {
+  datepicker();
+  fullcalendar();
+  pie_chart();
+});
+
+// $(document).on('page:change', function(event) {
+function datepicker() {
   $(".datepicker_button").datetimepicker({ format: 'DD/MM/YYYY HH:mm' });
 
   $('input.format_value').priceFormat({
@@ -6,10 +13,10 @@ $(document).on('page:change', function(event) {
     centsSeparator: ',',
     thousandsSeparator: '.'
   });
+}
 
-});
-
-$(document).on("page:restore page:load ready", function() {
+// $(document).on("page:restore page:load ready", function() {
+function fullcalendar() {
   calendar = $('#dashboard_calendar');
   var calendar_url = calendar.attr('data-url');
   calendar.fullCalendar({
@@ -52,13 +59,12 @@ $(document).on("page:restore page:load ready", function() {
 
   })
 
-});
+}
 
-$(document).on("page:restore page:load ready", function() {
+function pie_chart() {
   var placeholder = $("#pie_chart");
   var placeholder_url = placeholder.attr('data-url');
   var data = [];
-
   $.ajax({
     url: placeholder_url,
     dataType: 'json',
@@ -99,4 +105,4 @@ $(document).on("page:restore page:load ready", function() {
     }
   });
 
-});
+}

@@ -1,0 +1,39 @@
+<div class="modal fade" id="search_period_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= t('breadcrumbs.pages.search_by_period') %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+			    <div class='col-md-5'>
+		        <div class="form-group">
+	            <div class='input-group date' id='datetimepicker_from'>
+	              <input type='text' class="form-control" />
+	              <span class="input-group-addon">
+	                <span class="glyphicon glyphicon-calendar"></span>
+	              </span>
+	            </div>
+		        </div>
+			    </div>
+			    <div class='col-md-5'>
+		        <div class="form-group">
+	            <div class='input-group date' id='datetimepicker_to'>
+	              <input type='text' class="form-control" />
+	              <span class="input-group-addon">
+	                <span class="glyphicon glyphicon-calendar"></span>
+	              </span>
+	            </div>
+		        </div>
+			    </div>
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to t('helpers.links.search'), '#', class: 'btn btn-success search_period_link', data: { url: home_dashboard_path(), period_type: 'period', context: 'period-chosen' } %>
+        <%#= link_to t('helpers.links.search'), home_dashboard_path, class: 'btn btn-success', id: 'search_period_modal_link', remote: true %>
+      </div>
+    </div>
+  </div>
+</div>

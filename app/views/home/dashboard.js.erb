@@ -1,0 +1,14 @@
+$('div#period_navigator_dashboard').html('<%= escape_javascript( render(partial: "layouts/period_navigator") ) %>');
+$('div#accounts_list_dashboard').html('<%= escape_javascript( render(partial: "accounts/list_dashboard") ) %>');
+<% if @installments.any? %>
+	$('div.no_launches').hide();
+	$('div#installments_list_dashboard').html('<%= escape_javascript( render(partial: "installments/list_dashboard") ) %>');
+	$('div#pie_chart_dashboard').html('<%= escape_javascript( render "pie_chart" ) %>');
+	pie_chart();
+<% else %>
+	$('div.no_launches').show();
+	$('div#installments_list_dashboard').html("");
+	$('div#pie_chart_dashboard').html("");
+<% end %>
+$('div#fullcalendar_dashboard').html('<%= escape_javascript( render("fullcalendar") ) %>');
+fullcalendar();
