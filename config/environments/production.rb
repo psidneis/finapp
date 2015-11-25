@@ -76,7 +76,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.default_url_options = { host: 'finappweb.com.br', port: 22 }
+
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
     user_name: Rails.application.secrets.email_username,
     password: Rails.application.secrets.messages_email_password,
