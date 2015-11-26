@@ -8,7 +8,14 @@
 
 .launch_type_icon {
 	padding-top: 20px;
-	max-width: 10px;
+	position:absolute;
+	left:10px;
+}
+
+.paid_icon {
+	padding-top: 20px;
+	position:absolute;
+	right:10px;
 }
 
 .search_loading {

@@ -4,16 +4,16 @@
       <div class='row'>
         <div class='col-sm-12'>
           <div class='text-center'>
-              <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-                <%= link_to(new_registration_path(resource_name)) do %>
-                  <i class='icon-user'></i>
-                  <%= t('devise.registrations.new_to_finapp').html_safe %>.
-                <% end %>
-              <% if controller_name != 'sessions' %>
-                <%= link_to(new_session_path(resource_name)) do %>
-                  <i class='icon-chevron-left'></i>
-                  <%= t('devise.registrations.back_to_login') %>
-                <% end %>
+            <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+              <%= link_to(new_registration_path(resource_name)) do %>
+                <i class='icon-user'></i>
+                <%= t('devise.registrations.new_to_finapp').html_safe %>.
+              <% end %>
+            <% end %>
+            <% if controller_name != 'sessions' %>
+              <%= link_to(new_session_path(resource_name)) do %>
+                <i class='icon-chevron-left'></i>
+                <%= t('devise.registrations.back_to_login') %>
               <% end %>
             <% end %>
           </div>

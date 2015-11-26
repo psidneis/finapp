@@ -46,3 +46,10 @@ pt-BR:
       invite: Convidar usuário para grupo
       enabled: Você foi habilitado(a) com sucesso ao grupo
       disabled: Você foi desabilitado(a) com sucesso do grupo
+    installment:
+      expense: 
+        paid: Pago
+        not_paid: Não pago
+      income: 
+        paid: Recebido
+        not_paid: Não recebido

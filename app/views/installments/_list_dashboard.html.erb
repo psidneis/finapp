@@ -12,23 +12,24 @@
     <% if @installments.present? %>
       <% @installments.each do |installment| %>
         <%= link_to installment do %>
-          <div class='col-sm-2 hidden-xs launch_type_icon'>
-            <i class="<%= installment.income? ? 'icon-arrow-up text-green' : 'icon-arrow-down text-red' %>"></i>
+          <div class='list_installment_wrapper'>
+            <i class="<%= installment.income? ? 'icon-arrow-up text-green' : 'icon-arrow-down text-red' %> launch_type_icon hidden-xs"></i>
+            <div class='col-sm-8 col-xs-6'>
+              <h4><%= format_title_recurrence(installment) %></h4>
+              <h6 style="color: <%= installment.category.color %>"><%= installment.category.title %></h6>  
+            </div>
+            <div class='col-sm-4 col-xs-6'>
+              <h4 class='text-right <%= installment.income? ? 'text-green' : 'text-red' %> '><%= number_to_currency(installment.value) %></h4>
+              <h6 class='text-right'><%= l(installment.date, format: :date_picker) %></h6>
+            </div>
+            <i class="<%= installment.paid? ? 'icon-thumbs-up-alt text-green' : 'icon-thumbs-down-alt text-red' %> paid_icon" title="<%= installment.paid? ? t("models.installment.#{installment.launch_type}.paid") : t("models.installment.#{installment.launch_type}.not_paid") %>"></i>
           </div>
-          <div class='col-sm-6 col-xs-3'>
-            <h4><%= format_title_recurrence(installment) %></h4>
-            <h6 style="color: <%= installment.category.color %>"><%= installment.category.title %></h6>  
-          </div>
-          <div class='pull-right'>
-            <h4 class='<%= installment.income? ? 'text-green' : 'text-red' %> '><%= number_to_currency(installment.value) %></h4>
-            <div class='text-right'><%= l(installment.date, format: :short_time) %></div>
-          </div>
+          <div class='clearfix'></div>
         <% end %>
-        <div class='clearfix'></div>
         <hr class='dashboard-hr-account'></hr>
       <% end %>
     <% else %>
-      Não há lançamentos nesse periodo
+      Não há lançamentos nesse período
     <% end %>
   </div>
 </div>
