@@ -17,6 +17,8 @@ pt-BR:
       charts: "Gráficos"
       search_by_period: "Busca por período"
       no_launches: Não há lançamentos nesse período
+      click_to_mark_paid: Clique para marcar como pago
+      click_to_mark_not_paid: Clique para marcar como não pago
   helpers:
     actions: "Ações"
     are_you_sure: "Você tem certeza?"

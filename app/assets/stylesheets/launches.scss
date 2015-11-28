@@ -32,6 +32,34 @@
 		}
   }
 }
+	
+.paid_input_icon_label {
+	position: absolute;
+	right: 0px;
+	cursor: pointer;
+
+	.paid_input_icon {
+		position: absolute;
+		right: 0px;
+		z-index: 1;
+		margin-right: -35px;
+		margin-top: -50px;
+		@media (max-width: $screen-xs) {
+			margin-right: -30px;
+		}
+	}
+}
+
+.btn_new {
+	position: absolute;
+	right: 0px;
+	margin-right: -40px;
+	margin-top: -47px;
+	@media (max-width: $screen-xs) {
+		margin-right: -35px;
+	}
+}
+
 
 #recurrence_type_chosen {
 	font-size: 15px;

@@ -24,9 +24,7 @@
                   <%= f.radio_button :launch_type, Launch.launch_types.keys.last, style: "display:none;" %>
                 </label>
               </div>
-              <%#= f.input_field :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), checked: :expense, as: :radio_buttons, boolean_style: :inline %>
             </div>
-
             <div class='col-sm-8 col-sm-offset-2'>
               <div class='form-group'>
                 <%= f.input :title %>
@@ -36,7 +34,12 @@
               </div>
               <div class='form-group'>
                 <%= f.input :value, as: :string, input_html: {class: 'format_value'} %>
+                <label class='paid_input_icon_label'>
+                  <i class='icon-2x icon-thumbs-down-alt text-red paid_input_icon'title='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-paid='not_paid' data-title-paid='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-title-not-paid='<%= t('breadcrumbs.pages.click_to_mark_not_paid') %>' ></i>
+                  <%= f.input_field :paid, checked: false, style: "display:none;" %>
+                </label>
               </div>
+
               <div class='form-group'>
                 <%= f.input :date do %>
                   <div class='datepicker_button input-group'>
@@ -47,20 +50,20 @@
                   </div>
                 <% end %>
               </div>
-              <div class='form-group'>
-                <%= f.input :paid %>
-              </div>
-              <div class='form-group'>
-                <%= f.input :global_launchable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, value_method: :to_global_id, group_label_method: :human_model_name, include_blank: false %>
-              </div>
               <!-- <div class='form-group'> -->
-                <%#= f.input :launch_type, collection: options_for_enum(Launch, :launch_type, @launch), include_blank: false %>
+                <%#= f.input :paid %>
               <!-- </div> -->
               <div class='form-group'>
+                <%= f.input :global_launchable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, value_method: :to_global_id, group_label_method: :human_model_name, include_blank: false %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, new_account_path, class: 'btn btn-success btn-sm btn_new' %>
+              </div>
+              <div class='form-group'>
                 <%= f.association :category, collection: policy_scope(Category), include_blank: false %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, new_category_path, class: 'btn btn-success btn-sm btn_new' %>
               </div>
               <div class='form-group'>
                 <%= f.association :group, collection: policy_scope(Group) %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, new_group_path, class: 'btn btn-success btn-sm btn_new' %>
               </div>
 
               <div class='form-group'>
