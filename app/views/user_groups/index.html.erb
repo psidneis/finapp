@@ -39,6 +39,8 @@
                 <td><%= human_boolean(user_group.enabled) %></td>
                 <td><%= link_to '<i class="icon-search"></i>'.html_safe, [@group, user_group] %></td>
                 <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_group_user_group_path(@group, user_group) %></td>
+                <td><%= link_to '<i class="icon-unlock"></i>'.html_safe, enable_group_user_group_url(@group, user_group) %></td>
+                <td><%= link_to '<i class="icon-lock"></i>'.html_safe, disable_group_user_group_url(@group, user_group) %></td>
                 <td><%= link_to '<i class="icon-trash"></i>'.html_safe, [@group, user_group], method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
               </tr>
             <% end %>

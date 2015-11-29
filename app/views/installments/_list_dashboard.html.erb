@@ -5,7 +5,8 @@
       <%= t('activerecord.models.launch.other') %>
     </div>
     <div class='actions'>
-        <%= link_to "<i class='icon-plus'></i>".html_safe, new_launch_path, class: 'btn btn-success  ' %>
+        <%= link_to "<i class='icon-file-text'></i>".html_safe, home_dashboard_path(start_date: @start_date, end_date: @end_date, format: :csv), class: 'btn btn-primary' %>
+        <%= link_to "<i class='icon-plus'></i>".html_safe, new_launch_path, class: 'btn btn-success' %>
     </div>
   </div>
   <div class='box-content'>

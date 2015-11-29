@@ -12,7 +12,9 @@ class HomeController < ApplicationController
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
 
-    respond_with(@installments)
+    respond_with(@installments) do |format|
+      format.csv { send_data @installments.to_csv, filename: "installments-#{Date.today}.csv" }
+    end
   end
 
   def calendar

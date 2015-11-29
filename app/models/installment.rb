@@ -103,5 +103,17 @@ class Installment < ActiveRecord::Base
     installments.where(launch_type: 0).sum(:value) - installments.where(launch_type: 1).sum(:value)
   end
 
+  def self.to_csv
+    attributes = %w{user title description value date paid category}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |inst|
+        csv << [inst.user.name, inst.title, inst.description, inst.value, inst.date, inst.paid, inst.category.try(:title)]
+      end
+    end
+  end
+
 end
 

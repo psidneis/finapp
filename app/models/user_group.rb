@@ -21,4 +21,14 @@ class UserGroup < ActiveRecord::Base
     self.user = user
   end
 
+  def notify_user
+    if self.user.present?
+      Notification.create(
+        user: self.user,
+        title: I18n.t('models.notification.title_user_group'), 
+        description: I18n.t('models.notification.description_user_group', group: self.title), 
+        icon: 'group' )
+    end
+  end
+
 end

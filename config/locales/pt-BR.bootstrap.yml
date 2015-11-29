@@ -61,7 +61,7 @@ pt-BR:
       title_launch_group: "Atualizar lançamento do grupo"
       description_launch_group: "Foi criado um novo lançamento no grupo, %{note}. É necessário que você atualize conta/cartão e categoria do mesmo."
       title_user_group: "Convite de grupo"
-      description_user_group: "Você recebeu um novo convite para participar de um grupo, é necessário que aceite para fazer parte do mesmo"
+      description_user_group: "Você recebeu um novo convite do grupo %{group}, é necessário que aceite para fazer parte do mesmo"
       title_installment: "Lançamento está próximo a vencer"
       description_installment: "Há um lançamento que está vencido ou próximo a vencer, verifique!"
       title_recurrence: "Atualize lançamento recorrente"

@@ -29,6 +29,7 @@ class UserGroupsController < ApplicationController
     @user_group.search_user
     if @user_group.save and current_user != @user_group.user
       UserGroupMailer.invite_user_to_group(current_user, @user_group).deliver_now!
+      @user_group.notify_user
     end
     respond_with(@group, @user_group)
   end

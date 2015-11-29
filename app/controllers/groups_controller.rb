@@ -47,7 +47,9 @@ class GroupsController < ApplicationController
     @installments = @group.installments
     @installments = @installments.where(date: @start_date..@end_date).order(:date)
 
-    respond_with(@installments)
+    respond_with(@installments) do |format|
+      format.csv { send_data @installments.to_csv, filename: "installments-#{Date.today}.csv" }
+    end
   end
 
   private
