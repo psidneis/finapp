@@ -1,4 +1,4 @@
-class InstallmentPolicy < ApplicationPolicy
+class NotificationPolicy < ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -14,19 +14,7 @@ class InstallmentPolicy < ApplicationPolicy
     can_perform_action?
   end
 
-  def create?
-    can_perform_action?
-  end
-
-  def update?
-    can_perform_action?
-  end
-
   def destroy?
-    can_perform_action?
-  end
-
-  def cancel?
     can_perform_action?
   end
 

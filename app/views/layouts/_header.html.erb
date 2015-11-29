@@ -31,7 +31,35 @@
       <%= link_to("#", class: 'toggle-nav btn pull-left') do %>
         <i class='icon-reorder'></i>
       <% end %>
+
       <ul class='nav'>
+        <li class='dropdown medium only-icon widget'>
+          <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+            <i class='icon-rss'></i>
+            <div class='label'><%= current_user.current_notificatons.count %></div>
+          </a>
+          <ul class='dropdown-menu'>
+            <% current_user.current_notificatons.limit(10).each do |notification| %>
+              <li>
+                <%= link_to notification do %>
+                  <div class='widget-body'>
+                    <div class='pull-left icon'>
+                      <i class='icon-<%= notification.icon %> text-success'></i>
+                    </div>
+                    <div class='pull-left text'>
+                      <%= notification.title %>
+                    </div>
+                  </div>
+                <% end %>
+              </li>
+              <li class='divider'></li>
+            <% end %>
+            <li class='widget-footer'>
+                <%= link_to t('models.notification.all_notifications'), notifications_path  %>
+            </li>
+          </ul>
+        </li>
+
         <% if user_signed_in? %>
           <li class='dropdown dark user-menu'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#'>

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :installments, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :manager_groups, class_name: "Group", foreign_key: "user_id"
+  has_many :notifications, dependent: :destroy
 
   before_save -> { skip_confirmation! }
 
@@ -35,10 +36,13 @@ class User < ActiveRecord::Base
         user = User.create(
           name: data["name"],
           email: data["email"],
-          password: Devise.friendly_token[0,20]
-        )
+          password: Devise.friendly_token[0,20])
     end
     user
+  end
+
+  def current_notificatons
+    self.notifications.where(check: false).order("created_at DESC")
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031231612) do
+ActiveRecord::Schema.define(version: 20151128165850) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "account_type", limit: 4,                              default: 0
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.text     "description",          limit: 65535
     t.decimal  "value",                              precision: 15, scale: 2, default: 0.0
     t.datetime "date"
-    t.boolean  "paid"
+    t.boolean  "paid",                                                        default: false
     t.integer  "launch_type",          limit: 4
     t.integer  "number_installment",   limit: 4
     t.integer  "installmentable_id",   limit: 4
@@ -83,11 +83,13 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.integer  "category_id",          limit: 4
     t.integer  "user_id",              limit: 4
     t.integer  "launch_id",            limit: 4
-    t.datetime "created_at",                                                                null: false
-    t.datetime "updated_at",                                                                null: false
+    t.integer  "group_id",             limit: 4
+    t.datetime "created_at",                                                                  null: false
+    t.datetime "updated_at",                                                                  null: false
   end
 
   add_index "installments", ["category_id"], name: "index_installments_on_category_id", using: :btree
+  add_index "installments", ["group_id"], name: "index_installments_on_group_id", using: :btree
   add_index "installments", ["launch_id"], name: "index_installments_on_launch_id", using: :btree
   add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
 
@@ -96,7 +98,7 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.text     "description",           limit: 65535
     t.decimal  "value",                               precision: 15, scale: 2, default: 0.0
     t.datetime "date"
-    t.boolean  "paid"
+    t.boolean  "paid",                                                         default: false
     t.integer  "launchable_id",         limit: 4
     t.string   "launchable_type",       limit: 255
     t.integer  "recurrence_type",       limit: 4,                              default: 0
@@ -108,14 +110,26 @@ ActiveRecord::Schema.define(version: 20151031231612) do
     t.integer  "category_id",           limit: 4
     t.integer  "user_id",               limit: 4
     t.integer  "group_id",              limit: 4
-    t.datetime "created_at",                                                                  null: false
-    t.datetime "updated_at",                                                                  null: false
+    t.datetime "created_at",                                                                   null: false
+    t.datetime "updated_at",                                                                   null: false
   end
 
   add_index "launches", ["category_id"], name: "index_launches_on_category_id", using: :btree
   add_index "launches", ["group_id"], name: "index_launches_on_group_id", using: :btree
   add_index "launches", ["launchable_type", "launchable_id"], name: "index_launches_on_launchable_type_and_launchable_id", using: :btree
   add_index "launches", ["user_id"], name: "index_launches_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.string   "title",       limit: 255
+    t.text     "description", limit: 65535
+    t.boolean  "check",                     default: false
+    t.string   "icon",        limit: 255
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+  end
+
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "user_groups", force: :cascade do |t|
     t.boolean  "enabled",                default: false
@@ -164,11 +178,13 @@ ActiveRecord::Schema.define(version: 20151031231612) do
   add_foreign_key "goals", "categories"
   add_foreign_key "groups", "users"
   add_foreign_key "installments", "categories"
+  add_foreign_key "installments", "groups"
   add_foreign_key "installments", "launches"
   add_foreign_key "installments", "users"
   add_foreign_key "launches", "categories"
   add_foreign_key "launches", "groups"
   add_foreign_key "launches", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "user_groups", "groups"
   add_foreign_key "user_groups", "users"
 end

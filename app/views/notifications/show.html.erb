@@ -1,0 +1,27 @@
+<%= render 'header' %>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+          <%= t('helpers.show') %>
+        </div>
+      </div>
+      <div class='box-content box-double-padding'>
+        <p>
+          <strong><%= Notification.human_attribute_name("title") %>:</strong>
+          <%= @notification.title %>
+        </p>
+
+        <p>
+          <strong><%= Notification.human_attribute_name("description") %>:</strong>
+          <%= @notification.description %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to t('helpers.links.back'), notifications_path %>
+

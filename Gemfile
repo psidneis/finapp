@@ -46,13 +46,13 @@ gem 'responders', '~> 2.0'
 gem "compass-rails", "~> 2.0.alpha.0"
 
 group	:doc do
-	# bundle exec rake doc:rails generates the API under doc/api.
-	gem 'sdoc', '~> 0.4.0'
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', '~> 0.4.0'
 end
 
 group	:test do
-	gem 'cucumber'
-	gem 'rspec'
+  gem 'cucumber'
+  gem 'rspec'
 end
 
 group :development do
@@ -62,12 +62,15 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
   gem 'capistrano-secrets-yml', '~> 1.0.0'
-	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-	gem 'spring'
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
   gem 'letter_opener'
 end
 
 group :development, :test do
-	gem 'awesome_print', :require => 'ap'
-	gem 'byebug', group: [:development, :test]
+  gem 'awesome_print', :require => 'ap'
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'awesome_print', :require => 'ap'
 end

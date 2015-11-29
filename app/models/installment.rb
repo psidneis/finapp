@@ -4,16 +4,25 @@ class Installment < ActiveRecord::Base
   belongs_to :installmentable, polymorphic: true
   belongs_to :category
   belongs_to :user
+  belongs_to :group
 
   validates :value, :date, :number_installment, :launch, :user, presence: true
   validates :value, numericality: true
   validates :number_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
+  validate :validate_mandatory_updates_group
 
   enum launch_type: %w(expense income)
   enum update_options: %w(only_this update_future all_update)
   enum cancel_options: %w(cancel_this cancel_future cancel_all)
 
   attr_accessor :update_option, :cancel_option
+
+  def validate_mandatory_updates_group
+    if paid.eql?(true) and category.blank? and global_installmentable.blank?
+      errors.add(:category, I18n.t('errors.messages.cant_be_blank'))
+      errors.add(:global_installmentable, I18n.t('errors.messages.cant_be_blank'))
+    end
+  end
 
   def value= value
     if value =~ /^R\$ ([\d.,]+)$/
@@ -31,8 +40,8 @@ class Installment < ActiveRecord::Base
     self.installmentable = GlobalID::Locator.locate installmentable
   end
 
-  def update_parent_launch
-    launch = self.launch
+  def update_parent_launch_group
+    launch = self.parent_launch_group
     launch.title = self.title
     launch.description = self.description
     launch.value = self.value
@@ -43,12 +52,12 @@ class Installment < ActiveRecord::Base
     launch.save
   end
 
-  def check_installments_to_update(option)
-    launch = self.launch
+  def check_installments_to_update(option, user)
+    installments = self.launch.installments.where(user: user)
     if option.eql?('update_future')
-      installments = launch.installments.where("number_installment >= ?", self.number_installment).order(:number_installment)
+      installments = installments.where("number_installment >= ?", self.number_installment).order(:number_installment)
     elsif option.eql?('all_update')
-      installments = launch.installments.order(:number_installment)
+      installments = installments.order(:number_installment)
     end
 
     date_installment = launch.date
@@ -58,8 +67,8 @@ class Installment < ActiveRecord::Base
     end
   end
 
-  def create_or_update_installment(date_installment, index=nil, user)
-    launch = self.launch
+  def create_or_update_installment(date_installment, index=nil)
+    launch = launch.group.present? ? self.parent_launch_group : self.launch
 
     self.title = launch.title
     self.description = launch.description
@@ -70,7 +79,7 @@ class Installment < ActiveRecord::Base
     self.number_installment ||= index
     self.installmentable = launch.launchable
     self.category = launch.category
-    self.user = user
+    self.user ||= launch.user
     self.save
   end
   

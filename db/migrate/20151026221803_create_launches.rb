@@ -5,7 +5,7 @@ class CreateLaunches < ActiveRecord::Migration
       t.text :description
       t.decimal :value, default: 0.0, precision: 15, scale: 2
       t.datetime :date
-      t.boolean :paid
+      t.boolean :paid, default: false
       t.references :launchable, polymorphic: true, index: true
       t.integer :recurrence_type, default: 0
       t.integer :amount_installment, default: 1

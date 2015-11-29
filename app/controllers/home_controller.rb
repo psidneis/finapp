@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :get_period_installments, only: [:dashboard, :calendar, :report, :chart]
 	
-	respond_to :html, :json
+	respond_to :html, :json, :js
   	
   def index
   	redirect_to new_user_session_path unless user_signed_in?
@@ -12,10 +12,7 @@ class HomeController < ApplicationController
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
 
-    respond_with(@installments) do |format|
-      format.html
-      format.js
-    end
+    respond_with(@installments)
   end
 
   def calendar

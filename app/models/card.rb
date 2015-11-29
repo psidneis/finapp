@@ -16,7 +16,7 @@ class Card < ActiveRecord::Base
     if credit_limit =~ /^R\$ ([\d.,]+)$/
       write_attribute :credit_limit, $1.gsub('.', '').gsub(',', '.').to_d
     else
-      write_attribute :value, value
+      write_attribute :credit_limit, credit_limit
     end
   end
 

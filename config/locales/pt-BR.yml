@@ -249,6 +249,9 @@ pt-BR:
       launch: 
         one: Lançamento
         other: Lançamentos
+      notification:
+        one: Notificação
+        other: Notificações
       user: 
         one: Usuário
         other: Usuários
@@ -351,6 +354,12 @@ pt-BR:
         launch_types:
           expense: Despesa
           income: Receita
+      notification:
+        user: Usuário
+        title: Título
+        description: Descrição
+        icon: Ícone
+        created_at: Criado em
       user:
         email: Email
         name: Nome

@@ -33,8 +33,8 @@ class InstallmentsController < ApplicationController
   def update
     @installment.update(installment_params)
     if installment_params[:update_option] != 'only_this'
-      @installment.update_parent_launch
-      @installment.check_installments_to_update(installment_params[:update_option]) 
+      @installment.update_parent_launch_group
+      @installment.check_installments_to_update(installment_params[:update_option], current_user) 
     end
     respond_with(@installment, location: home_dashboard_path)
   end
@@ -68,7 +68,8 @@ class InstallmentsController < ApplicationController
     end
 
     def installment_params
-      params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option, :cancel_option)
+      params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option, 
+        :cancel_option, :group_id)
     end
 
     def set_launch

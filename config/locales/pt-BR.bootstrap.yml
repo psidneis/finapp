@@ -48,6 +48,7 @@ pt-BR:
       invite: Convidar usuário para grupo
       enabled: Você foi habilitado(a) com sucesso ao grupo
       disabled: Você foi desabilitado(a) com sucesso do grupo
+      new_member: "Novo membro"
     installment:
       expense: 
         paid: Pago
@@ -55,3 +56,13 @@ pt-BR:
       income: 
         paid: Recebido
         not_paid: Não recebido
+    notification:
+      all_notifications: Todas as notificações
+      title_launch_group: "Atualizar lançamento do grupo"
+      description_launch_group: "Foi criado um novo lançamento no grupo, %{note}. É necessário que você atualize conta/cartão e categoria do mesmo."
+      title_user_group: "Convite de grupo"
+      description_user_group: "Você recebeu um novo convite para participar de um grupo, é necessário que aceite para fazer parte do mesmo"
+      title_installment: "Lançamento está próximo a vencer"
+      description_installment: "Há um lançamento que está vencido ou próximo a vencer, verifique!"
+      title_recurrence: "Atualize lançamento recorrente"
+      description_recurrence: "Há um lançamento recorrente, atualize com o valor correto do período"
