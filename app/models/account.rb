@@ -26,4 +26,51 @@ class Account < ActiveRecord::Base
     accounts.sum(:value)
   end
 
+  def update_account(installment, old_installment=nil, action_name)
+    if installment.expense?
+      if action_name == 'create'
+        self.value -= installment.value if installment.paid?
+      elsif action_name == 'update'
+        calculate_account_on_expense_update(installment, old_installment)
+      elsif action_name == 'destroy'
+        self.value += old_installment.value if installment.paid?
+      end
+    else
+      if action_name == 'create'
+        self.value += installment.value if installment.paid?
+      elsif action_name == 'update'
+        calculate_account_on_income_update(installment, old_installment)
+      elsif action_name == 'destroy'
+        self.value -= old_installment.value
+      end
+    end
+    self.save
+  end
+
+  def calculate_account_on_expense_update(installment, old_installment)
+    if installment.paid?
+      if old_installment.paid?
+        self.value += old_installment.value
+      end
+      self.value -= installment.value
+    else
+      if old_installment.paid?
+        self.value += old_installment.value
+      end 
+    end
+  end
+
+  def calculate_account_on_income_update(installment, old_installment)
+    if installment.paid?
+      if old_installment.paid?
+        self.value -= old_installment.value
+      end
+      self.value += installment.value
+    else
+      if old_installment.paid?
+        self.value -= old_installment.value
+      end 
+    end
+  end
+
 end

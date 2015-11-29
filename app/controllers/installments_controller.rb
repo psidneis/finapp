@@ -27,25 +27,30 @@ class InstallmentsController < ApplicationController
   def create
     @installment = Installment.new(installment_params)
     @installment.save
+    update_accounts_and_cards
     respond_with(@installment)
   end
 
   def update
+    @old_installment = Installment.new(@installment.attributes)
     @installment.update(installment_params)
     if installment_params[:update_option] != 'only_this'
       @installment.update_parent_launch_group
       @installment.check_installments_to_update(installment_params[:update_option], current_user) 
     end
+    update_accounts_and_cards
     respond_with(@installment, location: home_dashboard_path)
   end
 
   def destroy
     if params[:cancel_this].present?
+      @old_installment = Installment.new(@installment.attributes)
       @installment.destroy
     else
       cancel_option = installment_params[:cancel_option] 
       launch = @installment.launch
       if cancel_option.eql?('cancel_this') or cancel_option.blank?
+        @old_installment = Installment.new(@installment.attributes)
         @installment.destroy
       elsif cancel_option.eql?('cancel_future')
         launch.update_attributes(enabled: false)
@@ -54,12 +59,14 @@ class InstallmentsController < ApplicationController
         launch.destroy
       end
     end
+    update_accounts_and_cards
     respond_with(@installment, location: home_dashboard_path)
   end
 
   def cancel
     respond_with(@installment)
   end
+
 
   private
     def set_installment
@@ -74,5 +81,13 @@ class InstallmentsController < ApplicationController
 
     def set_launch
       @launch = Launch.find(params[:launch_id])
+    end
+
+    def update_accounts_and_cards
+      if @installment.installmentable_type == 'Account'
+        @installment.installmentable.update_account(@installment, @old_installment, action_name)
+      else
+
+      end
     end
 end

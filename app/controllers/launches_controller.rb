@@ -25,16 +25,13 @@ class LaunchesController < ApplicationController
   def create
     @launch = Launch.new(launch_params)
     @launch.user = current_user
-
     if @launch.save
       @launch.choose_type_launch
       @launch.update_last_installment
       @launch.notify_user_groups if @launch.group.present?
-      
       location = @launch.group.present? ? apportionment_launch_path(@launch) : home_dashboard_path
-      @launch.update_account
+      update_accounts_and_cards
     end
-
     respond_with(@launch, location: location)
   end
 
@@ -62,5 +59,13 @@ class LaunchesController < ApplicationController
     def launch_params
       params.require(:launch).permit(:title, :description, :value, :date, :paid, :recurrence_type, :amount_installment, :recurrence, :launch_type, :category_id, 
         :group_id, :global_launchable, installments_attributes: [:id, :value] )
+    end
+
+    def update_accounts_and_cards
+      if @launch.launchable_type == 'Account' and @launch.paid?
+        @launch.launchable.update_account(@launch, @old_installment, action_name)
+      else
+
+      end
     end
 end

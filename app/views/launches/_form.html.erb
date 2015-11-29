@@ -35,11 +35,10 @@
               <div class='form-group'>
                 <%= f.input :value, as: :string, input_html: {class: 'format_value'} %>
                 <label class='paid_input_icon_label'>
-                  <i class='icon-2x icon-thumbs-down-alt text-red paid_input_icon'title='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-paid='not_paid' data-title-paid='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-title-not-paid='<%= t('breadcrumbs.pages.click_to_mark_not_paid') %>' ></i>
-                  <%= f.input_field :paid, checked: false, style: "display:none;" %>
+                  <i class='icon-2x <%= @launch.paid? ? 'icon-thumbs-up-alt text-green' : 'icon-thumbs-down-alt text-red' %> paid_input_icon'title='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-paid='not_paid' data-title-paid='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-title-not-paid='<%= t('breadcrumbs.pages.click_to_mark_not_paid') %>' ></i>
+                  <%= f.input :paid, wrapper_html: {style: "display:none;"} %>
                 </label>
               </div>
-
               <div class='form-group'>
                 <%= f.input :date do %>
                   <div class='datepicker_button input-group'>

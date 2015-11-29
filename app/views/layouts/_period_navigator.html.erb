@@ -1,7 +1,5 @@
-<!-- <div class="previous_date" data-value="<%#= @search_period.send("beginning_of_#{@search_period_type}") %>"></div> -->
 <div class="previous_date" data-value="<%= @start_date %>"></div>
 <div class="next_date" data-value="<%= @end_date %>"></div>
-<!-- <div class="next_date" data-value="<%#= @search_period.send("end_of_#{@search_period_type}") %>"></div> -->
 
 <nav class='text-center'>
 	<div class='btn-group'>
@@ -15,15 +13,12 @@
 	    </button>
 	    <ul class='dropdown-menu'>
 	      <li>
-	        <%#= link_to t('datetime.prompts.day'), home_dashboard_path(search_period_type: 'day')%>
 	        <%= link_to t('datetime.prompts.day'), '#', class: 'search_period_link', data: { url: home_dashboard_path, period_type: 'day', context: 'default-period' } %>
 	      </li>
 	      <li>
-	        <%#= link_to t('datetime.prompts.week'), home_dashboard_path(search_period_type: 'week') %>
 	        <%= link_to t('datetime.prompts.week'), '#', class: 'search_period_link', data: { url: home_dashboard_path, period_type: 'week', context: 'default-period' } %>
 	      </li>
 	      <li>
-	        <%#= link_to t('datetime.prompts.month'), home_dashboard_path(search_period_type: 'month') %>
 	        <%= link_to t('datetime.prompts.month'), '#', class: 'search_period_link', data: { url: home_dashboard_path, period_type: 'month', context: 'default-period' } %>
 	      </li>
 	      <li>
