@@ -26,6 +26,10 @@ class GroupPolicy < ApplicationPolicy
     can_perform_action?
   end
 
+  def dashboard?
+    can_perform_action?
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end

@@ -1,0 +1,34 @@
+<div class="previous_date" data-value="<%= @start_date %>"></div>
+<div class="next_date" data-value="<%= @end_date %>"></div>
+
+<nav class='text-center'>
+  <div class='btn-group'>
+    <% if @search_period_type != 'period' %>
+      <%= link_to "<i class='icon-chevron-left'></i>".html_safe, '#', class: 'btn btn-success btn-md previous search_period_link', data: { url: dashboard_group_path(@group), period_type: @search_period_type, search_period: @search_period - 1.send("#{@search_period_type}"), context: 'navigation' } %>
+    <% end %>
+    <div class='btn-group dropdown'>
+      <button class='btn btn-success btn-md dropdown-toggle' data-delay='100' data-hover='dropdown' data-toggle='dropdown'>
+        <%= date_format %>
+        <span class='caret'></span>
+      </button>
+      <ul class='dropdown-menu'>
+        <li>
+          <%= link_to t('datetime.prompts.day'), '#', class: 'search_period_link', data: { url: dashboard_group_path(@group), period_type: 'day', context: 'default-period' } %>
+        </li>
+        <li>
+          <%= link_to t('datetime.prompts.week'), '#', class: 'search_period_link', data: { url: dashboard_group_path(@group), period_type: 'week', context: 'default-period' } %>
+        </li>
+        <li>
+          <%= link_to t('datetime.prompts.month'), '#', class: 'search_period_link', data: { url: dashboard_group_path(@group), period_type: 'month', context: 'default-period' } %>
+        </li>
+        <li>
+          <%= link_to 'Por período', "#", data: {toggle: 'modal', target: '#search_period_modal'} %>
+        </li>
+      </ul>
+    </div>
+    <% if @search_period_type != 'period' %>
+      <%= link_to "<i class='icon-chevron-right'></i>".html_safe, "#", class: 'btn btn-success btn-md next search_period_link', data: { url: dashboard_group_path(@group), period_type: @search_period_type, search_period: @search_period + 1.send("#{@search_period_type}"), context: 'navigation' } %>
+     <% end %>
+     <i class="icon-3x icon-spinner icon-spin search_loading"></i>
+  </div>
+</nav>

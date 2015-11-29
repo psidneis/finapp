@@ -1,0 +1,8 @@
+$('div#period_navigator_dashboard').html('<%= escape_javascript( render(partial: "groups/period_navigator") ) %>');
+<% if @installments.any? %>
+  $('div.no_launches').hide();
+  $('div#installments_list_dashboard').html('<%= escape_javascript( render(partial: "groups/list_dashboard") ) %>');
+<% else %>
+  $('div.no_launches').show();
+  $('div#installments_list_dashboard').html("");
+<% end %>

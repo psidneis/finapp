@@ -31,7 +31,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <%= link_to t('helpers.links.search'), '#', class: 'btn btn-success search_period_link', data: { url: home_dashboard_path(), period_type: 'period', context: 'period-chosen' } %>
+        <%= link_to t('helpers.links.search'), '#', class: 'btn btn-success search_period_link', data: { url: home_dashboard_path, period_type: 'period', context: 'period-chosen' } %>
         <%#= link_to t('helpers.links.search'), home_dashboard_path, class: 'btn btn-success', id: 'search_period_modal_link', remote: true %>
       </div>
     </div>

@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :accounts
   resources :cards
   resources :groups do
+      get 'dashboard', on: :member
     resources :user_groups do
       get 'enable', on: :member
       get 'disable', on: :member
