@@ -71,26 +71,28 @@ ActiveRecord::Schema.define(version: 20151128165850) do
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "installments", force: :cascade do |t|
-    t.string   "title",                limit: 255
-    t.text     "description",          limit: 65535
-    t.decimal  "value",                              precision: 15, scale: 2, default: 0.0
+    t.string   "title",                  limit: 255
+    t.text     "description",            limit: 65535
+    t.decimal  "value",                                precision: 15, scale: 2, default: 0.0
     t.datetime "date"
-    t.boolean  "paid",                                                        default: false
-    t.integer  "launch_type",          limit: 4
-    t.integer  "number_installment",   limit: 4
-    t.integer  "installmentable_id",   limit: 4
-    t.string   "installmentable_type", limit: 255
-    t.integer  "category_id",          limit: 4
-    t.integer  "user_id",              limit: 4
-    t.integer  "launch_id",            limit: 4
-    t.integer  "group_id",             limit: 4
-    t.datetime "created_at",                                                                  null: false
-    t.datetime "updated_at",                                                                  null: false
+    t.boolean  "paid",                                                          default: false
+    t.integer  "launch_type",            limit: 4
+    t.integer  "number_installment",     limit: 4
+    t.integer  "installmentable_id",     limit: 4
+    t.string   "installmentable_type",   limit: 255
+    t.integer  "category_id",            limit: 4
+    t.integer  "user_id",                limit: 4
+    t.integer  "launch_id",              limit: 4
+    t.integer  "group_id",               limit: 4
+    t.integer  "parent_launch_group_id", limit: 4
+    t.datetime "created_at",                                                                    null: false
+    t.datetime "updated_at",                                                                    null: false
   end
 
   add_index "installments", ["category_id"], name: "index_installments_on_category_id", using: :btree
   add_index "installments", ["group_id"], name: "index_installments_on_group_id", using: :btree
   add_index "installments", ["launch_id"], name: "index_installments_on_launch_id", using: :btree
+  add_index "installments", ["parent_launch_group_id"], name: "index_installments_on_parent_launch_group_id", using: :btree
   add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
 
   create_table "launches", force: :cascade do |t|

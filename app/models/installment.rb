@@ -5,6 +5,7 @@ class Installment < ActiveRecord::Base
   belongs_to :category
   belongs_to :user
   belongs_to :group
+  belongs_to :parent_launch_group, class_name: "Launch"
 
   validates :value, :date, :number_installment, :launch, :user, presence: true
   validates :value, numericality: true
@@ -40,8 +41,8 @@ class Installment < ActiveRecord::Base
     self.installmentable = GlobalID::Locator.locate installmentable
   end
 
-  def update_parent_launch_group
-    launch = self.parent_launch_group
+  def update_parent_launch
+    launch = self.group.present? ? self.parent_launch_group : self.launch
     launch.title = self.title
     launch.description = self.description
     launch.value = self.value
@@ -52,28 +53,36 @@ class Installment < ActiveRecord::Base
     launch.save
   end
 
-  def check_installments_to_update(option, user)
-    installments = self.launch.installments.where(user: user)
-    if option.eql?('update_future')
-      installments = installments.where("number_installment >= ?", self.number_installment).order(:number_installment)
-    elsif option.eql?('all_update')
-      installments = installments.order(:number_installment)
-    end
-
-    date_installment = launch.date
-    installments.each do |installment|
+  def update_installments(option, user)
+    self.search_installments_to_update(option, user).each do |installment|
+      date_installment = installment.date
       installment.populate_installment(self.user, date_installment)
       date_installment = launch.current_date_installment(date_installment)
     end
   end
 
+  def search_installments_to_update(option, user)
+    if option.eql?('update_future')
+      self.search_greater_than_installment(user)
+    elsif option.eql?('all_update')
+      self.search_current_intallments(user)
+    end
+  end
+
+  def search_current_intallments(user)
+    self.launch.installments.where(user: user).order(:number_installment)
+  end
+
+  def search_greater_than_installment(user)
+    self.search_current_intallments(user).where("number_installment >= ?", self.number_installment)
+  end
+
   def populate_installment(user, date_installment, index=nil)
-    launch = self.launch
-    value = launch.group.present? ? launch.calculate_amount_division_group : launch.value
+    launch = self.group.present? ? self.parent_launch_group : self.launch
 
     self.title = launch.title
     self.description = launch.description
-    self.value = value
+    self.value = launch.calculate_user_value
     self.date = date_installment
     self.launch_type = launch.launch_type
     self.number_installment ||= index

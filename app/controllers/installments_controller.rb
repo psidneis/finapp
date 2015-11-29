@@ -34,9 +34,10 @@ class InstallmentsController < ApplicationController
   def update
     @old_installment = Installment.new(@installment.attributes)
     @installment.update(installment_params)
+
     if installment_params[:update_option] != 'only_this'
-      @installment.update_parent_launch_group
-      @installment.check_installments_to_update(installment_params[:update_option], current_user) 
+      @installment.update_parent_launch
+      @installment.update_installments(installment_params[:update_option], current_user) 
     end
     update_accounts_and_cards
     respond_with(@installment, location: home_dashboard_path)

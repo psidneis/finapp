@@ -1,6 +1,7 @@
 class Launch < ActiveRecord::Base
 
   has_many :installments, dependent: :destroy
+  has_many :parent_launch_groups, foreign_key: "parent_launch_group_id", class_name: 'Installment'
 
   belongs_to :launchable, polymorphic: true
   belongs_to :category
@@ -40,28 +41,35 @@ class Launch < ActiveRecord::Base
   end
 
   def user_installments(date_installment)
-    for index in 1..self.total_installments
-      date_installment = self.build_installment(self.user, date_installment, index)
-    end
+    date_installment = self.build_installment(self.user, date_installment)
   end
 
   def group_installments(date_installment)
     self.available_user_groups.each do |user_group|
+      parent_launch_group = self.generate_parent_launch_group(user.group)
       date_installment = self.date
-      for index in 1..self.total_installments
-        date_installment = self.build_installment(user_group.user, date_installment, index)
-      end
+      self.build_installment(user_group.user, date_installment, parent_launch_group)
     end
+  end
+
+  def generate_parent_launch_group(user)
+    parent_launch_group = self.dup
+    parent_launch_group.user = user
+    parent_launch_group.save
+    parent_launch_group
   end
 
   def total_installments
     self.recurrence? ? 31 : self.amount_installment
   end
 
-  def build_installment(user, date_installment, index)
-    installment = self.installments.build
-    installment.populate_installment(user, date_installment, index)
-    self.current_date_installment(date_installment)
+  def build_installment(user, date_installment, parent_launch_group=nil)
+    for index in 1..self.total_installments
+      installment = self.installments.build
+      installment.parent_launch_group = parent_launch_group
+      installment.populate_installment(user, date_installment, index)
+      date_installment = self.current_date_installment(date_installment)
+    end
   end
 
   def current_date_installment(date_installment)
@@ -85,20 +93,22 @@ class Launch < ActiveRecord::Base
   end
 
   def notify_user_groups
-    user_groups = self.available_user_groups
-    value_per_user = self.calculate_amount_division_group
-
-    user_groups.each do |user_group|
+    self.available_user_groups.each do |user_group|
       if self.user != user_group.user
-        note = self.recurrence? ? t('activerecord.attributes.launch.recurrence_types.recurrence') : "#{self.amount_installment} x 
-          #{ActionController::Base.helpers.number_to_currency(value_per_user)}"
-
         Notification.create(
           user: user_group.user,
           title: I18n.t('models.notification.title_launch_group'), 
-          description: I18n.t('models.notification.description_launch_group', note: note), 
+          description: I18n.t('models.notification.description_launch_group', note: self.note_to_user_notification), 
           icon: 'calendar' )
       end
+    end
+  end
+
+  def note_to_user_notification
+    if self.recurrence?
+      t('activerecord.attributes.launch.recurrence_types.recurrence')
+    else
+      "#{self.amount_installment} x #{ActionController::Base.helpers.number_to_currency(self.calculate_user_value)}"
     end
   end
 
@@ -106,8 +116,12 @@ class Launch < ActiveRecord::Base
     self.group.user_groups.where(enabled: true)
   end
 
-  def calculate_amount_division_group
-    self.value / self.available_user_groups.count
+  def calculate_user_value
+    if self.group.present?
+      self.value / self.available_user_groups.count
+    else
+      self.value
+    end
   end
 
   def self.generate_recurrence_launches(user, period)
