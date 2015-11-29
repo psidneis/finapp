@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :user_groups
   has_many :accounts, dependent: :destroy
   has_many :cards, dependent: :destroy
-  has_many :lauches, dependent: :destroy
+  has_many :launches, dependent: :destroy
   has_many :installments, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :manager_groups, class_name: "Group", foreign_key: "user_id"
@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
 
   def current_notificatons
     self.notifications.where(check: false).order("created_at DESC")
+  end
+
+  def current_recurrence_launches
+    self.launches.where(recurrence_type: 2, enabled: true)
   end
 
 end

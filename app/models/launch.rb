@@ -36,60 +36,32 @@ class Launch < ActiveRecord::Base
 
   def choose_type_launch(current_date = nil)
     date_installment = current_date || self.date
-    total_installments = self.recurrence? ? 31 : self.amount_installment
-
-    for index in 1..total_installments
-      if self.group.present?
-        self.generate_group_installments(date_installment, index)
-      else
-        self.generate_installments(date_installment, index)
-      end
-      date_installment = self.current_date_installment(date_installment)
-    end
-
-    self.last_installment_date = self.installments.unscoped.last.date
-    self.save
+    self.group.blank? ? self.user_installments(date_installment) : self.group_installments(date_installment)
   end
 
-  def generate_installments(date_installment, index)
+  def user_installments(date_installment)
+    for index in 1..self.total_installments
+      date_installment = self.build_installment(self.user, date_installment, index)
+    end
+  end
+
+  def group_installments(date_installment)
+    self.available_user_groups.each do |user_group|
+      date_installment = self.date
+      for index in 1..self.total_installments
+        date_installment = self.build_installment(user_group.user, date_installment, index)
+      end
+    end
+  end
+
+  def total_installments
+    self.recurrence? ? 31 : self.amount_installment
+  end
+
+  def build_installment(user, date_installment, index)
     installment = self.installments.build
-    installment.create_or_update_installment(date_installment, index)
-  end
-
-  def generate_group_installments(date_installment, index)
-    user_groups = self.available_user_groups
-    value_per_user = self.calculate_amount_division_group(user_groups.count)
-
-    parent_launch_group ||= self.dup
-    
-    user_groups.each do |user_group|
-      parent_launch_group = user_group.user
-      parent_launch_group.save
-
-      installment = self.installments.build
-      installment.title = self.title
-      installment.description = self.description
-      installment.value = value_per_user
-      installment.date = date_installment
-      installment.launch_type = self.launch_type
-      installment.number_installment = index
-      if self.user.eql?(user_group.user)
-        installment.paid = self.date.eql?(date_installment) ? self.paid : false
-        installment.installmentable = self.launchable
-        installment.category = self.category
-      end
-      installment.user = user_group.user
-      installment.group = self.group
-
-      parent_launch_group ||= self.dup
-      parent_launch_group.user = user_group.user
-      installment.parent_launch_group = parent_launch_group
-      installment.save
-    end
-  end
-
-  def calculate_amount_division_group(total_user_group)
-    self.value / total_user_group
+    installment.populate_installment(user, date_installment, index)
+    self.current_date_installment(date_installment)
   end
 
   def current_date_installment(date_installment)
@@ -108,19 +80,13 @@ class Launch < ActiveRecord::Base
     date_installment + recurrence[:count].send(recurrence[:period])
   end
 
-  def self.generate_recurrence_launches(user, period)
-    Launch.where("user_id = ? and recurrence_type = ? and enabled = ?", user.id, 2, true).each do |launch|
-      installment = launch.installments.last
-      if launch.last_installment_date <= period.end_of_month
-        date_installment = launch.current_date_installment(launch.last_installment_date)
-        launch.choose_type_launch(date_installment)
-      end
-    end
+  def update_last_installment
+    self.update_attribute(:last_installment_date, self.installments.unscoped.last.date)
   end
 
   def notify_user_groups
     user_groups = self.available_user_groups
-    value_per_user = self.calculate_amount_division_group(user_groups.count)
+    value_per_user = self.calculate_amount_division_group
 
     user_groups.each do |user_group|
       if self.user != user_group.user
@@ -140,14 +106,27 @@ class Launch < ActiveRecord::Base
     self.group.user_groups.where(enabled: true)
   end
 
-  def update_account
-    account = self.launchable
-    if self.income?
-      account.value += self.value
-    else
-      account.value -= self.value
+  def calculate_amount_division_group
+    self.value / self.available_user_groups.count
+  end
+
+  def self.generate_recurrence_launches(user, period)
+    user.current_recurrence_launches.each do |launch|
+      if launch.last_installment_date <= period.end_of_month
+        date_installment = launch.current_date_installment(launch.last_installment_date)
+        launch.choose_type_launch(date_installment)
+      end
     end
-    account.save
+  end
+
+  def update_account
+    # account = self.launchable
+    # if self.income?
+    #   account.value += self.value
+    # else
+    #   account.value -= self.value
+    # end
+    # account.save
   end
 
 end

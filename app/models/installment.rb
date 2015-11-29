@@ -62,24 +62,30 @@ class Installment < ActiveRecord::Base
 
     date_installment = launch.date
     installments.each do |installment|
-      installment.create_or_update_installment(date_installment)
+      installment.populate_installment(self.user, date_installment)
       date_installment = launch.current_date_installment(date_installment)
     end
   end
 
-  def create_or_update_installment(date_installment, index=nil)
-    launch = launch.group.present? ? self.parent_launch_group : self.launch
+  def populate_installment(user, date_installment, index=nil)
+    launch = self.launch
+    value = launch.group.present? ? launch.calculate_amount_division_group : launch.value
 
     self.title = launch.title
     self.description = launch.description
-    self.value = launch.value
+    self.value = value
     self.date = date_installment
-    self.paid = launch.date.eql?(date_installment) ? launch.paid : false
     self.launch_type = launch.launch_type
     self.number_installment ||= index
-    self.installmentable = launch.launchable
-    self.category = launch.category
-    self.user ||= launch.user
+    
+    if user.eql?(launch.user)
+      self.paid = launch.date.eql?(date_installment) ? launch.paid : false
+      self.installmentable = launch.launchable
+      self.category = launch.category
+    end
+
+    self.user = user
+    self.group = launch.group
     self.save
   end
   

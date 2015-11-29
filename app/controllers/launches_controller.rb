@@ -28,7 +28,8 @@ class LaunchesController < ApplicationController
 
     if @launch.save
       @launch.choose_type_launch
-      @launch.notify_user_groups
+      @launch.update_last_installment
+      @launch.notify_user_groups if @launch.group.present?
       
       location = @launch.group.present? ? apportionment_launch_path(@launch) : home_dashboard_path
       @launch.update_account
