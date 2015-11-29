@@ -79,10 +79,11 @@ class Installment < ActiveRecord::Base
 
   def populate_installment(user, date_installment, index=nil)
     launch = self.group.present? ? self.parent_launch_group : self.launch
+    value = self.persisted? ? launch.value : launch.calculate_user_value
 
     self.title = launch.title
     self.description = launch.description
-    self.value = launch.calculate_user_value
+    self.value = value
     self.date = date_installment
     self.launch_type = launch.launch_type
     self.number_installment ||= index

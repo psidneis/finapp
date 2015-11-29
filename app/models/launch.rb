@@ -46,7 +46,7 @@ class Launch < ActiveRecord::Base
 
   def group_installments(date_installment)
     self.available_user_groups.each do |user_group|
-      parent_launch_group = self.generate_parent_launch_group(user.group)
+      parent_launch_group = self.generate_parent_launch_group(user_group.user)
       date_installment = self.date
       self.build_installment(user_group.user, date_installment, parent_launch_group)
     end
