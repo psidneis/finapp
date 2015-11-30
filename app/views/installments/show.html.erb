@@ -34,6 +34,10 @@
           <strong><%= Installment.human_attribute_name("launch") %>:</strong>
           <%= @installment.launch.title %>
         </p>
+        <p>
+          <strong><%= Launch.human_attribute_name("proof") %>:</strong>
+          <%= image_tag @installment.launch.proof.url if @installment.launch.proof.present?  %>
+        </p>
       </div>
     </div>
   </div>

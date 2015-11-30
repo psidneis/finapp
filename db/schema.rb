@@ -109,6 +109,10 @@ ActiveRecord::Schema.define(version: 20151128165850) do
     t.integer  "launch_type",           limit: 4
     t.datetime "last_installment_date"
     t.boolean  "enabled",                                                      default: true
+    t.string   "proof_file_name",       limit: 255
+    t.string   "proof_content_type",    limit: 255
+    t.integer  "proof_file_size",       limit: 4
+    t.datetime "proof_updated_at"
     t.integer  "category_id",           limit: 4
     t.integer  "user_id",               limit: 4
     t.integer  "group_id",              limit: 4

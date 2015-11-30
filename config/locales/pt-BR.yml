@@ -354,6 +354,7 @@ pt-BR:
         launch_types:
           expense: Despesa
           income: Receita
+        proof: Arquivo
       notification:
         user: Usuário
         title: Título

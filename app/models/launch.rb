@@ -1,5 +1,7 @@
 class Launch < ActiveRecord::Base
 
+  include Paperclip::Glue
+
   has_many :installments, dependent: :destroy
   has_many :parent_launch_groups, foreign_key: "parent_launch_group_id", class_name: 'Installment'
 
@@ -13,11 +15,16 @@ class Launch < ActiveRecord::Base
   validates :value, numericality: true
   validates :amount_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
+  has_attached_file :proof, styles: { small: "64x64", med: "100x100", large: "200x200" }
+  validates_attachment :proof, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  
   accepts_nested_attributes_for :installments
 
   enum recurrence_type: %w(not_recurrence installments recurrence)
   enum recurrence: %w(yearly biannual quarterly bimonthly monthly fortnightly weekly daily)
   enum launch_type: %w(expense income)
+
+  
 
   def value= value
     if value =~ /^R\$ ([\d.,]+)$/

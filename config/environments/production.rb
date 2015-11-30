@@ -76,6 +76,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+
   config.action_mailer.default_url_options = { host: 'finappweb.com.br' }
 
   config.action_mailer.delivery_method = :smtp

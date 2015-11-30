@@ -58,7 +58,7 @@ class LaunchesController < ApplicationController
 
     def launch_params
       params.require(:launch).permit(:title, :description, :value, :date, :paid, :recurrence_type, :amount_installment, :recurrence, :launch_type, :category_id, 
-        :group_id, :global_launchable, installments_attributes: [:id, :value] )
+        :group_id, :global_launchable, :proof, installments_attributes: [:id, :value] )
     end
 
     def update_accounts_and_cards

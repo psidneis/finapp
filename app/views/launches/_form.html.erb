@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class='box-content box-double-padding'>
-        <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+        <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {multipart: true, class: 'form form-horizontal'}) do |f| %>
           <%= f.error_notification %>
           <fieldset>
             <div class='form-group launch_type_list_wrapper'>
@@ -63,6 +63,9 @@
               <div class='form-group'>
                 <%= f.association :group, collection: policy_scope(Group) %>
                 <%= link_to "<i class='icon-plus'></i>".html_safe, new_group_path, class: 'btn btn-success btn-sm btn_new' %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :proof, as: :file %>
               </div>
 
               <div class='form-group'>

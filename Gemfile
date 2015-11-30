@@ -45,6 +45,8 @@ gem 'responders', '~> 2.0'
 
 gem "compass-rails", "~> 2.0.alpha.0"
 
+gem "paperclip", "~> 4.3"
+
 group	:doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', '~> 0.4.0'
