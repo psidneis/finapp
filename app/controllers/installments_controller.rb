@@ -77,7 +77,7 @@ class InstallmentsController < ApplicationController
 
     def installment_params
       params.require(:installment).permit(:title, :description, :value, :date, :paid, :launch_type, :category_id, :global_installmentable, :update_option, 
-        :cancel_option, :group_id)
+        :cancel_option, :group_id, :proof)
     end
 
     def set_launch

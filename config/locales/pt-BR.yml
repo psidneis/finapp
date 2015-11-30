@@ -323,6 +323,7 @@ pt-BR:
           cancel_this: Cancelar apenas este lançamento
           cancel_future: Cancelar este e os próximos Lançamentos
           cancel_all: Cancelar todos os lançamentos
+        proof: Arquivo
       launch:
         title: Título
         description: Descrição

@@ -130,7 +130,7 @@ SimpleForm.setup do |config|
   config.wrapper_mappings = {
     check_boxes: :vertical_radio_and_checkboxes,
     radio_buttons: :vertical_radio_and_checkboxes,
-    file: :vertical_file_input,
+    file: :horizontal_form,
     boolean: :vertical_boolean,
   }
 end

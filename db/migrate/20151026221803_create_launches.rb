@@ -14,10 +14,10 @@ class CreateLaunches < ActiveRecord::Migration
       t.datetime :last_installment_date
       t.boolean :enabled, default: 1
       t.boolean :enabled, default: 1
-      t.attachment :proof
       t.references :category, index: true, foreign_key: true
       t.references :user, index: true, foreign_key: true
       t.references :group, index: true, foreign_key: true
+      t.attachment :proof
 
       t.timestamps null: false
     end

@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 20151128165850) do
     t.integer  "launch_id",              limit: 4
     t.integer  "group_id",               limit: 4
     t.integer  "parent_launch_group_id", limit: 4
+    t.string   "proof_file_name",        limit: 255
+    t.string   "proof_content_type",     limit: 255
+    t.integer  "proof_file_size",        limit: 4
+    t.datetime "proof_updated_at"
     t.datetime "created_at",                                                                    null: false
     t.datetime "updated_at",                                                                    null: false
   end
@@ -109,13 +113,13 @@ ActiveRecord::Schema.define(version: 20151128165850) do
     t.integer  "launch_type",           limit: 4
     t.datetime "last_installment_date"
     t.boolean  "enabled",                                                      default: true
+    t.integer  "category_id",           limit: 4
+    t.integer  "user_id",               limit: 4
+    t.integer  "group_id",              limit: 4
     t.string   "proof_file_name",       limit: 255
     t.string   "proof_content_type",    limit: 255
     t.integer  "proof_file_size",       limit: 4
     t.datetime "proof_updated_at"
-    t.integer  "category_id",           limit: 4
-    t.integer  "user_id",               limit: 4
-    t.integer  "group_id",              limit: 4
     t.datetime "created_at",                                                                   null: false
     t.datetime "updated_at",                                                                   null: false
   end

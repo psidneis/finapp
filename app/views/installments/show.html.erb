@@ -36,7 +36,11 @@
         </p>
         <p>
           <strong><%= Launch.human_attribute_name("proof") %>:</strong>
-          <%= image_tag @installment.launch.proof.url if @installment.launch.proof.present?  %>
+          <% if @installment.proof.present? %>
+            <%= image_tag @installment.proof.url %>
+          <% elsif @installment.launch.proof.present? %>
+            <%= image_tag @installment.launch.proof.url %>
+          <% end %>
         </p>
       </div>
     </div>

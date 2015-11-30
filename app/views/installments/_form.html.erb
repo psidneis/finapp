@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class='box-content box-double-padding'>
-        <%= simple_form_for(@installment, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+        <%= simple_form_for(@installment, wrapper: :horizontal_form, html: {multipart: true, class: 'form form-horizontal'}) do |f| %>
           <%= f.error_notification %>
           <fieldset>
             <div class='col-sm-8 col-sm-offset-2'>
@@ -46,6 +46,9 @@
               </div>
               <div class='form-group'>
                 <%= f.association :category, collection: policy_scope(Category), include_blank: false %>
+              </div>
+              <div class='form-group'>
+                <%= f.input :proof, as: :file %>
               </div>
               <div class='form-group'>
                 <%= f.input :update_option, collection: options_for_enum(Installment, :update_option, @installment), checked: :only_this, as: :radio_buttons %>

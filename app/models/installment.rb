@@ -1,5 +1,7 @@
 class Installment < ActiveRecord::Base
 
+  include Paperclip::Glue
+
   belongs_to :launch
   belongs_to :installmentable, polymorphic: true
   belongs_to :category
@@ -11,6 +13,9 @@ class Installment < ActiveRecord::Base
   validates :value, numericality: true
   validates :number_installment, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validate :validate_mandatory_updates_group
+
+  has_attached_file :proof, styles: { small: "64x64", med: "100x100", large: "200x200" }
+  validates_attachment :proof, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   enum launch_type: %w(expense income)
   enum update_options: %w(only_this update_future all_update)

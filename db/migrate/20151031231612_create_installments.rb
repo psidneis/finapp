@@ -14,6 +14,7 @@ class CreateInstallments < ActiveRecord::Migration
       t.references :launch, index: true, foreign_key: true
       t.references :group, index: true, foreign_key: true
       t.references :parent_launch_group, index: true
+      t.attachment :proof
 
       t.timestamps null: false
     end
