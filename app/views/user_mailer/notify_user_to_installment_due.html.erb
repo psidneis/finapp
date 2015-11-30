@@ -1,0 +1,49 @@
+<table align='center' bgcolor='#f4f7f9' border='0' cellpadding='0' cellspacing='0' id='backgroundTable' style='background: #f4f7f9;' width='100%'>
+  <tr>
+    <td align='center'>
+      <center>
+        <table border='0' cellpadding='50' cellspacing='0' style='margin-left: auto;margin-right: auto;width:600px;text-align:center;' width='600'>
+          <tr>
+            <td align='center' valign='top'>
+              <%= image_tag "logo.png", class: 'logo', size: "100x75", alt: "FinApp", style: "outline:none; text-decoration:none;border:none,display:block;" %>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+  <tr>
+    <td align='center'>
+      <center>
+        <table border='0' cellpadding='30' cellspacing='0' style='margin-left: auto;margin-right: auto;width:600px;text-align:center;' width='600'>
+          <tr>
+            <td align='left' style='background: #ffffff; border: 1px solid #dce1e5;' valign='top' width=''>
+              <table border='0' cellpadding='0' cellspacing='0' width='100%'>
+                <tr>
+                  <td align='center' valign='top'>
+                    <h3>Olá, nós somos do FinApp, sua aplicação para controle financeiro!</h3>
+                  </td>
+                </tr>
+                <tr>
+                  <td align='center' valign='top'>
+                    <h4 style='color: #49bf67 !important'>
+                      <%= I18n.t('models.notification.description_installment', title: @installment.title, value: number_to_currency(@installment.value)) %>
+                    </h4>
+                    <h4 style='color: #49bf67 !important'><%= Installment.human_attribute_name("date") %>: <%= l(@installment.date, format: :date_picker) %></h4>
+                  </td>
+                </tr>
+                <tr>
+                  <td align='center' bgcolor='#49bf67' valign='top'>
+                    <h3>
+                      <%= link_to "Clique aqui para verificar!", installment_url(@installment), style: "color: #ffffff !important" %>
+                    </h3>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </td>
+  </tr>
+</table>

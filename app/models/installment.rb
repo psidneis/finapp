@@ -120,5 +120,24 @@ class Installment < ActiveRecord::Base
     end
   end
 
+  def self.notify_user_to_installment_due
+    Installment.installment_due.each do |installment|
+      installment.notify_user
+      UserMailer.notify_user_to_installment_due(installment).deliver_now!
+    end
+  end
+
+  def self.installment_due
+    Installment.where(launch_type: 'expense', paid: false, date: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+  end
+
+  def notify_user
+    Notification.create(
+      user: self.user,
+      title: I18n.t('models.notification.title_installment'), 
+      description: I18n.t('models.notification.description_installment', title: self.title, value: ActionController::Base.helpers.number_to_currency(self.value)), 
+      icon: 'money' )
+  end
+
 end
 

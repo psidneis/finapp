@@ -63,6 +63,6 @@ pt-BR:
       title_user_group: "Convite de grupo"
       description_user_group: "Você recebeu um novo convite do grupo %{group}, é necessário que aceite para fazer parte do mesmo"
       title_installment: "Lançamento está próximo a vencer"
-      description_installment: "Há um lançamento que está vencido ou próximo a vencer, verifique!"
+      description_installment: "O lançamento %{title} com o valor de %{value} está vencido ou próximo a vencer, verifique!"
       title_recurrence: "Atualize lançamento recorrente"
       description_recurrence: "Há um lançamento recorrente, atualize com o valor correto do período"
