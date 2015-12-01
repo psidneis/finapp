@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :get_period_installments, only: [:dashboard, :calendar, :report, :chart]
 	
-	respond_to :html, :json, :js
+  respond_to :html, :json, :js
   	
   def index
   	redirect_to new_user_session_path unless user_signed_in?
@@ -29,7 +29,7 @@ class HomeController < ApplicationController
 
   def chart
     @total_period = @installments.sum(:value)
-    @categories = @installments.select("categories.title, categories.color, sum(value) as total_category")
+    @categories = @installments.select("categories.title, categories.color, sum(value) as installment_value")
       .joins(:category).group(:category_id).where(launch_type: 'expense')
 
     respond_with(@categories)

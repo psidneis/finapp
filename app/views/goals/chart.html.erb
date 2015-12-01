@@ -1,0 +1,44 @@
+<%= render 'header' %>
+
+<%  
+  date_format = l(@search_period, format: :long_day_month_year) if @search_period_type == 'day'
+  date_format = l(@search_period, format: :long_month_year) if @search_period_type == 'month'
+  date_format = "#{l(@start_date, format: :long_week_month)} à #{l(@end_date, format: :long_week_month)}" if @search_period_type == 'week'
+  date_format = "#{l(@start_date, format: :default)} à #{l(@end_date, format: :default)}" if @search_period_type == 'period'
+%>
+
+<div class="previous_date" data-value="<%= @search_period.send("beginning_of_#{@search_period_type}") %>"></div>
+<div class="next_date" data-value="<%= @search_period.send("end_of_#{@search_period_type}") %>"></div>
+
+<nav class='text-center'>
+  <div class='btn-group'>
+      <% if @search_period_type != 'period' %>
+        <%= link_to "<i class='icon-chevron-left'></i>".html_safe, goals_path(search_period_type: @search_period_type, search_period: @search_period - 1.send("#{@search_period_type}")), class: 'btn btn-success btn-md previous' %>
+       <% end %>
+    <div class='btn-group dropdown'>
+      <button class='btn btn-success btn-md dropdown-toggle' data-delay='100' data-hover='dropdown' data-toggle='dropdown'>
+        <%= date_format %>
+        <span class='caret'></span>
+      </button>
+      <ul class='dropdown-menu'>
+        <li>
+          <%= link_to t('datetime.prompts.day'),  goals_path(search_period_type: 'day')%>
+        </li>
+        <li>
+          <%= link_to t('datetime.prompts.week'),  goals_path(search_period_type: 'week')%>
+        </li>
+        <li>
+          <%= link_to t('datetime.prompts.month'),  goals_path(search_period_type: 'month')%>
+        </li>
+        <li>
+          <%= link_to 'Por período', "#", data: {toggle: 'modal', target: '#search_period_modal'} %>
+        </li>
+      </ul>
+    </div>
+    <% if @search_period_type != 'period' %>
+      <%= link_to "<i class='icon-chevron-right'></i>".html_safe, goals_path(search_period_type: @search_period_type, search_period: @search_period + 1.send("#{@search_period_type}")), class: 'btn btn-success btn-md next' %>
+     <% end %>
+  </div>
+</nav>
+
+<%= render 'bar_chart' %>

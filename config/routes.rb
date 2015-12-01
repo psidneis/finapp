@@ -38,7 +38,9 @@ Rails.application.routes.draw do
       get 'disable', on: :member
     end
   end
-  resources :goals
+  resources :goals do
+    get 'chart', on: :collection
+  end
   resources :notifications
 
   # Example of regular route:
