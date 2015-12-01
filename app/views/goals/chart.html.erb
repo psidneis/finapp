@@ -13,7 +13,7 @@
 <nav class='text-center'>
   <div class='btn-group'>
       <% if @search_period_type != 'period' %>
-        <%= link_to "<i class='icon-chevron-left'></i>".html_safe, goals_path(search_period_type: @search_period_type, search_period: @search_period - 1.send("#{@search_period_type}")), class: 'btn btn-success btn-md previous' %>
+        <%= link_to "<i class='icon-chevron-left'></i>".html_safe, chart_goals_path(search_period_type: @search_period_type, search_period: @search_period - 1.send("#{@search_period_type}")), class: 'btn btn-success btn-md previous' %>
        <% end %>
     <div class='btn-group dropdown'>
       <button class='btn btn-success btn-md dropdown-toggle' data-delay='100' data-hover='dropdown' data-toggle='dropdown'>
@@ -22,13 +22,13 @@
       </button>
       <ul class='dropdown-menu'>
         <li>
-          <%= link_to t('datetime.prompts.day'),  goals_path(search_period_type: 'day')%>
+          <%= link_to t('datetime.prompts.day'),  chart_goals_path(search_period_type: 'day')%>
         </li>
         <li>
-          <%= link_to t('datetime.prompts.week'),  goals_path(search_period_type: 'week')%>
+          <%= link_to t('datetime.prompts.week'),  chart_goals_path(search_period_type: 'week')%>
         </li>
         <li>
-          <%= link_to t('datetime.prompts.month'),  goals_path(search_period_type: 'month')%>
+          <%= link_to t('datetime.prompts.month'),  chart_goals_path(search_period_type: 'month')%>
         </li>
         <li>
           <%= link_to 'Por período', "#", data: {toggle: 'modal', target: '#search_period_modal'} %>
@@ -36,7 +36,7 @@
       </ul>
     </div>
     <% if @search_period_type != 'period' %>
-      <%= link_to "<i class='icon-chevron-right'></i>".html_safe, goals_path(search_period_type: @search_period_type, search_period: @search_period + 1.send("#{@search_period_type}")), class: 'btn btn-success btn-md next' %>
+      <%= link_to "<i class='icon-chevron-right'></i>".html_safe, chart_goals_path(search_period_type: @search_period_type, search_period: @search_period + 1.send("#{@search_period_type}")), class: 'btn btn-success btn-md next' %>
      <% end %>
   </div>
 </nav>

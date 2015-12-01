@@ -3,7 +3,7 @@ class Goal < ActiveRecord::Base
   belongs_to :category
 
   validates :category, :value, presence: true
-  validates :category, :value, uniqueness: true
+  validates :category, uniqueness: true
   validates :value, numericality: true
 
   def value= value

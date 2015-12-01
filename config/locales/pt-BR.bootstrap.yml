@@ -43,6 +43,7 @@ pt-BR:
     charts:
       expense_pie_chart: Gráfico de despesas
       income_pie_chart: Gráfico de receitas
+      goal_bar_chart: Gráfico de metas
   models:
     user_group:
       invite: Convidar usuário para grupo
