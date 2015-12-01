@@ -11,6 +11,7 @@ class HomeController < ApplicationController
   def dashboard
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
+    @cards = policy_scope(Card)
 
     respond_with(@installments)
   end

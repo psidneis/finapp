@@ -1,48 +1,50 @@
-<div class='row' >
-  <div class='col-sm-12'>
-    <div class='box'>
-      <div class='box-header'>
-        <div class='title'>
-          <i class='icon-usd'></i>
-          <%= t('activerecord.models.account.other') %>
-        </div>
-        <div class='actions'>
-          <%= link_to "<i class='icon-plus'></i>".html_safe, new_account_path, class: 'btn btn-success  ' %>
-        </div>
+<div class='col-sm-6'>
+  <div class='box'>
+    <div class='box-header'>
+      <div class='title'>
+        <i class='icon-usd'></i>
+        <%= t('activerecord.models.account.other') %>
       </div>
-      <div class='box-content'>
-        <% if @accounts.present? %>
-          <div class=' accounts_general'>
-            <div class='pull-left'>
-              <% sum_of_accounts_value = Account.sum_of_values(@accounts) %>
-              <h4><i class='icon-chevron-down'></i> <%= t('breadcrumbs.pages.total_balance') %></h4>
-            </div>
-            <div class='pull-right'>
-              <h3 class='subtotal <%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(sum_of_accounts_value) %></h3>
-            </div>
-            <div class='clearfix'></div>
+      <div class='actions'>
+        <%= link_to "<i class='icon-plus'></i>".html_safe, new_account_path, class: 'btn btn-success  ' %>
+      </div>
+    </div>
+    <div class='box-content'>
+      <% if @accounts.present? %>
+        <div class='accounts_general'>
+          <div class='pull-left'>
+            <% sum_of_accounts_value = Account.sum_of_values(@accounts) %>
+            <h4><i class='icon-chevron-down'></i> <%= t('breadcrumbs.pages.total_balance') %></h4>
           </div>
-          <div class='accounts_details' style='display:none'>
-          <hr class='hr-normal'></hr>
-            <div class='col-sm-12'>
-              <% @accounts.each do |account| %>
-                <%= link_to account do %>
-                  <div class='pull-left'>
-                    <h4><%= account.title %></h4>
-                  </div>
-                  <div class='pull-right'>
-                    <h4 class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.value) %></h4>  
-                  </div>
-                  <div class='clearfix'></div>
-                <% end %>
-                <hr class='dashboard-hr-account'></hr>
+          <div class='pull-right text-right'>
+            <h5>Período: <span class='<%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %>' title='Saldo até o fim de <%= date_format %>'><%= number_to_currency(Account.sum_of_values_by_period(@accounts, @end_date)) %></span></h5>
+            <h5>Previsto: <span class='<%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %>' title='Previsto para o fim <%= t("datetime.prompts.#{@search_period_type}") %> atual' ><%= number_to_currency(Account.sum_of_future_values(@accounts)) %></span></h5>
+            <h3><span style='font-size:15px;'>Atual:</span> <span class='subtotal <%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(sum_of_accounts_value) %></span></h3>
+          </div>
+          <div class='clearfix'></div>
+        </div>
+        <div class='details' style='display:none'>
+        <hr class='hr-normal'></hr>
+          <div class='col-sm-12'>
+            <% @accounts.each do |account| %>
+              <%= link_to account do %>
+                <div class='pull-left'>
+                  <h4><%= account.title %></h4>
+                </div>
+                <div class='pull-right text-right'>
+                  <h5 style='margin: 2px 0px;'>Período: <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.total_value_by_period(@end_date)) %></span></h5>
+                  <h5 style='margin: 2px 0px;'>Previsto: <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.value) %></span></h5>
+                  <h4><span style='font-size:14px;'>Atual:</span> <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%#= number_to_currency(account.total_future_value) %></span></h4>  
+                </div>
+                <div class='clearfix'></div>
               <% end %>
-            </div>
+              <hr class='dashboard-hr-account'></hr>
+            <% end %>
           </div>
-        <% else %>
-          Não há contas cadastradas
-        <% end %>
-      </div>
+        </div>
+      <% else %>
+        Não há contas cadastradas
+      <% end %>
     </div>
   </div>
 </div>

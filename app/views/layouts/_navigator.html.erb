@@ -50,6 +50,14 @@
           </ul>
         </li>
 
+        <li class="<%= 'active' if controller_name == "invoices" %>">
+          <%= link_to (invoices_path) do %>
+            <i class='icon-list-alt'></i>
+            <span><%= t('activerecord.models.invoice.other') %></span>
+          <% end %>
+        </li>
+
+
         <li class="<%= 'active' if controller_name == "categories" %>">
           <a class="dropdown-collapse" href="#"><i class='icon-tag'></i>
           <span><%= t('activerecord.models.category.other') %></span>

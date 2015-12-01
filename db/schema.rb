@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128165850) do
+ActiveRecord::Schema.define(version: 20151130234316) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "account_type", limit: 4,                              default: 0
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20151128165850) do
     t.decimal  "credit_limit",             precision: 15, scale: 2, default: 0.0
     t.integer  "billing_day",  limit: 4
     t.integer  "payment_day",  limit: 4
+    t.decimal  "bill",                     precision: 15, scale: 2, default: 0.0
     t.integer  "account_id",   limit: 4
     t.integer  "user_id",      limit: 4
     t.datetime "created_at",                                                      null: false
@@ -92,6 +93,19 @@ ActiveRecord::Schema.define(version: 20151128165850) do
   add_index "installments", ["group_id"], name: "index_installments_on_group_id", using: :btree
   add_index "installments", ["launch_id"], name: "index_installments_on_launch_id", using: :btree
   add_index "installments", ["user_id"], name: "index_installments_on_user_id", using: :btree
+
+  create_table "invoices", force: :cascade do |t|
+    t.string   "title",       limit: 255,                                          null: false
+    t.string   "description", limit: 255
+    t.decimal  "value",                   precision: 15, scale: 2, default: 0.0,   null: false
+    t.integer  "card_id",     limit: 4,                                            null: false
+    t.datetime "payment_day",                                                      null: false
+    t.boolean  "paid",                                             default: false
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
+
+  add_index "invoices", ["card_id"], name: "index_invoices_on_card_id", using: :btree
 
   create_table "launches", force: :cascade do |t|
     t.string   "title",                 limit: 255
@@ -181,6 +195,7 @@ ActiveRecord::Schema.define(version: 20151128165850) do
   add_foreign_key "installments", "groups"
   add_foreign_key "installments", "launches"
   add_foreign_key "installments", "users"
+  add_foreign_key "invoices", "cards"
   add_foreign_key "launches", "categories"
   add_foreign_key "launches", "groups"
   add_foreign_key "launches", "users"

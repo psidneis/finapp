@@ -224,7 +224,8 @@ pt-BR:
       category: Categoria
       goal: Meta
       group: Grupo
-      Installment: Parcela
+      installment: Parcela
+      invoice: Fatura
       launch: Lançamento
       user: Usuário
       user_group: Grupo do usuário
@@ -246,6 +247,9 @@ pt-BR:
       installment:
         one: Parcela
         other: Parcelas
+      invoice:
+        one: Fatura
+        other: Faturas  
       launch: 
         one: Lançamento
         other: Lançamentos
@@ -323,6 +327,12 @@ pt-BR:
           cancel_this: Cancelar apenas este lançamento
           cancel_future: Cancelar este e os próximos Lançamentos
           cancel_all: Cancelar todos os lançamentos
+      invoice:
+        title: Título
+        description: Descrição
+        value: Valor
+        payment_day: Vence dia
+        paid: Pago
       launch:
         title: Título
         description: Descrição

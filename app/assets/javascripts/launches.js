@@ -31,3 +31,14 @@ $(document).on('click', '.paid_input_icon', function(){
 		$(this).prop('title', $(this).data('title-paid'))
 	}
 });
+
+$(document).on('change','#launch_global_launchable',function(){
+	launchable_type = $(this).find('option:selected').parent().prop('label');
+	if(launchable_type == 'Cartão'){
+		$('.paid_input_icon').hide();
+		$('.launch_paid').find('input').prop("checked",false);
+	}
+	else{
+		$('.paid_input_icon').show();
+	}
+});
