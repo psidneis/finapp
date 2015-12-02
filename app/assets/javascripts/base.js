@@ -1,11 +1,26 @@
-$(document).on('page:change ', function(event) {
+$(document).on('page:restore page:load ready', function(event) {
   datepicker();
   fullcalendar();
   pie_chart();
   bar_chart();
+
+  $('#report_start_date').datetimepicker({
+    format: 'DD/MM/YYYY HH:mm',
+    locale: 'pt-br'
+  });
+  $('#report_end_date').datetimepicker({
+    useCurrent: false,
+    format: 'DD/MM/YYYY HH:mm',
+    locale: 'pt-br'
+  });
+  $("#report_start_date").on("dp.change", function (e) {
+      $('#report_end_date').data("DateTimePicker").minDate(e.date);
+  });
+  $("#report_end_date").on("dp.change", function (e) {
+      $('#report_start_date').data("DateTimePicker").maxDate(e.date);
+  });
 });
 
-// $(document).on('page:change', function(event) {
 function datepicker() {
   $(".datepicker_button").datetimepicker({ format: 'DD/MM/YYYY HH:mm' });
 
@@ -16,7 +31,6 @@ function datepicker() {
   });
 }
 
-// $(document).on("page:restore page:load ready", function() {
 function fullcalendar() {
   calendar = $('#dashboard_calendar');
   var calendar_url = calendar.attr('data-url');

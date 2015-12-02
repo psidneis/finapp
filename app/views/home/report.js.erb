@@ -1,0 +1,7 @@
+<% if @installments.any? %>
+  $('div.no_launches').hide();
+  $('div#installments_list_report').html('<%= escape_javascript( render(partial: "installments/list_report") ) %>');
+<% else %>
+  $('div.no_launches').show();
+  $('div#installments_list_report').html("");
+<% end %>

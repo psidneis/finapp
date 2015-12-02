@@ -139,5 +139,25 @@ class Installment < ActiveRecord::Base
       icon: 'money' )
   end
 
+  def self.search(options = {})
+    scope = all
+    scope = scope.where(date: (options[:start_date].to_datetime)..(options[:end_date].to_datetime)) if options[:start_date].present? and options[:end_date].present?
+    scope = scope.where("title like ?", "%#{options[:title]}%") if options[:title].present?
+    scope = scope.where(category_id: options[:category_id]) if options[:category_id].present?
+    scope = scope.where(group_id: options[:group_id]) if options[:group_id].present?
+    scope = scope.where(installmentable_id: options[:card_id], installmentable_type: 'Card') if options[:card_id].present?
+    scope = scope.where(installmentable_id: options[:account_id], installmentable_type: 'Account') if options[:account_id].present?
+
+    if options[:expense].present? and options[:income].present?
+      scope = scope
+    elsif options[:expense].present?
+      scope = scope.where(launch_type: 0)
+    elsif options[:income].present?
+      scope = scope.where(launch_type: 1)
+    end
+    
+    scope
+  end
+
 end
 

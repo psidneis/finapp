@@ -15,7 +15,7 @@ class Goal < ActiveRecord::Base
   end
 
   def calculate_total_period(start_date, end_date)
-    self.category.installments(launch_type: 'expense', date: start_date..end_date).sum("installments.value")
+    self.category.installments.where(launch_type: 'expense', date: start_date..end_date).sum("installments.value")
   end
   
 end

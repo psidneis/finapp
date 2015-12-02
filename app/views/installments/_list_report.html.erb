@@ -1,0 +1,38 @@
+<div class='box'>
+  <div class='box-header'>
+    <div class='title'>
+      <i class='icon-usd'></i>
+      <%= t('activerecord.models.launch.other') %>
+    </div>
+    <div class='actions'>
+        <%= link_to "<i class='icon-file-text'></i>".html_safe, home_report_path(format: :csv), class: 'btn btn-primary' %>
+        <%= link_to "<i class='icon-plus'></i>".html_safe, new_launch_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+  <div class='box-content'>
+    <% if @installments.present? %>
+      <% @installments.each do |installment| %>
+        <%= link_to installment do %>
+          <div class='list_installment_wrapper'>
+            <i class="<%= installment.income? ? 'icon-arrow-up text-green' : 'icon-arrow-down text-red' %> launch_type_icon hidden-xs"></i>
+            <div class='col-sm-8 col-xs-6'>
+              <h4><%= format_title_recurrence(installment) %></h4>
+              <h6 style="color: <%= installment.category.try(:color) %>"><%= installment.category.try(:title) %></h6>  
+            </div>
+            <div class='col-sm-4 col-xs-6'>
+              <h4 class='text-right <%= installment.income? ? 'text-green' : 'text-red' %>'><%= number_to_currency(installment.value) %></h4>
+              <h6 class='text-right'><%= l(installment.date, format: :date_picker) %></h6>
+            </div>
+            <i class="<%= installment.paid? ? 'icon-thumbs-up-alt text-green' : 'icon-thumbs-down-alt text-red' %> paid_icon" title="<%= installment.paid? ? t("models.installment.#{installment.launch_type}.paid") : t("models.installment.#{installment.launch_type}.not_paid") %>"></i>
+          </div>
+          <div class='clearfix'></div>
+        <% end %>
+        <hr class='report-hr-account'></hr>
+      <% end %>
+      <% sum_of_installments = Installment.sum_of_values(@installments) %>
+      <h4 class='text-right <%= sum_of_installments > 0 ? 'text-green' : 'text-red' %>'><%= number_to_currency(sum_of_installments) %></h4>
+    <% else %>
+      Não há lançamentos nesse período
+    <% end %>
+  </div>
+</div>

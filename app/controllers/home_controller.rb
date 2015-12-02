@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :get_period_installments, only: [:dashboard, :calendar, :report, :chart]
+  before_action :get_period_installments, only: [:dashboard, :calendar, :chart]
 	
   respond_to :html, :json, :js
   	
@@ -23,13 +23,17 @@ class HomeController < ApplicationController
   end
 
   def report
+    @installments = policy_scope(Installment)
+    @installments = @installments.search(params)
 
-    respond_with(@installments)
+    respond_with(@installments) do |format|
+      format.csv { send_data @installments.to_csv, filename: "installments-#{Date.today}.csv" }
+    end
   end
 
   def chart
     @total_period = @installments.sum(:value)
-    @categories = @installments.select("categories.title, categories.color, sum(value) as installment_value")
+    @categories = @installments.select("categories.title, categories.color, sum(value) as total_category")
       .joins(:category).group(:category_id).where(launch_type: 'expense')
 
     respond_with(@categories)

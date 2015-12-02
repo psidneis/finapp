@@ -1,1 +1,58 @@
 <%= render 'header' %>
+
+<div class="box">
+  <%= form_tag home_report_path, method: 'GET', remote: true, class: "form-inline" do %>
+    <div class='col-sm-2'>
+      <div class="form-group">
+        <div class='input-group date' id='report_start_date'>
+          <%= text_field_tag :start_date, params[:start_date], class: "form-control" %>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class='col-sm-2'>
+      <div class="form-group">
+        <div class='input-group date' id='report_end_date'>
+        <%= text_field_tag :end_date, params[:end_date], class: "form-control" %>
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= text_field_tag :title, params[:title], class: "form-control", placeholder: Launch.human_attribute_name("title") %>
+    </div>
+    <div class="form-group">
+      <%= select_tag :category_id, options_for_select(policy_scope(Category).map{|c| [c.title, c.id]}), class: "form-control", prompt: t('activerecord.models.category.one') %>
+    </div>
+    <div class="form-group">
+      <%= select_tag :group_id, options_for_select(policy_scope(Group).map{|c| [c.title, c.id]}), class: "form-control", prompt: t('activerecord.models.group.one') %>
+    </div>
+    <div class="form-group">
+      <%= select_tag :card_id, options_for_select(policy_scope(Card).map{|c| [c.title, c.id]}), class: "form-control", prompt: t('activerecord.models.card.one') %>
+    </div>
+    <div class="form-group">
+      <%= select_tag :account_id, options_for_select(policy_scope(Account).map{|c| [c.title, c.id]}), class: "form-control", prompt: t('activerecord.models.account.one') %>
+    </div>
+    <div class="checkbox">
+      <%= check_box_tag :expense, true, class: "form-control" %>
+      <%= label_tag :expense,  t('activerecord.attributes.launch.launch_types.expense') %>
+    </div>
+    <div class="checkbox">
+      <%= check_box_tag :income, true, class: "form-control" %>
+      <%= label_tag :income,  t('activerecord.attributes.launch.launch_types.income') %>
+    </div>
+
+    <%= submit_tag 'Buscar', class: 'btn btn-success' %>
+  <% end %>
+</div>
+
+<hr class="hr-normal"></hr>
+
+<div class='col-sm-12' id='installments_list_report'>
+  <%= render 'installments/list_report' %>
+</div>
