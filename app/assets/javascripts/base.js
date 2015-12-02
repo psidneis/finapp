@@ -1,8 +1,13 @@
-$(document).on('page:restore page:load ready', function(event) {
+$(document).on('page:change', function(event) {
   datepicker();
   fullcalendar();
-  pie_chart();
-  bar_chart();
+
+  if ($("#pie_chart").length !== 0) {
+    pie_chart();
+  }
+  if($("#bar_chart").length !== 0) {
+    bar_chart();
+  }
 
   $('#report_start_date').datetimepicker({
     format: 'DD/MM/YYYY HH:mm',
@@ -131,7 +136,7 @@ function bar_chart() {
   $.ajax({
     url: placeholder_url,
     dataType: 'json',
-    data_categories: {
+    data: {
       start_date: moment($('div.previous_date').attr('data-value')).format(),
       end_date: moment($('div.next_date').attr('data-value')).format(),
     },
