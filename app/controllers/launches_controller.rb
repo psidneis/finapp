@@ -62,10 +62,10 @@ class LaunchesController < ApplicationController
     end
 
     def update_accounts_and_cards
-      if @launch.launchable_type == 'Account' and @launch.paid?
-        @launch.launchable.update_account(@launch, @old_installment, action_name)
+      if @launch.launchable_type == 'Account' and @launch.persisted?
+        @launch.launchable.update_account(@launch, @old_launch, action_name)
       else
-
+        @launch.launchable.update_card(@launch, @old_launch, action_name)
       end
     end
 end

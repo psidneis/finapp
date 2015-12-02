@@ -11,6 +11,7 @@ class HomeController < ApplicationController
   def dashboard
     Launch.generate_recurrence_launches(current_user, @search_period)
     @accounts = policy_scope(Account)
+    @cards = policy_scope(Card)
 
     respond_with(@installments) do |format|
       format.csv { send_data @installments.to_csv, filename: "installments-#{Date.today}.csv" }

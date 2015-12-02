@@ -7,6 +7,11 @@
           <%= t('helpers.edit') if action_name == 'edit' %>
         </div>
       </div>
+
+      <%= render 'accounts/form_modal' %>
+      <%= render 'categories/form_modal' %>
+      <%= render 'groups/form_modal' %>
+
       <div class='box-content box-double-padding'>
         <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {multipart: true, class: 'form form-horizontal'}) do |f| %>
           <%= f.error_notification %>
@@ -35,8 +40,8 @@
               <div class='form-group'>
                 <%= f.input :value, as: :string, input_html: {class: 'format_value'} %>
                 <label class='paid_input_icon_label'>
-                  <i class='icon-2x <%= @launch.paid? ? 'icon-thumbs-up-alt text-green' : 'icon-thumbs-down-alt text-red' %> paid_input_icon'title='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-paid='not_paid' data-title-paid='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-title-not-paid='<%= t('breadcrumbs.pages.click_to_mark_not_paid') %>' ></i>
-                  <%= f.input :paid, wrapper_html: {style: "display:none;"} %>
+                  <i class='icon-2x <%= @launch.paid? ? 'icon-thumbs-up-alt text-green' : 'icon-thumbs-down-alt text-red' %> paid_input_icon' title='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-paid='not_paid' data-title-paid='<%= t('breadcrumbs.pages.click_to_mark_paid') %>' data-title-not-paid='<%= t('breadcrumbs.pages.click_to_mark_not_paid') %>' style='<%= 'display:none;' if @launch.try(:launchable_type).try(:==, 'Card')%>'></i>
+                    <%= f.input :paid, wrapper_html: {style: "display:none;"} %>
                 </label>
               </div>
               <div class='form-group'>
@@ -49,20 +54,17 @@
                   </div>
                 <% end %>
               </div>
-              <!-- <div class='form-group'> -->
-                <%#= f.input :paid %>
-              <!-- </div> -->
               <div class='form-group'>
                 <%= f.input :global_launchable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, value_method: :to_global_id, group_label_method: :human_model_name, include_blank: false %>
-                <%= link_to "<i class='icon-plus'></i>".html_safe, new_account_path, class: 'btn btn-success btn-sm btn_new' %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, "#", class: 'btn btn-success btn-sm btn_new', data: {toggle: 'modal', target: '#accounts_form_modal'} %>
               </div>
               <div class='form-group'>
                 <%= f.association :category, collection: policy_scope(Category), include_blank: false %>
-                <%= link_to "<i class='icon-plus'></i>".html_safe, new_category_path, class: 'btn btn-success btn-sm btn_new' %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, "#", class: 'btn btn-success btn-sm btn_new', data: {toggle: 'modal', target: '#categories_form_modal'} %>
               </div>
               <div class='form-group'>
                 <%= f.association :group, collection: policy_scope(Group) %>
-                <%= link_to "<i class='icon-plus'></i>".html_safe, new_group_path, class: 'btn btn-success btn-sm btn_new' %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, "#", class: 'btn btn-success btn-sm btn_new', data: {toggle: 'modal', target: '#groups_form_modal'} %>
               </div>
               <div class='form-group'>
                 <%= f.input :proof, as: :file %>

@@ -1,0 +1,71 @@
+<%= render 'header' %>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='box bordered-box green-border'>
+      <div class='box-header green-background'>
+        <div class='title'>
+          <%= t('helpers.show') %>
+        </div>
+      </div>
+      <div class='box-content box-double-padding'>
+
+        <p>
+          <strong><%= Invoice.human_attribute_name("title") %>:</strong>
+          <%= @invoice.title %>
+        </p>
+
+        <p>
+          <strong><%= Invoice.human_attribute_name("description") %>:</strong>
+          <%= @invoice.description %>
+        </p>
+
+        <p>
+          <strong><%= Invoice.human_attribute_name("value") %>:</strong>
+          <%= number_to_currency(@invoice.value) %>
+        </p>
+
+        <p>
+          <strong><%= Invoice.human_attribute_name("payment_day") %>:</strong>
+          <%= l(@invoice.payment_day, format: :date_picker) %>
+        </p>
+
+        <p>
+          <strong><%= Invoice.human_attribute_name("card") %>:</strong>
+          <%= @invoice.card.title %>
+        </p>
+
+        <p>
+          <strong><%= Invoice.human_attribute_name("paid") %>:</strong>
+          <%= human_boolean(@invoice.paid) %>
+        </p>
+
+
+        <% installments = @invoice.installments %>
+        <% if installments.present? %>
+          <h3><%= t('activerecord.models.launch.other') %></h3>
+          <table class="table">
+            <thead>
+              <td><%= Installment.human_attribute_name("title") %></td>
+              <td><%= Installment.human_attribute_name("value") %></td>
+              <td><%= Installment.human_attribute_name("date") %></td>
+            </thead>
+            <tbody>
+              <% installments.each do |installment| %>
+                <tr>
+                  <td><%= installment.title %></td>
+                  <td><%= number_to_currency(installment.value) %></td>
+                  <td><%= l(installment.date, format: :date_picker) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= link_to t('helpers.titles.edit', model: t("activerecord.models.invoice.one")), edit_invoice_path(@invoice) %> |
+<%= link_to t('helpers.links.back'), invoices_path %>

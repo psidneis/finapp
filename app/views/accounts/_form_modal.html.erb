@@ -1,0 +1,44 @@
+
+
+
+<div class="modal fade" id="accounts_form_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <div style='font-size:18px'>
+            <i class='icon-usd'></i>
+            <span><%= t('helpers.new') %> <%= t('activerecord.models.account.one') %></span>
+          </div>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <%= simple_form_for(Account.new, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
+            <%= f.error_notification %>
+            <fieldset>
+              <div class='col-sm-8 col-sm-offset-2'>
+                <div class='form-group'>
+
+                  <%= f.input :account_type, collection: options_for_enum(Account, :account_type, @account), include_blank: false %>
+                </div>
+                <div class='form-group'>
+                  <%= f.input :title %>
+                </div>
+                <div class='form-group'>
+                  <%= f.input :description %>
+                </div>
+                <div class='form-group'>
+                  <%= f.input :value, as: :string, input_html: {class: 'format_value'} %>
+                </div>
+              </div>
+            </fieldset> 
+            <%= f.hidden_field :modal, value: :launch %>
+       </div>
+      </div>
+      <div class="modal-footer">
+            <%= f.button :submit, class: 'btn-lg btn-success submit_modal', data: {form_id: '#new_account' } %>
+          <% end %> 
+      </div>
+    </div>
+  </div>
+</div>

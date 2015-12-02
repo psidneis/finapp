@@ -1,0 +1,47 @@
+<div class='col-sm-6'>
+  <div class='box'>
+    <div class='box-header'>
+      <div class='title'>
+        <i class='icon-usd'></i>
+        <%= t('breadcrumbs.pages.bills') %>
+      </div>
+      <!-- <div class='actions'> -->
+        <%#= link_to "<i class='icon-plus'></i>".html_safe, new_account_path, class: 'btn btn-success  ' %>
+      <!-- </div> -->
+    </div>
+    <div class='box-content'>
+      <% if @cards.present? %>
+        <div class='bills_general'>
+          <div class='pull-left'>
+            <% sum_of_cards_invoices = Card.sum_of_cards_invoices(@cards) %>
+            <h4><i class='icon-chevron-down'></i> <%= t('breadcrumbs.pages.total_bills') %></h4>
+          </div>
+          <div class='pull-right'>
+          <h3><span style='font-size:15px;'>Atual:</span> <span class='subtotal <%= sum_of_cards_invoices == 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(sum_of_cards_invoices) %></span></h3>
+          </div>
+          <div class='clearfix'></div>
+        </div>
+        <div class='details' style='display:none'>
+        <hr class='hr-normal'></hr>
+          <div class='col-sm-12'>
+            <% @cards.each do |card| %>
+              <% link = card.current_invoice || "javascript:void(0)" %>
+              <%= link_to link do %>
+                <div class='pull-left'>
+                  <h4><%= card.title %></h4>
+                </div>
+                <div class='pull-right'>
+                  <h4><span style='font-size:14px;'>Atual:</span> <span class='<%= card.current_invoice.try(:value).nil? || card.current_invoice.try(:value).try(:==, 0) ? 'text-green' : 'text-red' %> '><%= number_to_currency(card.current_invoice.try(:value) || 0) %></span></h4>
+                </div>
+                <div class='clearfix'></div>
+              <% end %>
+              <hr class='dashboard-hr-account'></hr>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        Não há cartões cadastrados
+      <% end %>
+    </div>
+  </div>
+</div>

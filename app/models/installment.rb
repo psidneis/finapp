@@ -105,7 +105,7 @@ class Installment < ActiveRecord::Base
   end
   
   def self.sum_of_values(installments)
-    installments.where(launch_type: 0).sum(:value) - installments.where(launch_type: 1).sum(:value)
+    - installments.where(launch_type: 0).sum(:value) + installments.where(launch_type: 1).sum(:value)
   end
 
   def self.to_csv

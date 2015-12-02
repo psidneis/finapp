@@ -33,11 +33,18 @@
       <% end %>
 
       <ul class='nav'>
-        <li class='dropdown medium only-icon widget'>
-          <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-            <i class='icon-rss'></i>
-            <div class='label'><%= current_user.current_notificatons.count %></div>
-          </a>
+          <li class='dropdown dark medium only-icon widget'>
+              <%= link_to new_launch_path do%>
+                <i class='icon-upload'></i>
+                <%= t('activerecord.models.launch.one') %>
+              <% end %>
+          </li>
+
+          <li class='dropdown medium only-icon widget'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+              <i class='icon-rss'></i>
+              <div class='label'><%= current_user.current_notificatons.count %></div>
+            </a>
           <ul class='dropdown-menu'>
             <% current_user.current_notificatons.limit(10).each do |notification| %>
               <li>
@@ -96,12 +103,6 @@
         <% end %>
 
       </ul>
-      <form action='#' class='navbar-form navbar-right hidden-xs' method='get'>
-        <button class='btn btn-link icon-search' name='button' type='submit'></button>
-        <div class='form-group'>
-          <input value="" class="form-control" placeholder="Search..." autocomplete="off" id="q_header" name="q" type="text" />
-        </div>
-      </form>
     </nav>
   <% end %>
 </header>

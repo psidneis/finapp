@@ -4,6 +4,26 @@
 
 .accounts_general {
 	cursor: pointer;
+	h5 {
+		margin: 3px 0px;
+	}
+	h4 {
+		margin: 5px 0px;
+	}
+	h3 {
+		margin: 10px 0px;
+	}
+}
+
+.details {
+	hr{
+		margin-top: 0px;
+		margin-bottom: 10px;
+	}
+}
+
+.bills_general {
+	cursor: pointer;
 }
 
 .launch_type_icon {

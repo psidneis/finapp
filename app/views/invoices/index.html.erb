@@ -1,0 +1,53 @@
+<%= render 'header' %>
+
+<div class='box bordered-box green-border' style='margin-bottom:0;'>
+  <div class='box-header green-background'>
+    <div class='title'>
+      <%= t('helpers.index') %>
+    </div>
+  </div>
+  <div class='box-content box-no-padding'>
+    <div class='responsive-table'>
+      <div class='scrollable-area'>
+        <table class='table' style='margin-bottom:0;'>
+          <thead>
+            <tr>
+              <th>
+                <%= Invoice.human_attribute_name("title") %>
+              </th>
+              <th>
+                <%= Invoice.human_attribute_name("value") %>
+              </th>
+              <th>
+                <%= Invoice.human_attribute_name("payment_day") %>
+              </th>
+              <th>
+                <%= Invoice.human_attribute_name("card") %>
+              </th>
+              <th>
+                <%= Invoice.human_attribute_name("paid") %>
+              </th>
+              <th colspan="3">
+                <%= t('helpers.actions') %>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @invoices.each do |invoice| %>
+              <tr>
+                <td><%= invoice.title %></td>
+                <td><%= number_to_currency(invoice.value) %></td>
+                <td><%= l(invoice.payment_day) %></td>
+                <td><%= invoice.card.title %></td>
+                <td><%= human_boolean(invoice.paid) %></td>
+                <td><%= link_to '<i class="icon-search"></i>'.html_safe, invoice %></td>
+                <td><%= link_to '<i class="icon-edit"></i>'.html_safe, edit_invoice_path(invoice) %></td>
+                <td><%= link_to '<i class="icon-trash"></i>'.html_safe, invoice, method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

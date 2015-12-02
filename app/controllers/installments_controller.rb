@@ -88,7 +88,7 @@ class InstallmentsController < ApplicationController
       if @installment.installmentable_type == 'Account'
         @installment.installmentable.update_account(@installment, @old_installment, action_name)
       else
-
+        @installment.installmentable.update_card(@installment, @old_installment, action_name)
       end
     end
 end

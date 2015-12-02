@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  billing_day: MyString
+  datetime,: MyString
+  value: MyString
+  decimal,: MyString
+  paid: false
+
+two:
+  billing_day: MyString
+  datetime,: MyString
+  value: MyString
+  decimal,: MyString
+  paid: false

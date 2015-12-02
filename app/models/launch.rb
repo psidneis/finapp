@@ -140,14 +140,4 @@ class Launch < ActiveRecord::Base
     end
   end
 
-  def update_account
-    # account = self.launchable
-    # if self.income?
-    #   account.value += self.value
-    # else
-    #   account.value -= self.value
-    # end
-    # account.save
-  end
-
 end
