@@ -42,3 +42,8 @@ $(document).on('change','#launch_global_launchable',function(){
 		$('.paid_input_icon').show();
 	}
 });
+
+$(document).on('click', '.submit_modal', function(){
+	form_id = $(this).data('form-id');
+	$(form_id).submit();
+});

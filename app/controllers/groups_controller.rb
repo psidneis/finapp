@@ -27,7 +27,11 @@ class GroupsController < ApplicationController
     @group.user = current_user
     @group.user_groups.build(user: current_user, email: current_user.email, role: 'admin', enabled: true)
     @group.save
-    respond_with(@group, location: group_user_groups_path(@group))
+    if params[:group][:modal] == 'launch'
+      redirect_to new_launch_path
+    else
+      respond_with(@group, location: group_user_groups_path(@group))
+    end
   end
 
   def update

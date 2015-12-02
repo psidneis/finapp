@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20151130234316) do
     t.string   "title",       limit: 255,                                          null: false
     t.string   "description", limit: 255
     t.decimal  "value",                   precision: 15, scale: 2, default: 0.0,   null: false
-    t.integer  "card_id",     limit: 4,                                            null: false
+    t.integer  "card_id",     limit: 4
     t.datetime "payment_day",                                                      null: false
     t.boolean  "paid",                                             default: false
     t.datetime "created_at",                                                       null: false

@@ -25,16 +25,25 @@ class Card < ActiveRecord::Base
     self.model_name.human
   end
 
-  def create_invoice
+  def create_invoice(installment_date)
     invoice = self.invoices.build
-    invoice.title = "#{I18n.t('activerecord.models.invoice.one')} #{I18n.l(Date.today, format: :long_month_year)} "
     invoice.value = 0
-    invoice.payment_day = Time.new(Time.now.year, Time.now.month, self.payment_day).end_of_day
+    if installment_date.day <= self.billing_day 
+      invoice.title = "#{I18n.t('activerecord.models.invoice.one')} #{I18n.l(installment_date, format: :long_month_year)} "
+      invoice.payment_day = Time.new(installment_date.year, installment_date.month, self.payment_day).end_of_day
+    else
+      invoice.title = "#{I18n.t('activerecord.models.invoice.one')} #{I18n.l(installment_date + 1.month, format: :long_month_year)} "
+      invoice.payment_day = (Time.new(installment_date.year, installment_date.month, self.payment_day) + 1.month).end_of_day
+    end
     invoice
   end
 
-  def current_invoice
-    self.invoices.where(payment_day: Time.new(Time.now.year, Time.now.month, self.payment_day).end_of_day).first
+  def current_invoice(installment_date=Date.today)
+    if installment_date.day <= self.billing_day 
+      self.invoices.where(payment_day: Time.new(installment_date.year, installment_date.month, self.payment_day).end_of_day).first
+    else
+      self.invoices.where(payment_day: (Time.new(installment_date.year, installment_date.month, self.payment_day) + 1.month).end_of_day).first
+    end
   end
   
   def self.sum_of_cards_invoices(cards)
@@ -47,14 +56,13 @@ class Card < ActiveRecord::Base
 
   def update_card(installment, old_installment=nil, action_name)
     if installment.expense?
-      invoice = current_invoice
+      invoice = current_invoice(installment.date)
       if action_name == 'create'
-        invoice = create_invoice if invoice.nil?
+        invoice = create_invoice(installment.date) if invoice.nil?
         invoice.value += installment.value
-
-        self.bill -= installment.value
       elsif action_name == 'update'
-        # calculate_account_on_expense_update(installment, old_installment)
+        invoice.value -= old_installment.value
+        invoice.value += installment.value
         invoice.save
       elsif action_name == 'destroy'
         invoice.value -= old_installment.value

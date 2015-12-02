@@ -33,11 +33,18 @@
       <% end %>
 
       <ul class='nav'>
-        <li class='dropdown medium only-icon widget'>
-          <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-            <i class='icon-rss'></i>
-            <div class='label'><%= current_user.current_notificatons.count %></div>
-          </a>
+          <li class='dropdown dark medium only-icon widget'>
+              <%= link_to new_launch_path do%>
+                <i class='icon-upload'></i>
+                <%= t('activerecord.models.launch.one') %>
+              <% end %>
+          </li>
+
+          <li class='dropdown medium only-icon widget'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+              <i class='icon-rss'></i>
+              <div class='label'><%= current_user.current_notificatons.count %></div>
+            </a>
           <ul class='dropdown-menu'>
             <% current_user.current_notificatons.limit(10).each do |notification| %>
               <li>

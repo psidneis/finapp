@@ -9,6 +9,8 @@
       </div>
 
       <%= render 'accounts/form_modal' %>
+      <%= render 'categories/form_modal' %>
+      <%= render 'groups/form_modal' %>
 
       <div class='box-content box-double-padding'>
         <%= simple_form_for(@launch, wrapper: :horizontal_form, html: {class: 'form form-horizontal'}) do |f| %>
@@ -55,15 +57,14 @@
               <div class='form-group'>
                 <%= f.input :global_launchable, as: :grouped_select, collection: [policy_scope(Account), policy_scope(Card)], group_method: :all, value_method: :to_global_id, group_label_method: :human_model_name, include_blank: false %>
                 <%= link_to "<i class='icon-plus'></i>".html_safe, "#", class: 'btn btn-success btn-sm btn_new', data: {toggle: 'modal', target: '#accounts_form_modal'} %>
-                <%#= link_to "<i class='icon-plus'></i>".html_safe, new_account_path, class: 'btn btn-success btn-sm btn_new' %>
               </div>
               <div class='form-group'>
                 <%= f.association :category, collection: policy_scope(Category), include_blank: false %>
-                <%= link_to "<i class='icon-plus'></i>".html_safe, new_category_path, class: 'btn btn-success btn-sm btn_new' %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, "#", class: 'btn btn-success btn-sm btn_new', data: {toggle: 'modal', target: '#categories_form_modal'} %>
               </div>
               <div class='form-group'>
                 <%= f.association :group, collection: policy_scope(Group) %>
-                <%= link_to "<i class='icon-plus'></i>".html_safe, new_group_path, class: 'btn btn-success btn-sm btn_new' %>
+                <%= link_to "<i class='icon-plus'></i>".html_safe, "#", class: 'btn btn-success btn-sm btn_new', data: {toggle: 'modal', target: '#groups_form_modal'} %>
               </div>
 
               <div class='form-group'>

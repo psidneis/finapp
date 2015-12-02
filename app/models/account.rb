@@ -11,6 +11,8 @@ class Account < ActiveRecord::Base
 
   enum account_type: %w(wallet checking_account savings_account)
 
+  attr_accessor :modal
+
   def value= value
     if value =~ /^R\$ ([\d.,]+)$/
       write_attribute :value, $1.gsub('.', '').gsub(',', '.').to_d
@@ -30,30 +32,30 @@ class Account < ActiveRecord::Base
   def self.sum_of_values_by_period(accounts, end_date)
     total_value = 0
     accounts.each do |account|
-      total_value += account.total_value_by_period(end_date)
+      total_value += (account.total_value_by_period(end_date) || 0)
     end
     total_value
-  end
-
-  def self.sum_of_future_values(accounts)
-    # total_value = 0
-    # accounts.each do |account|
-    #   total_value += account.total_future_value if account.cards.present?
-    # end
-    # total_value
   end
 
   def total_value_by_period(end_date)
     (self.value + self.installments.where("date > ? and paid", end_date).sum(:value)) unless self.created_at > end_date
   end
 
-  def total_future_value
-    # if self.cards.present?
-    #   cards = self.cards
-    #   billing_day = Time.local(Time.now.year, Time.now.month, self.cards.first.billing_day).end_of_day
-    #   (self.value - installment.joins(:cards).where("date < ? and not paid", billing_day).sum(:value))
-    #   # (self.value - self.installments.where("date < ? and not paid", billing_day).sum(:value))
-    # end
+  def self.sum_of_future_values(accounts, search_period_type)
+    total_value = 0
+    accounts.each do |account|
+      total_value += account.total_future_value(search_period_type)
+    end
+    total_value
+  end
+
+  def total_future_value(search_period_type)
+    value_to_pay = 0
+    self.cards.each do |card|
+      value_to_pay += card.current_invoice.try(:value) || 0 unless card.current_invoice.try(:paid)
+    end
+    value_to_pay += self.installments.where(date: (Date.today.send("beginning_of_#{search_period_type}")..Date.today.send("end_of_#{search_period_type}")), paid: false).sum(:value)
+    self.value - value_to_pay
   end
 
   def update_account(installment, old_installment=nil, action_name)

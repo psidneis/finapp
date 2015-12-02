@@ -26,7 +26,11 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.user = current_user
     @category.save
-    respond_with(@category)
+    if params[:category][:modal] == 'launch'
+      redirect_to new_launch_path
+    else
+      respond_with(@category)
+    end
   end
 
   def update

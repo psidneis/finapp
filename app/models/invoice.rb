@@ -18,4 +18,13 @@ class Invoice < ActiveRecord::Base
     self.model_name.human
   end
 
+  def installments
+    invoice_installments = []
+    installments = self.card.installments.where("date < ?", self.payment_day)
+    installments.each do |installment|
+      invoice_installments << installment if installment.date.month == self.payment_day.month and installment.date.day <= self.payment_day.day
+    end
+    invoice_installments
+  end
+
 end

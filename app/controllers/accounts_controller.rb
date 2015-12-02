@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   before_action :set_account, only: [:show, :edit, :update, :destroy]
   after_action :verify_authorized, except: [:index, :new, :create]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @accounts = policy_scope(Account)
@@ -26,7 +26,11 @@ class AccountsController < ApplicationController
     @account = Account.new(account_params)
     @account.user = current_user
     @account.save
-    respond_with(@account)
+    if params[:account][:modal] == 'launch'
+      redirect_to new_launch_path
+    else
+      respond_with(@account)
+    end
   end
 
   def update

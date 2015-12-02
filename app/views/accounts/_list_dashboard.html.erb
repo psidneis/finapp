@@ -17,8 +17,8 @@
             <h4><i class='icon-chevron-down'></i> <%= t('breadcrumbs.pages.total_balance') %></h4>
           </div>
           <div class='pull-right text-right'>
-            <h5>Período: <span class='<%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %>' title='Saldo até o fim de <%= date_format %>'><%= number_to_currency(Account.sum_of_values_by_period(@accounts, @end_date)) %></span></h5>
-            <h5>Previsto: <span class='<%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %>' title='Previsto para o fim <%= t("datetime.prompts.#{@search_period_type}") %> atual' ><%= number_to_currency(Account.sum_of_future_values(@accounts)) %></span></h5>
+            <h5>Período: <span class='<%= sum_of_accounts_value.try(:>, 0) ? 'text-green' : 'text-red' %>' title='Saldo até o fim de <%= date_format %>'><%= number_to_currency(Account.sum_of_values_by_period(@accounts, @end_date)) %></span></h5>
+            <h5>Previsto: <span class='<%= sum_of_accounts_value.try(:>, 0) ? 'text-green' : 'text-red' %>' title='Previsto para o fim <%= t("datetime.prompts.#{@search_period_type}") %> atual' ><%= number_to_currency(Account.sum_of_future_values(@accounts, @search_period_type)) %></span></h5>
             <h3><span style='font-size:15px;'>Atual:</span> <span class='subtotal <%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(sum_of_accounts_value) %></span></h3>
           </div>
           <div class='clearfix'></div>
@@ -32,9 +32,9 @@
                   <h4><%= account.title %></h4>
                 </div>
                 <div class='pull-right text-right'>
-                  <h5 style='margin: 2px 0px;'>Período: <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.total_value_by_period(@end_date)) %></span></h5>
-                  <h5 style='margin: 2px 0px;'>Previsto: <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.value) %></span></h5>
-                  <h4><span style='font-size:14px;'>Atual:</span> <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%#= number_to_currency(account.total_future_value) %></span></h4>  
+                  <h5 style='margin: 2px 0px;'>Período: <span class='<%= account.total_value_by_period(@end_date).try(:>, 0) ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.total_value_by_period(@end_date)) %></span></h5>
+                  <h5 style='margin: 2px 0px;'>Previsto: <span class='<%= account.total_future_value(@search_period_type) > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.total_future_value(@search_period_type)) %></span></h5>
+                  <h4><span style='font-size:14px;'>Atual:</span> <span class='<%= account.value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(account.value) %></span></h4>  
                 </div>
                 <div class='clearfix'></div>
               <% end %>

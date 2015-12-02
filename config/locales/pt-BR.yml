@@ -332,6 +332,7 @@ pt-BR:
         description: Descrição
         value: Valor
         payment_day: Vence dia
+        card: Cartão
         paid: Pago
       launch:
         title: Título

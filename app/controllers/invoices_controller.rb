@@ -4,7 +4,7 @@ class InvoicesController < ApplicationController
   respond_to :html
 
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.joins(:card).where("user_id = ?", current_user.id).order("invoices.payment_day")
     respond_with(@invoices)
   end
 
