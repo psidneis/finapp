@@ -43,7 +43,7 @@ class HomeController < ApplicationController
   private
 
     def get_period_installments
-      @search_period_type = params[:search_period_type] || 'month'
+      @search_period_type = params[:search_period_type] || 'day'
       @search_period = params[:search_period].try(:to_time) || DateTime.now
       @start_date = params[:start_date].try(:to_time) || @search_period.send("beginning_of_#{@search_period_type}")
       @end_date = params[:end_date].try(:to_time) || @search_period.send("end_of_#{@search_period_type}")
