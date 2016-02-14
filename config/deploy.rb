@@ -1,5 +1,6 @@
 # Change these
-server '198.199.110.146', port: 22, roles: [:web, :app, :db], primary: true
+# server '198.199.110.146', port: 22, roles: [:web, :app, :db], primary: true
+server '192.241.213.75', port: 1994, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:psidneis/finapp.git'
 set :application,     'finapp'
