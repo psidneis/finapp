@@ -195,7 +195,6 @@ ActiveRecord::Schema.define(version: 20151130234316) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
-  add_foreign_key "accounts", "users"
   add_foreign_key "cards", "accounts"
   add_foreign_key "cards", "users"
   add_foreign_key "categories", "users"
