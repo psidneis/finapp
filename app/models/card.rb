@@ -2,7 +2,7 @@ class Card < ActiveRecord::Base
 
   has_many :launches, as: :launchable
   has_many :installments, as: :installmentable
-  has_many :invoices
+  has_many :invoices, dependent: :destroy
   belongs_to :account
   belongs_to :user
 

@@ -19,12 +19,8 @@ class Invoice < ActiveRecord::Base
   end
 
   def installments
-    invoice_installments = []
-    installments = self.card.installments.where("date < ?", self.payment_day)
-    installments.each do |installment|
-      invoice_installments << installment if installment.date.month == self.payment_day.month and installment.date.day <= self.payment_day.day
-    end
-    invoice_installments
+    invoice_period =  (self.payment_day - (1.month - 1.day)).beginning_of_day..self.payment_day
+    self.card.installments.where(date: invoice_period)
   end
 
 end
