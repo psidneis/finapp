@@ -2,9 +2,9 @@ FactoryGirl.define do
 
   factory :account do
     account_type 1
-    title  'Checking Account'
+    sequence(:title) { |n| "Conta #{n}" }
     value 'R$ 1.589,95'
-    user_id 1
+    user
   end
 
 end

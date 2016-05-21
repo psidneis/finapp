@@ -25,25 +25,25 @@ class Account < ActiveRecord::Base
     self.model_name.human
   end
 
-  def self.sum_of_values(accounts)
-    accounts.sum(:value)
+  def self.sum_of_values
+    all.sum(:value)
   end
 
-  def self.sum_of_values_by_period(accounts, end_date)
+  def self.sum_of_values_by_period(end_date)
     total_value = 0
-    accounts.each do |account|
-      total_value += (account.total_value_by_period(end_date) || 0)
+    all.each do |account|
+      total_value += account.total_value_by_period(end_date)
     end
     total_value
   end
 
   def total_value_by_period(end_date)
-    (self.value + self.installments.where("date > ? and paid", end_date).sum(:value)) unless self.created_at > end_date
+    self.value + self.installments.where("date > ? and paid = ?", end_date, true).sum(:value) if end_date < self.created_at
   end
 
-  def self.sum_of_future_values(accounts, search_period_type)
+  def self.sum_of_future_values(search_period_type)
     total_value = 0
-    accounts.each do |account|
+    all.each do |account|
       total_value += account.total_future_value(search_period_type)
     end
     total_value

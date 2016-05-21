@@ -4,7 +4,7 @@ class CreateCategories < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :color
-      t.references :user, index: true, foreign_key: true
+      t.references :user, index: true
 
       t.timestamps null: false
     end

@@ -9,10 +9,10 @@ class CreateInstallments < ActiveRecord::Migration
       t.integer :launch_type
       t.integer :number_installment
       t.references :installmentable, polymorphic: true
-      t.references :category, index: true, foreign_key: true
-      t.references :user, index: true, foreign_key: true
-      t.references :launch, index: true, foreign_key: true
-      t.references :group, index: true, foreign_key: true
+      t.references :category, index: true
+      t.references :user, index: true
+      t.references :launch, index: true
+      t.references :group, index: true
       t.references :parent_launch_group, index: true
       t.attachment :proof
 

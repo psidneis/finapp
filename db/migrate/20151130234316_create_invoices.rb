@@ -4,7 +4,7 @@ class CreateInvoices < ActiveRecord::Migration
       t.string :title, null: false
       t.string :description
       t.decimal :value, null: false, default: 0.0, precision: 15, scale: 2
-      t.references :card, index: true, foreign_key: true
+      t.references :card, index: true
       t.datetime :payment_day, null: false
       t.boolean :paid, default: 0
 

@@ -13,13 +13,13 @@
       <% if @accounts.present? %>
         <div class='accounts_general'>
           <div class='pull-left'>
-            <% sum_of_accounts_value = Account.sum_of_values(@accounts) %>
+            <% sum_of_accounts_value = @accounts.sum_of_values %>
             <h4><i class='icon-chevron-down'></i> <%= t('breadcrumbs.pages.total_balance') %></h4>
           </div>
           <div class='pull-right text-right'>
-            <h5>Período: <span class='<%= sum_of_accounts_value.try(:>, 0) ? 'text-green' : 'text-red' %>' title='Saldo até o fim de <%= date_format %>'><%= number_to_currency(Account.sum_of_values_by_period(@accounts, @end_date)) %></span></h5>
+            <h5>Período: <span class='<%= sum_of_accounts_value.try(:>, 0) ? 'text-green' : 'text-red' %>' title='Saldo até o fim de <%= date_format %>'><%= number_to_currency(@accounts.sum_of_values_by_period(@end_date)) %></span></h5>
             <% unless @search_period_type == 'period' %>
-              <h5>Previsto: <span class='<%= sum_of_accounts_value.try(:>, 0) ? 'text-green' : 'text-red' %>' title='Previsto para o fim <%= t("datetime.prompts.#{@search_period_type}") %> atual' ><%= number_to_currency(Account.sum_of_future_values(@accounts, @search_period_type)) %></span></h5>
+              <h5>Previsto: <span class='<%= sum_of_accounts_value.try(:>, 0) ? 'text-green' : 'text-red' %>' title='Previsto para o fim <%= t("datetime.prompts.#{@search_period_type}") %> atual' ><%= number_to_currency(@accounts.sum_of_future_values(@search_period_type)) %></span></h5>
             <% end %>
             <h3><span style='font-size:15px;'>Atual:</span> <span class='subtotal <%= sum_of_accounts_value > 0 ? 'text-green' : 'text-red' %> '><%= number_to_currency(sum_of_accounts_value) %></span></h3>
           </div>

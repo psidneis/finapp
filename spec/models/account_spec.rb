@@ -10,4 +10,27 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '#human_model_name' do 
+
+    it "does human model name" do
+      expect(Account.human_model_name).to eq('Conta')
+    end
+  end
+
+  describe '#sum_of_values' do 
+    accounts = FactoryGirl.create_list(:account, 3, value: 150)
+
+    it "does sum of values" do
+      expect(Account.where(id: accounts.map(&:id)).sum_of_values).to eq(450.0)
+    end
+  end
+
+  describe '#sum_of_values_by_period' do
+  #   3.times {FactoryGirl.create(:account, value: 150)}
+
+  #   it "does sum of values by period" do
+  #     expect(Account.sum_of_values_by_period(DateTime.now)).to eq(450)
+  #   end
+  end
+
 end

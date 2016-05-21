@@ -195,20 +195,4 @@ ActiveRecord::Schema.define(version: 20151130234316) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
-  add_foreign_key "cards", "accounts"
-  add_foreign_key "cards", "users"
-  add_foreign_key "categories", "users"
-  add_foreign_key "goals", "categories"
-  add_foreign_key "groups", "users"
-  add_foreign_key "installments", "categories"
-  add_foreign_key "installments", "groups"
-  add_foreign_key "installments", "launches"
-  add_foreign_key "installments", "users"
-  add_foreign_key "invoices", "cards"
-  add_foreign_key "launches", "categories"
-  add_foreign_key "launches", "groups"
-  add_foreign_key "launches", "users"
-  add_foreign_key "notifications", "users"
-  add_foreign_key "user_groups", "groups"
-  add_foreign_key "user_groups", "users"
 end

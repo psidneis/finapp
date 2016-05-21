@@ -52,11 +52,6 @@ group	:doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
-group	:test do
-  gem 'cucumber'
-  gem 'rspec'
-end
-
 group :development do
   gem 'capistrano',         require: false
   gem 'capistrano-rvm',     require: false
@@ -70,13 +65,14 @@ group :development do
 end
 
 group :development, :test do
-  gem 'awesome_print', :require => 'ap'
+  gem 'cucumber'
+  gem 'rspec'
+  gem 'awesome_print', require: 'ap'
   gem 'pry-rails'
   gem 'pry-doc'
   gem 'pry-byebug'
-  gem 'awesome_print', :require => 'ap'
 
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
+  gem 'database_cleaner'
 end
