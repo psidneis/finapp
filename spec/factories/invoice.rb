@@ -1,15 +1,8 @@
-# FactoryGirl.define do
+FactoryGirl.define do
 
-  # factory :invoice do
-  # 	title 'Fatura de junho de 2016'
-  # 	card_id 6
-  # 	payment_day 8
+  factory :invoice do
+  	title 'Fatura de junho de 2016'
+    payment_day '2016-06-09 02:59:59'
+  end
 
-  # 	trait :with_installments do
-  # 		after(:create) do |invoice|
-  # 			create_list(:installment, invoice: invoice)
-  # 		end
-  # 	end
-  # end
-
-# end
+end

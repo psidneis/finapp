@@ -1,11 +1,20 @@
-context 'getting invoice installments' do
-	# subject(:invoice) do
-	# 	Invoice.new(title: "Fatura de junho de 2016", card_id: 6, payment_day: 8)
-	# end
+require 'rails_helper'
 
-	# before
+RSpec.describe Invoice, type: :model do
 
-	# it 'does get the invoice intallments' do
-	# 	expect(invoice.installments).not_to be_empty
-	# end
+	describe '#gettings invoice installments' do
+		let(:invoice) do
+			card = create(:card_with_installments)
+			FactoryGirl.create(:invoice, card: card)
+		end
+
+		subject do
+			invoice.installments
+		end
+
+		it 'does get the invoice intallments' do
+			expect(subject).not_to be_empty
+		end
+	end
+
 end
