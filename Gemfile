@@ -5,7 +5,7 @@ gem 'rails', '~> 4.2.2'
 gem 'puma'
 # Use postgresql as the database for Active Record
 # gem 'pg'
-gem 'mysql2', '~> 0.3.20'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,7 +40,6 @@ gem 'omniauth-google-oauth2'
 
 gem 'simple_form'
 gem 'carrierwave'
-gem 'prawn'
 gem 'responders', '~> 2.0'
 
 gem "compass-rails", "~> 2.0.alpha.0"

@@ -20,7 +20,7 @@ development:
   reconnect: false
   database: finapp_development
   pool: 5
-  username: root
+  username: <%= Rails.application.secrets.db_username %>
   password: <%= Rails.application.secrets.db_password %>
   host: localhost
   port: 3306
@@ -34,7 +34,7 @@ test:
   reconnect: false
   database: finapp_test
   pool: 5
-  username: root
+  username: <%= Rails.application.secrets.db_username %>
   password: <%= Rails.application.secrets.db_password %>
   host: localhost
 
