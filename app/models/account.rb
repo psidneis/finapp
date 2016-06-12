@@ -32,7 +32,7 @@ class Account < ActiveRecord::Base
   def self.sum_of_values_by_period(end_date)
     total_value = 0
     all.each do |account|
-      total_value += account.total_value_by_period(end_date)
+      total_value += account.total_value_by_period(end_date) || 0
     end
     total_value
   end

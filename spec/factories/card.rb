@@ -4,7 +4,7 @@ FactoryGirl.define do
   	brand 5
   	title 'Cartão ELo'
   	credit_limit 2000
-  	billing_day 8
+  	billing_day 4
   	payment_day 8
 
   	trait :with_installments do

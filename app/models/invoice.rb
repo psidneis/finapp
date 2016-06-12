@@ -19,7 +19,8 @@ class Invoice < ActiveRecord::Base
   end
 
   def installments
-    invoice_period =  (self.payment_day - (1.month - 1.day)).beginning_of_day..self.payment_day
+    card = self.card
+    invoice_period =  (Time.new(self.payment_day.year, self.payment_day.month, card.billing_day) - (1.month - 1.day)).beginning_of_day..(Time.new(self.payment_day.year, self.payment_day.month, card.billing_day).end_of_day)
     self.card.installments.where(date: invoice_period)
   end
 
