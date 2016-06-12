@@ -2,6 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Account, type: :model do
 
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:account_type) }
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:value) }
+    it { is_expected.to validate_uniqueness_of(:title).scoped_to(:user_id) }
+    it { is_expected.to validate_length_of(:title).is_at_least(2).is_at_most(100) }
+    it { is_expected.to validate_numericality_of(:value) }
+  end
+
+  describe 'enums' do
+    it { is_expected.to define_enum_for(:account_type) }
+  end
+
   describe '#value' do 
     subject { create(:account) }
 

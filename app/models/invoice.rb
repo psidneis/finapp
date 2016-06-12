@@ -1,8 +1,8 @@
 class Invoice < ActiveRecord::Base
 
-	belongs_to :card
+  belongs_to :card
 
-	validates :title, :payment_day, presence: true
+  validates :title, :payment_day, presence: true
   validates :title, length: { in: 2..100 }
   validates :value, numericality: true
 

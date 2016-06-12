@@ -1,11 +1,12 @@
-context 'getting invoice installments' do
-	# subject(:invoice) do
-	# 	Invoice.new(title: "Fatura de junho de 2016", card_id: 6, payment_day: 8)
-	# end
+require 'rails_helper'
 
-	# before
+RSpec.describe Invoice, type: :model do
 
-	# it 'does get the invoice intallments' do
-	# 	expect(invoice.installments).not_to be_empty
-	# end
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:title) }    
+    it { is_expected.to validate_presence_of(:payment_day) }
+    it { is_expected.to validate_length_of(:title).is_at_least(2).is_at_most(100) }
+    it { is_expected.to validate_numericality_of(:value) }
+  end
+
 end
