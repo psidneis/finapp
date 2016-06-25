@@ -101,13 +101,11 @@ class Launch < ActiveRecord::Base
 
   def notify_user_groups
     self.available_user_groups.each do |user_group|
-      if self.user != user_group.user
-        Notification.create(
-          user: user_group.user,
-          title: I18n.t('models.notification.title_launch_group'), 
-          description: I18n.t('models.notification.description_launch_group', note: self.note_to_user_notification), 
-          icon: 'calendar' )
-      end
+      Notification.create(
+        user: user_group.user,
+        title: I18n.t('models.notification.title_launch_group'), 
+        description: I18n.t('models.notification.description_launch_group', note: self.note_to_user_notification), 
+        icon: 'calendar' )
     end
   end
 
@@ -120,7 +118,7 @@ class Launch < ActiveRecord::Base
   end
 
   def available_user_groups
-    self.group.user_groups.where(enabled: true)
+    self.group.user_groups.where(enabled: true).where.not(user_id: self.user)
   end
 
   def calculate_user_value
