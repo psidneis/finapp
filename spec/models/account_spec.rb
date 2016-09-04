@@ -39,11 +39,11 @@ RSpec.describe Account, type: :model do
   end
 
   describe '#sum_of_values_by_period' do
-  #   3.times {FactoryGirl.create(:account, value: 150)}
+    accounts = FactoryGirl.create_list(:account, 3, value: 150)
 
-  #   it "does sum of values by period" do
-  #     expect(Account.sum_of_values_by_period(DateTime.now)).to eq(450)
-  #   end
+    it "does sum of values by period" do
+      expect(Account.where(id: accounts.map(&:id)).sum_of_values_by_period(DateTime.now - 1.minute)).to eq(450)
+    end
   end
 
 end
