@@ -24,8 +24,7 @@ class LaunchesController < ApplicationController
 
   def create
     @launch = Launch.new(launch_params)
-    installment_generation = InstallmentGeneration.new(@launch, current_user)
-    installment_generation.create
+    installment_generation = InstallmentGeneration.new(@launch, current_user).create
 
     update_accounts_and_cards
     location = @launch.group.present? ? apportionment_launch_path(@launch) : home_dashboard_path
