@@ -30,7 +30,7 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#sum_of_values' do 
+  describe '.sum_of_values' do 
     accounts = FactoryGirl.create_list(:account, 3, value: 150)
 
     it "does sum of values" do
@@ -38,11 +38,20 @@ RSpec.describe Account, type: :model do
     end
   end
 
-  describe '#sum_of_values_by_period' do
+  describe '.sum_of_values_by_period' do
     accounts = FactoryGirl.create_list(:account, 3, value: 150)
 
     it "does sum of values by period" do
       expect(Account.where(id: accounts.map(&:id)).sum_of_values_by_period(DateTime.now - 1.minute)).to eq(450)
+    end
+  end
+
+  describe '#total_value_by_period' do
+    account = FactoryGirl.create(:account, value: 500)
+    FactoryGirl.create_list(:installment, 3, installmentable: account, user: account.user, value: 100, paid: true, date: DateTime.now + 1.minute)
+
+    it "does return total value by a period" do
+      expect(account.total_value_by_period(DateTime.now - 1.minute)).to eq(800)
     end
   end
 
